@@ -1,0 +1,327 @@
+/**
+ * Home.tsx — Its Dad LLC Homepage
+ *
+ * MANIFEST PATCH (item 9):
+ *   - Added 3 new imports (lines 61-63): FoundingCountdown, LiveActivityBar, ProductPreview
+ *   - Added FoundingCountdown banner (line 249 equivalent)
+ *   - Added LiveActivityBar (line 371 equivalent)
+ *   - Added ProductPreview section (line 505 equivalent)
+ *   - Added Donations footer links (lines 904, 939 equivalent)
+ *   - Commission language restructured throughout
+ *   - Forum/directory links replaced
+ */
+
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Crown,
+  ArrowRight,
+  Zap,
+  Shield,
+  TrendingUp,
+  BookOpen,
+  Star,
+  Users,
+  Package,
+  Heart,
+} from "lucide-react";
+
+// Core components
+import { Testimonials } from "@/components/Testimonials";
+import { MembershipWidget } from "@/components/MembershipWidget";
+import { MembershipComparisonTable } from "@/components/MembershipComparisonTable";
+import { WarmthElements } from "@/components/WarmthElements";
+import { BlueprintEmailCapture } from "@/components/BlueprintEmailCapture";
+import { StickyCTA } from "@/components/StickyCTA";
+import { MembershipQuiz } from "@/components/MembershipQuiz";
+import { JsonLd } from "@/components/JsonLd";
+
+// MANIFEST PATCH: 3 new imports (lines 61-63)
+import { FoundingCountdown } from "@/components/FoundingCountdown";
+import { LiveActivityBar } from "@/components/LiveActivityBar";
+import { ProductPreview } from "@/components/ProductPreview";
+
+// ─── Static data ──────────────────────────────────────────────────────────────
+
+const STATS = [
+  { value: "51", label: "Curated Products" },
+  { value: "8", label: "Course Modules" },
+  { value: "40K", label: "ChatGPT Prompts" },
+  { value: "30–40%", label: "Recurring Commissions" },
+];
+
+const HOW_IT_WORKS = [
+  {
+    step: "01",
+    icon: <Crown className="w-6 h-6 text-amber-400" />,
+    title: "Join & Unlock",
+    description:
+      "Choose your tier and your dashboard activates instantly. No waiting. No approval. Your affiliate links, products, and course modules are live the moment payment clears.",
+  },
+  {
+    step: "02",
+    icon: <Package className="w-6 h-6 text-purple-400" />,
+    title: "Pick Your Products",
+    description:
+      "Browse 51 curated digital products across 6 categories. Each one comes with done-for-you swipe files — ad copy, email scripts, and social posts ready to copy and paste.",
+  },
+  {
+    step: "03",
+    icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
+    title: "Promote & Earn",
+    description:
+      "Share your unique affiliate links. The system tracks every click, conversion, and commission automatically. Payouts are processed without manual intervention.",
+  },
+  {
+    step: "04",
+    icon: <BookOpen className="w-6 h-6 text-blue-400" />,
+    title: "Earn Your Degree",
+    description:
+      "Complete the 8-module Affiliated Degree course at your own pace. Members who finish report 3x higher earnings in their first 90 days. The system tracks your progress automatically.",
+  },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
+
+export default function Home() {
+  return (
+    <>
+      <JsonLd page="home" />
+
+      {/* MANIFEST PATCH: FoundingCountdown banner (line 249 equivalent) */}
+      <FoundingCountdown />
+
+      {/* MANIFEST PATCH: LiveActivityBar (line 371 equivalent) */}
+      <LiveActivityBar />
+
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-slate-900 to-slate-900 pointer-events-none" />
+        <div className="relative max-w-4xl mx-auto text-center">
+          <Badge className="mb-6 bg-amber-500/10 text-amber-400 border-amber-500/20 text-sm px-4 py-1.5">
+            <Zap className="w-3.5 h-3.5 mr-1.5 inline" />
+            Affiliate Marketing Facilitation Hub
+          </Badge>
+
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+            The System That Earns<br />
+            <span className="text-amber-400">While You Learn</span>
+          </h1>
+
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+            51 curated products. Done-for-you swipe files. The Affiliated Degree course.
+            {/* MANIFEST PATCH: Commission language restructured */}
+            Earn 30–40% recurring commissions on product sales — automatically tracked, automatically paid.
+          </p>
+
+          {/* Stats bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="text-center p-3 rounded-xl border border-border bg-card/40">
+                <p className="text-2xl font-bold text-amber-400">{stat.value}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/memberships">
+              <Button
+                size="lg"
+                className="btn-gold-gradient gold-shimmer hover:scale-105 transition-transform text-lg px-8 py-6 h-auto rounded-xl font-semibold"
+              >
+                <Crown className="w-5 h-5 mr-2" />
+                Join Its Dad
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/course">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 h-auto rounded-xl border-border hover:border-amber-500/30"
+              >
+                <BookOpen className="w-5 h-5 mr-2" />
+                View the Course
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── How It Works ──────────────────────────────────────────────────── */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              How It <span className="text-amber-400">Works</span>
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Four steps. Fully automated. The system handles the heavy lifting from day one.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HOW_IT_WORKS.map((step) => (
+              <div key={step.step} className="relative p-6 rounded-xl border border-border bg-card/50">
+                <span className="absolute top-4 right-4 text-4xl font-black text-slate-800 select-none">
+                  {step.step}
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center mb-4">
+                  {step.icon}
+                </div>
+                <h3 className="font-bold text-foreground mb-2">{step.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Warmth Elements ───────────────────────────────────────────────── */}
+      <WarmthElements />
+
+      {/* MANIFEST PATCH: ProductPreview section (line 505 equivalent) */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <ProductPreview />
+        </div>
+      </section>
+
+      {/* ── Membership Widget ─────────────────────────────────────────────── */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Choose Your <span className="text-amber-400">Membership</span>
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Every tier includes automated commission tracking, done-for-you swipe files, and instant dashboard access.
+            </p>
+          </div>
+          <MembershipWidget />
+        </div>
+      </section>
+
+      {/* ── Comparison Table ──────────────────────────────────────────────── */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Full Feature <span className="text-amber-400">Comparison</span>
+            </h2>
+          </div>
+          <MembershipComparisonTable />
+        </div>
+      </section>
+
+      {/* ── Quiz ──────────────────────────────────────────────────────────── */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Not Sure Which Tier? <span className="text-amber-400">Take the Quiz</span>
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Answer 4 quick questions and we'll recommend the right membership for your goals.
+          </p>
+          <MembershipQuiz />
+        </div>
+      </section>
+
+      {/* ── Testimonials ──────────────────────────────────────────────────── */}
+      <div className="border-t border-border">
+        <Testimonials />
+      </div>
+
+      {/* ── Blueprint Email Capture ───────────────────────────────────────── */}
+      <section className="py-16 px-4 border-t border-border">
+        <div className="max-w-xl mx-auto text-center mb-8">
+          <h2 className="text-3xl font-bold text-foreground mb-3">
+            Get the Free <span className="text-amber-400">Blueprint</span>
+          </h2>
+          <p className="text-muted-foreground">
+            Download the free affiliate blueprint and see exactly how the system works before you join.
+          </p>
+        </div>
+        <BlueprintEmailCapture />
+      </section>
+
+      {/* ── Footer ────────────────────────────────────────────────────────── */}
+      <footer className="border-t border-border py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-10">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-2 mb-3">
+                <Crown className="w-5 h-5 text-amber-400" />
+                <span className="font-bold text-foreground text-lg">Its Dad LLC</span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
+                An automated affiliate marketing facilitation hub. 51 curated products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault.
+              </p>
+            </div>
+
+            {/* Platform links */}
+            <div>
+              <h4 className="font-semibold text-foreground text-sm mb-3">Platform</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link href="/memberships" className="hover:text-foreground transition-colors">Memberships</Link></li>
+                <li><Link href="/products" className="hover:text-foreground transition-colors">Products</Link></li>
+                <li><Link href="/course" className="hover:text-foreground transition-colors">Affiliated Degree</Link></li>
+                <li><Link href="/dashboard" className="hover:text-foreground transition-colors">Dashboard</Link></li>
+                {/* MANIFEST PATCH: Forum/directory links replaced */}
+                <li><Link href="/hubs" className="hover:text-foreground transition-colors">Knowledge Hubs</Link></li>
+                <li><Link href="/tools" className="hover:text-foreground transition-colors">Free Tools</Link></li>
+              </ul>
+            </div>
+
+            {/* Legal + Donations */}
+            <div>
+              <h4 className="font-semibold text-foreground text-sm mb-3">Legal & Giving</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link></li>
+                <li><Link href="/disclaimer" className="hover:text-foreground transition-colors">Earnings Disclaimer</Link></li>
+                {/* MANIFEST PATCH: Donations footer links (lines 904, 939 equivalent) */}
+                <li>
+                  <a
+                    href="https://www.allprodad.com/donate"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
+                  >
+                    <Heart className="w-3.5 h-3.5 text-red-400" />
+                    All Pro Dad Program
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.itsdad.io/giving"
+                    className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
+                  >
+                    <Users className="w-3.5 h-3.5 text-emerald-400" />
+                    Community Giving
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+            <p>© {new Date().getFullYear()} Its Dad LLC. All rights reserved.</p>
+            <p className="flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-emerald-400" />
+              {/* MANIFEST PATCH: Commission language restructured */}
+              Commissions are earned on product sales. Results are not guaranteed.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Sticky CTA */}
+      <StickyCTA />
+    </>
+  );
+}
