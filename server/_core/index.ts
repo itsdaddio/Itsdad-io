@@ -14,6 +14,7 @@ import cors from "cors";
 import { json } from "body-parser";
 import { handleStripeWebhook } from "../webhook-stripe";
 import { processInstantOnboardingEmails } from "../instantOnboardingService";
+import { createCheckoutSession, getSessionStatus } from "../checkout";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -41,6 +42,14 @@ app.get("/api/health", (_req: Request, res: Response) => {
 // ─── Stripe Webhook ───────────────────────────────────────────────────────────
 
 app.post("/api/webhooks/stripe", handleStripeWebhook);
+
+// ─── Checkout ─────────────────────────────────────────────────────────────────
+
+// POST /api/checkout/create-session — creates a Stripe Checkout session
+app.post("/api/checkout/create-session", createCheckoutSession);
+
+// GET /api/checkout/session-status — retrieves session status after redirect
+app.get("/api/checkout/session-status", getSessionStatus);
 
 // ─── Cron Endpoints ───────────────────────────────────────────────────────────
 //
