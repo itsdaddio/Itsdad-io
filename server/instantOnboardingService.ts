@@ -9,7 +9,7 @@
  */
 
 import { getDb } from "./db";
-import { emailSequenceQueue, emailSequenceCompletion } from "../drizzle/schema";
+import { emailSequenceQueue, emailSequenceCompletion } from "../drizzle/schema-email-sequences";
 import { eq, and } from "drizzle-orm";
 import { sendEmail } from "./_core/email";
 import { upsertSubscriber } from "./mailerlite";
