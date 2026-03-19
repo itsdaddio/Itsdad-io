@@ -427,7 +427,7 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-3">
-                <Crown className="w-5 h-5 text-amber-400" />
+                <Heart className="w-5 h-5 text-amber-400" />
                 <span className="font-bold text-foreground text-lg">Its Dad LLC</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
