@@ -134,18 +134,26 @@ export function ProductPreview() {
                     </div>
                   </div>
                 )}
-                {/* Product count when image is shown */}
+                {/* Product count + category description when image is shown */}
                 {CATEGORY_IMAGES[cat.name] && (
-                  <p className="text-xs text-muted-foreground mb-3">{products.length} products</p>
+                  <div className="mb-3">
+                    <p className="text-xs text-muted-foreground">{products.length} products</p>
+                    <p className="text-xs text-slate-400 italic mt-1 leading-relaxed">{cat.description}</p>
+                  </div>
                 )}
 
-                {/* Product Names List */}
-                <div className="space-y-2 mb-4">
+                {/* Product Names List with descriptions */}
+                <div className="space-y-3 mb-4">
                   {displayProducts.map((product) => (
-                    <div key={product.id} className="flex items-center gap-2 text-sm">
-                      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${iconColor.replace("text-", "bg-")}`} />
-                      <span className="text-foreground/90">{product.name}</span>
-                      <span className="text-xs text-muted-foreground ml-auto">${product.tripwire}</span>
+                    <div key={product.id} className="flex flex-col gap-0.5 text-sm border-b border-border/20 pb-2 last:border-0 last:pb-0">
+                      <div className="flex items-center gap-2">
+                        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-0.5 ${iconColor.replace("text-", "bg-")}`} />
+                        <span className="text-foreground/90 font-medium">{product.name}</span>
+                        <span className="text-xs text-muted-foreground ml-auto flex-shrink-0">${product.tripwire}</span>
+                      </div>
+                      {product.description && (
+                        <p className="text-xs text-muted-foreground pl-3.5 leading-relaxed">{product.description}</p>
+                      )}
                     </div>
                   ))}
                 </div>

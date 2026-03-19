@@ -120,7 +120,6 @@ export default function Home() {
   return (
     <>
       <JsonLd page="home" />
-      <LiveActivityBar />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
@@ -193,6 +192,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Live Activity Bar — social proof after hero ──────────────────── */}
+      <LiveActivityBar />
 
       {/* ── Giveaway Section ─────────────────────────────────────────────── */}
       <section
