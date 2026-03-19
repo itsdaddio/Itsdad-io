@@ -120,7 +120,6 @@ export default function Home() {
   return (
     <>
       <JsonLd page="home" />
-      <FoundingCountdown />
       <LiveActivityBar />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -166,7 +165,7 @@ export default function Home() {
           </div>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link href="/memberships">
               <Button
                 size="lg"
@@ -187,6 +186,10 @@ export default function Home() {
                 View the Course
               </Button>
             </Link>
+          </div>
+          {/* Founding countdown — placed AFTER the value prop, not before */}
+          <div className="mt-2">
+            <FoundingCountdown />
           </div>
         </div>
       </section>

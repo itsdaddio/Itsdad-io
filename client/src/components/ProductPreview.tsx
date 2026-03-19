@@ -24,6 +24,15 @@ import {
 import { PRODUCTS_51, PRODUCT_CATEGORIES } from "@/data/products51";
 import { useState } from "react";
 
+const CATEGORY_IMAGES: Record<string, string> = {
+  "AI Tools": "/images/cover-ai-tools.jpg",
+  "Social Media": "/images/cover-social-media.jpg",
+  "E-commerce": "/images/cover-ecommerce.jpg",
+  "Finance": "/images/cover-finance.jpg",
+  "Personal Development": "/images/cover-personal-dev.jpg",
+  "Marketing": "/images/cover-marketing.jpg",
+};
+
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "AI Tools": <Sparkles className="w-5 h-5" />,
   "Social Media": <Share2 className="w-5 h-5" />,
@@ -95,19 +104,40 @@ export function ProductPreview() {
           return (
             <Card
               key={cat.name}
-              className="border-border hover:border-emerald-500/30 transition-all bg-card/50 overflow-hidden"
+              className="border-border hover:border-emerald-500/30 transition-all bg-card/50 overflow-hidden group"
             >
-              <CardContent className="p-6">
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${colorClass}`}>
+              {/* Category Cover Image */}
+              {CATEGORY_IMAGES[cat.name] && (
+                <div className="h-36 overflow-hidden relative">
+                  <img
+                    src={CATEGORY_IMAGES[cat.name]}
+                    alt={cat.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                  <div className={`absolute bottom-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-lg ${colorClass} backdrop-blur-sm`}>
                     {CATEGORY_ICONS[cat.name] || <Package className="w-5 h-5" />}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-foreground">{cat.name}</h3>
-                    <p className="text-xs text-muted-foreground">{products.length} products</p>
+                    <span className="font-bold text-sm">{cat.name}</span>
                   </div>
                 </div>
+              )}
+              <CardContent className="p-6">
+                {/* Category Header — only show if no image */}
+                {!CATEGORY_IMAGES[cat.name] && (
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${colorClass}`}>
+                      {CATEGORY_ICONS[cat.name] || <Package className="w-5 h-5" />}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-foreground">{cat.name}</h3>
+                      <p className="text-xs text-muted-foreground">{products.length} products</p>
+                    </div>
+                  </div>
+                )}
+                {/* Product count when image is shown */}
+                {CATEGORY_IMAGES[cat.name] && (
+                  <p className="text-xs text-muted-foreground mb-3">{products.length} products</p>
+                )}
 
                 {/* Product Names List */}
                 <div className="space-y-2 mb-4">

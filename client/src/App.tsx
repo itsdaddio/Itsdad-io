@@ -2,6 +2,7 @@ import { Route, Switch, Link, useLocation } from "wouter";
 import Home from "./pages/Home";
 import Memberships from "./pages/Memberships";
 import Hubs from "./pages/Hubs";
+import MeetDad from "./pages/MeetDad";
 import { useState } from "react";
 
 function Navbar() {
@@ -10,6 +11,7 @@ function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/meet-dad", label: "Meet Dad" },
     { href: "/memberships", label: "Memberships" },
     { href: "/hubs", label: "Knowledge Hub" },
   ];
@@ -120,6 +122,7 @@ function Footer() {
               <li><Link href="/" className="text-slate-400 hover:text-white text-sm transition-colors">Home</Link></li>
               <li><Link href="/memberships" className="text-slate-400 hover:text-white text-sm transition-colors">Memberships</Link></li>
               <li><Link href="/hubs" className="text-slate-400 hover:text-white text-sm transition-colors">Knowledge Hub</Link></li>
+              <li><Link href="/meet-dad" className="text-slate-400 hover:text-white text-sm transition-colors">Meet Dad</Link></li>
             </ul>
           </div>
           <div>
@@ -153,6 +156,7 @@ export default function App() {
           <Route path="/memberships" component={Memberships} />
           <Route path="/hubs" component={Hubs} />
           <Route path="/hubs/:slug" component={Hubs} />
+          <Route path="/meet-dad" component={MeetDad} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>
