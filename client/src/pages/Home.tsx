@@ -1,7 +1,7 @@
 /**
  * Home.tsx — Its Dad LLC Homepage (Visual Enhancement v2)
  * - Hero with full background image
- * - Oprah-style giveaway section with confetti animation
+ * - Giveaway section with confetti animation
  * - Product category cover images
  * - Rich section backgrounds
  * - Affiliated Degree visual banner
@@ -191,7 +191,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Oprah-Style Giveaway Section ──────────────────────────────────── */}
+      {/* ── Giveaway Section ─────────────────────────────────────────────── */}
       <section
         className="relative py-20 px-4 overflow-hidden"
         style={{
@@ -211,7 +211,7 @@ export default function Home() {
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
-          {/* Oprah-style headline */}
+          {/* Giveaway headline */}
           <div className="mb-6">
             <span className="inline-block text-5xl md:text-7xl font-black text-white drop-shadow-2xl leading-none mb-2">
               You get a bundle.
