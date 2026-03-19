@@ -12,7 +12,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Crown, Zap, Star, RotateCcw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Users, Zap, Star, RotateCcw } from "lucide-react";
 import { Link } from "wouter";
 
 interface QuizQuestion {
@@ -26,20 +26,20 @@ const QUESTIONS: QuizQuestion[] = [
     id: "experience",
     question: "How much affiliate marketing experience do you have?",
     options: [
-      { label: "I'm completely new to this", value: "new", score: { boss: 3, chief: 1, kingpin: 0 } },
-      { label: "I've tried it but haven't earned yet", value: "tried", score: { boss: 2, chief: 2, kingpin: 1 } },
-      { label: "I've earned some commissions before", value: "some", score: { boss: 1, chief: 3, kingpin: 2 } },
-      { label: "I'm actively earning and want to scale", value: "active", score: { boss: 0, chief: 2, kingpin: 3 } },
+      { label: "I'm completely new to this", value: "new", score: { starter: 3, builder: 1, inner: 0 } },
+      { label: "I've tried it but haven't earned yet", value: "tried", score: { starter: 2, builder: 2, inner: 1 } },
+      { label: "I've earned some commissions before", value: "some", score: { starter: 1, builder: 3, inner: 2 } },
+      { label: "I'm actively earning and want to scale", value: "active", score: { starter: 0, builder: 2, inner: 3 } },
     ],
   },
   {
     id: "goal",
     question: "What's your primary goal in the next 90 days?",
     options: [
-      { label: "Earn my first commission", value: "first", score: { boss: 3, chief: 1, kingpin: 0 } },
-      { label: "Build a consistent monthly income", value: "consistent", score: { boss: 1, chief: 3, kingpin: 2 } },
-      { label: "Replace my current income", value: "replace", score: { boss: 0, chief: 2, kingpin: 3 } },
-      { label: "Build a passive income stream", value: "passive", score: { boss: 1, chief: 2, kingpin: 3 } },
+      { label: "Earn my first commission", value: "first", score: { starter: 3, builder: 1, inner: 0 } },
+      { label: "Build a consistent monthly income", value: "consistent", score: { starter: 1, builder: 3, inner: 2 } },
+      { label: "Replace my current income", value: "replace", score: { starter: 0, builder: 2, inner: 3 } },
+      { label: "Build a passive income stream", value: "passive", score: { starter: 1, builder: 2, inner: 3 } },
     ],
   },
   {
@@ -47,44 +47,44 @@ const QUESTIONS: QuizQuestion[] = [
     id: "resources",
     question: "How many done-for-you resources do you need?",
     options: [
-      { label: "Just the basics — I'll figure the rest out", value: "minimal", score: { boss: 3, chief: 1, kingpin: 0 } },
-      { label: "A solid toolkit to get me started", value: "moderate", score: { boss: 2, chief: 3, kingpin: 1 } },
-      { label: "Everything pre-built and ready to deploy", value: "full", score: { boss: 0, chief: 2, kingpin: 3 } },
-      { label: "The complete system — funnels, templates, prompts", value: "complete", score: { boss: 0, chief: 1, kingpin: 3 } },
+      { label: "Just the basics — I'll figure the rest out", value: "minimal", score: { starter: 3, builder: 1, inner: 0 } },
+      { label: "A solid toolkit to get me started", value: "moderate", score: { starter: 2, builder: 3, inner: 1 } },
+      { label: "Everything pre-built and ready to deploy", value: "full", score: { starter: 0, builder: 2, inner: 3 } },
+      { label: "The complete system — funnels, templates, prompts", value: "complete", score: { starter: 0, builder: 1, inner: 3 } },
     ],
   },
   {
     id: "products",
     question: "How many products do you want to promote?",
     options: [
-      { label: "A few to start — keep it simple", value: "few", score: { boss: 3, chief: 1, kingpin: 0 } },
-      { label: "A solid selection across a few niches", value: "medium", score: { boss: 1, chief: 3, kingpin: 1 } },
-      { label: "As many as possible — maximum earning potential", value: "all", score: { boss: 0, chief: 1, kingpin: 3 } },
+      { label: "A few to start — keep it simple", value: "few", score: { starter: 3, builder: 1, inner: 0 } },
+      { label: "A solid selection across a few niches", value: "medium", score: { starter: 1, builder: 3, inner: 1 } },
+      { label: "As many as possible — maximum earning potential", value: "all", score: { starter: 0, builder: 1, inner: 3 } },
     ],
   },
 ];
 
 const TIER_DETAILS: Record<string, { name: string; price: string; icon: React.ReactNode; color: string; href: string }> = {
-  boss: {
-    name: "Boss",
+  starter: {
+    name: "Starter Pass",
     price: "$9.99/mo",
     icon: <Zap className="w-5 h-5 text-blue-400" />,
     color: "border-blue-500/30 bg-blue-500/5",
-    href: "/memberships?tier=boss",
+    href: "/memberships?tier=starter",
   },
-  chief: {
-    name: "Chief",
+  builder: {
+    name: "Builder Access",
     price: "$19.99/mo",
     icon: <Star className="w-5 h-5 text-amber-400" />,
     color: "border-amber-500/30 bg-amber-500/5",
-    href: "/memberships?tier=chief",
+    href: "/memberships?tier=builder",
   },
-  kingpin: {
-    name: "Kingpin",
+  inner: {
+    name: "Inner Circle",
     price: "$24.99/mo",
-    icon: <Crown className="w-5 h-5 text-purple-400" />,
+    icon: <Users className="w-5 h-5 text-purple-400" />,
     color: "border-purple-500/30 bg-purple-500/5",
-    href: "/memberships?tier=kingpin",
+    href: "/memberships?tier=inner-circle",
   },
 };
 
@@ -101,7 +101,7 @@ export function MembershipQuiz() {
       setCurrentQ((prev) => prev + 1);
     } else {
       // Calculate result
-      const scores: Record<string, number> = { boss: 0, chief: 0, kingpin: 0 };
+      const scores: Record<string, number> = { starter: 0, builder: 0, inner: 0 };
       for (const q of QUESTIONS) {
         const answer = newAnswers[q.id];
         const option = q.options.find((o) => o.value === answer);

@@ -11,7 +11,6 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Crown,
   ArrowRight,
   Zap,
   Shield,
@@ -25,6 +24,8 @@ import {
   Sparkles,
   GraduationCap,
   CheckCircle2,
+  HandHeart,
+  Handshake,
 } from "lucide-react";
 // Core components
 import { Testimonials } from "@/components/Testimonials";
@@ -50,10 +51,10 @@ const STATS = [
 const HOW_IT_WORKS = [
   {
     step: "01",
-    icon: <Crown className="w-6 h-6 text-amber-400" />,
-    title: "Join & Unlock",
+    icon: <Users className="w-6 h-6 text-amber-400" />,
+    title: "Start Here",
     description:
-      "Choose your tier and your dashboard activates instantly. No waiting. No approval. Your affiliate links, products, and course modules are live the moment payment clears.",
+      "Choose your plan and your dashboard activates instantly. No waiting. No approval. Your affiliate links, products, and course modules are live the moment you join.",
     img: "/images/product-ai-tools.jpg",
   },
   {
@@ -141,11 +142,14 @@ export default function Home() {
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            The System That Earns<br />
-            <span className="text-amber-400">While You Learn</span>
+            Start Your First Online Income<br />
+            <span className="text-amber-400">Without Guessing What to Do</span>
           </h1>
 
-          <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow">
+          <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-4 leading-relaxed drop-shadow">
+            Beginner-friendly. No experience needed. Step-by-step system.
+          </p>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow">
             51 curated products. Done-for-you swipe files. The Affiliated Degree course.
             Earn 30–40% recurring commissions — automatically tracked, automatically paid.
           </p>
@@ -170,8 +174,8 @@ export default function Home() {
                 size="lg"
                 className="btn-gold-gradient gold-shimmer hover:scale-105 transition-transform text-lg px-8 py-6 h-auto rounded-xl font-semibold shadow-2xl"
               >
-                <Crown className="w-5 h-5 mr-2" />
-                Join Its Dad
+                <HandHeart className="w-5 h-5 mr-2" />
+                Start My Journey
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
@@ -182,7 +186,7 @@ export default function Home() {
                 className="text-lg px-8 py-6 h-auto rounded-xl border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
-                View the Course
+                Show Me The System
               </Button>
             </Link>
           </div>

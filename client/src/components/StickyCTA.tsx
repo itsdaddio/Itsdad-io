@@ -11,7 +11,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Crown, X, TrendingUp } from "lucide-react";
+import { HandHeart, X, TrendingUp } from "lucide-react";
 
 export function StickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -53,7 +53,7 @@ export function StickyCTA() {
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link href="/memberships">
             <Button className="btn-gold-gradient gold-shimmer hover:scale-105 transition-transform h-auto py-2.5 px-5 rounded-xl font-semibold text-sm">
-              <Crown className="w-4 h-4 mr-1.5" />
+              <HandHeart className="w-4 h-4 mr-1.5" />
               Join Its Dad
             </Button>
           </Link>

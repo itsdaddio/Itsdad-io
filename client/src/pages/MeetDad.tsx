@@ -51,19 +51,19 @@ const MILESTONES = [
 const TESTIMONIALS = [
   {
     name: "Marcus T.",
-    role: "Boss Member",
+    role: "Starter Pass Member",
     quote: "I tried three other affiliate programs before this one. The difference is the support system. Dad actually built something that works.",
     stars: 5,
   },
   {
     name: "Priya S.",
-    role: "Chief Member",
+    role: "Builder Access Member",
     quote: "The swipe files alone saved me weeks of work. I had my first commission within 10 days of joining.",
     stars: 5,
   },
   {
     name: "Jerome W.",
-    role: "Kingpin Member",
+    role: "Inner Circle Member",
     quote: "The Affiliated Degree changed how I think about online business. I'm not just promoting products — I understand the system now.",
     stars: 5,
   },

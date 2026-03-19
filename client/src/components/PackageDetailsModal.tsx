@@ -33,13 +33,13 @@ interface PackageDetail {
 
 const PACKAGE_DETAILS: Record<string, PackageDetail> = {
   boss: {
-    id: "boss",
-    name: "Boss",
+    id: "starter",
+    name: "Starter Pass",
     price: "$9.99",
     period: "/month",
     tagline: "Start earning with 10 curated products",
     description:
-      "The Boss tier gives you everything you need to make your first affiliate commission. You get immediate access to 10 high-converting products, the foundational Affiliated Degree modules, and the full Prompt Vault to power your content.",
+      "The Starter Pass gives you everything you need to make your first affiliate commission. You get immediate access to 10 high-converting products, the foundational Affiliated Degree modules, and the full Prompt Vault to power your content.",
     features: [
       "10 curated affiliate products with unique tracking links",
       "Done-for-you swipe files: ad copy, email scripts, social posts",
@@ -52,15 +52,15 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
     ctaHref: "/memberships?tier=boss",
   },
   chief: {
-    id: "chief",
-    name: "Chief",
+    id: "builder",
+    name: "Builder Access",
     price: "$19.99",
     period: "/month",
     tagline: "Scale with 30 products and advanced tools",
     description:
-      "The Chief tier is designed for members ready to scale. You unlock 30 products, the full advanced swipe file library, and six of the eight Affiliated Degree modules — plus done-for-you sales page templates.",
+      "Builder Access is designed for members ready to scale. You unlock 30 products, the full advanced swipe file library, and six of the eight Affiliated Degree modules — plus done-for-you sales page templates.",
     features: [
-      "Everything in Boss",
+      "Everything in Starter Pass",
       "30 curated affiliate products",
       "Advanced swipe file library (email + social + video scripts)",
       "Affiliated Degree — Modules 1 through 6",
@@ -73,15 +73,15 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
     ctaHref: "/memberships?tier=chief",
   },
   kingpin: {
-    id: "kingpin",
-    name: "Kingpin",
+    id: "inner-circle",
+    name: "Inner Circle",
     price: "$24.99",
     period: "/month",
     tagline: "Full access to all 51 products and the complete system",
     description:
-      "Kingpin is the complete Its Dad experience. All 51 products, all 8 Affiliated Degree modules, the full funnel system, and second-tier referral commissions. The system runs on autopilot at this level.",
+      "Inner Circle is the complete Its Dad experience. All 51 products, all 8 Affiliated Degree modules, the full funnel system, and second-tier referral commissions. The system runs on autopilot at this level.",
     features: [
-      "Everything in Chief",
+      "Everything in Builder Access",
       "All 51 curated affiliate products",
       "Complete Affiliated Degree — all 8 modules",
       "Full Prompt Vault + complete pre-recorded video library",

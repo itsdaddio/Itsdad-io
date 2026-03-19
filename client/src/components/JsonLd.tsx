@@ -78,11 +78,11 @@ const PAGE_SCHEMAS: Record<string, object> = {
     url: `${BASE_URL}/memberships`,
     // MANIFEST PATCH: Updated description
     description:
-      "Choose your Its Dad membership tier. Boss ($9.99/mo), Chief ($19.99/mo), and Kingpin ($24.99/mo). All tiers include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
+      "Choose your Its Dad membership plan. Starter Pass ($9.99/mo), Builder Access ($19.99/mo), and Inner Circle ($24.99/mo). All plans include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
     offers: [
       {
         "@type": "Offer",
-        name: "Boss Membership",
+        name: "Starter Pass",
         price: "9.99",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
@@ -90,7 +90,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
       },
       {
         "@type": "Offer",
-        name: "Chief Membership",
+        name: "Builder Access",
         price: "19.99",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
@@ -98,7 +98,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
       },
       {
         "@type": "Offer",
-        name: "Kingpin Membership",
+        name: "Inner Circle",
         price: "24.99",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description

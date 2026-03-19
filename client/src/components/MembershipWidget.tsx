@@ -12,7 +12,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, Zap, Star, Info } from "lucide-react";
+import { Check, Users, Zap, Star, Info, Handshake } from "lucide-react";
 import { Link } from "wouter";
 
 interface MembershipTier {
@@ -31,13 +31,12 @@ interface MembershipTier {
 
 const TIERS: MembershipTier[] = [
   {
-    id: "boss",
-    name: "Boss",
+    id: "starter",
+    name: "Starter Pass",
     price: "$9.99",
     period: "/mo",
     icon: <Zap className="w-5 h-5 text-blue-400" />,
     features: [
-      // MANIFEST PATCH: Replaced "Monthly Group Coaching" with done-for-you alternatives
       "Access to 10 curated affiliate products",
       "Done-for-you swipe files & ad copy",
       "Affiliated Degree — Modules 1–3",
@@ -45,12 +44,12 @@ const TIERS: MembershipTier[] = [
       "Automated commission tracking dashboard",
       "Personal affiliate referral link",
     ],
-    cta: "Start as Boss",
-    ctaHref: "/memberships?tier=boss",
+    cta: "Get Instant Access",
+    ctaHref: "/memberships?tier=starter",
   },
   {
-    id: "chief",
-    name: "Chief",
+    id: "builder",
+    name: "Builder Access",
     price: "$19.99",
     period: "/mo",
     badge: "Most Popular",
@@ -58,38 +57,36 @@ const TIERS: MembershipTier[] = [
     icon: <Star className="w-5 h-5 text-amber-400" />,
     highlighted: true,
     features: [
-      // MANIFEST PATCH: Replaced coaching features with done-for-you alternatives
-      "Everything in Boss",
+      "Everything in Starter Pass",
       "Access to 30 curated affiliate products",
       "Advanced swipe file library (email + social)",
       "Affiliated Degree — Modules 1–6",
       "Done-for-you sales page templates",
       "Priority commission processing",
-      "30-40% recurring referral commissions",
+      "30–40% recurring referral commissions",
     ],
-    cta: "Become Chief",
-    ctaHref: "/memberships?tier=chief",
+    cta: "Start Building Today",
+    ctaHref: "/memberships?tier=builder",
   },
   {
-    id: "kingpin",
-    name: "Kingpin",
+    id: "inner-circle",
+    name: "Inner Circle",
     price: "$24.99",
     period: "/mo",
     badge: "Full Access",
     badgeColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-    icon: <Crown className="w-5 h-5 text-purple-400" />,
+    icon: <Handshake className="w-5 h-5 text-purple-400" />,
     features: [
-      // MANIFEST PATCH: Replaced coaching features with done-for-you alternatives
-      "Everything in Chief",
+      "Everything in Builder Access",
       "All 51 curated affiliate products",
       "Complete Affiliated Degree (8 modules)",
       "Full Prompt Vault + pre-recorded video library",
       "Done-for-you funnel system",
       "Second-tier referral commissions (6.7%)",
-      "Automated earnings & analytics reports",
+      "Direct support from Dad",
     ],
-    cta: "Go Kingpin",
-    ctaHref: "/memberships?tier=kingpin",
+    cta: "Join the Inner Circle",
+    ctaHref: "/memberships?tier=inner-circle",
   },
 ];
 

@@ -3,7 +3,7 @@
  *
  * Its Dad LLC — Memberships page.
  *
- * Displays the three membership tiers (Boss, Chief, Kingpin) with a $1 trial
+ * Displays the three membership tiers (Starter Pass, Builder Access, Inner Circle) with a $1 trial
  * CTA for each. On click, calls POST /api/checkout/create-session and redirects
  * the user to Stripe Checkout.
  *
@@ -11,7 +11,7 @@
  */
 
 import { useState } from "react";
-import { Check, Crown, Zap, Star, Shield, ArrowRight, Loader2 } from "lucide-react";
+import { Check, Users, Zap, Star, Shield, ArrowRight, Loader2, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -35,8 +35,8 @@ interface Tier {
 
 const TIERS: Tier[] = [
   {
-    id: "boss",
-    name: "Boss",
+    id: "starter",
+    name: "Starter Pass",
     price: "$9.99/mo",
     trialCopy: "Start for $1 — 7-day trial",
     icon: <Zap className="w-6 h-6 text-blue-400" />,
@@ -48,11 +48,11 @@ const TIERS: Tier[] = [
       "Automated commission tracking dashboard",
       "Personal affiliate referral link",
     ],
-    cta: "Start as Boss",
+    cta: "Get Instant Access",
   },
   {
-    id: "chief",
-    name: "Chief",
+    id: "builder",
+    name: "Builder Access",
     price: "$19.99/mo",
     trialCopy: "Start for $1 — 7-day trial",
     badge: "Most Popular",
@@ -60,7 +60,7 @@ const TIERS: Tier[] = [
     highlighted: true,
     icon: <Star className="w-6 h-6 text-amber-400" />,
     features: [
-      "Everything in Boss",
+      "Everything in Starter Pass",
       "Access to 30 curated affiliate products",
       "Advanced swipe file library (email + social)",
       "Affiliated Degree — Modules 1–6",
@@ -68,26 +68,26 @@ const TIERS: Tier[] = [
       "Priority commission processing",
       "30–40% recurring referral commissions",
     ],
-    cta: "Become Chief",
+    cta: "Start Building Today",
   },
   {
-    id: "kingpin",
-    name: "Kingpin",
+    id: "inner-circle",
+    name: "Inner Circle",
     price: "$24.99/mo",
     trialCopy: "Start for $1 — 7-day trial",
     badge: "Full Access",
     badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-    icon: <Crown className="w-6 h-6 text-purple-400" />,
+    icon: <Handshake className="w-6 h-6 text-purple-400" />,
     features: [
-      "Everything in Chief",
+      "Everything in Builder Access",
       "All 51 curated affiliate products",
-      "Full Affiliated Degree — all modules",
-      "Exclusive Kingpin mastermind access",
-      "White-label done-for-you funnels",
-      "Direct affiliate support from Dad",
+      "Complete Affiliated Degree — all 8 modules",
+      "Inner Circle community access",
+      "Done-for-you funnel system",
+      "Direct support from Dad",
       "First access to new products & drops",
     ],
-    cta: "Go Kingpin",
+    cta: "Join the Inner Circle",
   },
 ];
 
