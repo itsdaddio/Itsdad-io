@@ -35,7 +35,7 @@ import { BlueprintEmailCapture } from "@/components/BlueprintEmailCapture";
 import { StickyCTA } from "@/components/StickyCTA";
 import { MembershipQuiz } from "@/components/MembershipQuiz";
 import { JsonLd } from "@/components/JsonLd";
-import { FoundingCountdown } from "@/components/FoundingCountdown";
+// FoundingCountdown removed — artificial urgency conflicts with brand warmth
 import { LiveActivityBar } from "@/components/LiveActivityBar";
 import { ProductPreview } from "@/components/ProductPreview";
 
@@ -185,10 +185,6 @@ export default function Home() {
                 View the Course
               </Button>
             </Link>
-          </div>
-          {/* Founding countdown — placed AFTER the value prop, not before */}
-          <div className="mt-2">
-            <FoundingCountdown />
           </div>
         </div>
       </section>
