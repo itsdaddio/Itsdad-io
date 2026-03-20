@@ -15,6 +15,7 @@ import { json } from "body-parser";
 import { handleStripeWebhook } from "../webhook-stripe";
 import { processInstantOnboardingEmails } from "../instantOnboardingService";
 import { createCheckoutSession, getSessionStatus } from "../checkout";
+import { getReferralCode, getReferralStats, trackReferralSignup, getChallengeText } from "../referral";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -32,6 +33,16 @@ app.use("/api/webhooks/stripe", express.raw({ type: "application/json" }));
 
 // JSON body for all other routes
 app.use(json({ limit: "2mb" }));
+
+// ─── Alliance Referral Routes ────────────────────────────────────────────────
+// GET  /api/referral/code            — get or create referral code for logged-in user
+// GET  /api/referral/stats           — full Alliance dashboard stats
+// POST /api/referral/track           — record a new referral signup + grant free month
+// GET  /api/referral/challenge-text  — get pre-written Challenge a Friend share text
+app.get("/api/referral/code", getReferralCode);
+app.get("/api/referral/stats", getReferralStats);
+app.post("/api/referral/track", trackReferralSignup);
+app.get("/api/referral/challenge-text", getChallengeText);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 
