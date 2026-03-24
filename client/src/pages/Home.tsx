@@ -138,16 +138,16 @@ export default function Home() {
         <div className="relative max-w-4xl mx-auto text-center w-full">
           <Badge className="mb-6 bg-amber-500/20 text-amber-300 border-amber-500/30 text-sm px-4 py-1.5 backdrop-blur-sm">
             <Zap className="w-3.5 h-3.5 mr-1.5 inline" />
-            Affiliate Marketing Facilitation Hub
+            Affiliation Nation — Affiliate Marketing Hub
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Start Your First Online Income<br />
-            <span className="text-amber-400">Without Guessing What to Do</span>
+            Join Affiliation Nation<br />
+            <span className="text-amber-400">The Community That Earns While You Learn</span>
           </h1>
 
           <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-4 leading-relaxed drop-shadow">
-            Beginner-friendly. No experience needed. Step-by-step system.
+            Earn your Affiliated Degree. Build recurring income. The system runs on autopilot.
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow">
             51 curated products. Done-for-you swipe files. The Affiliated Degree course.
@@ -186,7 +186,7 @@ export default function Home() {
                 className="text-lg px-8 py-6 h-auto rounded-xl border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
-                Show Me The System
+                Explore the System
               </Button>
             </Link>
           </div>

@@ -1,7 +1,7 @@
 {
   "name": "itsdad-llc",
   "version": "1.0.0",
-  "description": "Its Dad LLC \u2014 Affiliate Marketing Platform",
+  "description": "Its Dad LLC — Affiliate Marketing Platform",
   "private": true,
   "engines": {
     "node": ">=20.0.0"
@@ -19,6 +19,7 @@
     "drizzle-orm": "^0.36.4",
     "express": "^4.21.2",
     "mysql2": "^3.11.5",
+    "openai": "^6.32.0",
     "stripe": "^17.5.0"
   },
   "devDependencies": {

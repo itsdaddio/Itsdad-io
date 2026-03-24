@@ -6,6 +6,9 @@ import MeetDad from "./pages/MeetDad";
 import Alliance from "./pages/Alliance";
 import RefCapture from "./pages/RefCapture";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import FreeTools from "./pages/FreeTools";
+import { DadGPTWidget } from "./components/DadGPTWidget";
+import { SupportWidget } from "./components/SupportWidget";
 import { useState } from "react";
 
 function Navbar() {
@@ -18,6 +21,7 @@ function Navbar() {
     { href: "/memberships", label: "Memberships" },
     { href: "/hubs", label: "Knowledge Hub" },
     { href: "/alliance", label: "The Alliance" },
+    { href: "/free-tools", label: "Free Tools" },
   ];
 
   return (
@@ -172,6 +176,7 @@ export default function App() {
           <Route path="/hubs/:slug" component={Hubs} />
           <Route path="/meet-dad" component={MeetDad} />
           <Route path="/alliance" component={Alliance} />
+          <Route path="/free-tools" component={FreeTools} />
           <Route path="/ref/:code" component={RefCapture} />
           <Route path="/checkout/success" component={CheckoutSuccess} />
           <Route>
@@ -186,6 +191,9 @@ export default function App() {
         </Switch>
       </main>
       <Footer />
+      {/* Global floating chat widgets */}
+      <DadGPTWidget />
+      <SupportWidget />
     </div>
   );
 }

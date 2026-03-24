@@ -16,6 +16,7 @@ import { handleStripeWebhook } from "../webhook-stripe";
 import { processInstantOnboardingEmails } from "../instantOnboardingService";
 import { createCheckoutSession, getSessionStatus } from "../checkout";
 import { getReferralCode, getReferralStats, trackReferralSignup, getChallengeText } from "../referral";
+import { dadGptChat, supportChat } from "../chat";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -43,6 +44,12 @@ app.get("/api/referral/code", getReferralCode);
 app.get("/api/referral/stats", getReferralStats);
 app.post("/api/referral/track", trackReferralSignup);
 app.get("/api/referral/challenge-text", getChallengeText);
+
+// ─── Chat Routes ─────────────────────────────────────────────────────────────
+// POST /api/chat/dad-gpt  — Dad GPT affiliate marketing guide
+// POST /api/chat/support  — Customer support assistant
+app.post("/api/chat/dad-gpt", dadGptChat);
+app.post("/api/chat/support", supportChat);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 

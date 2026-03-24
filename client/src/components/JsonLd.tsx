@@ -42,7 +42,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Its Dad — Affiliate Marketing Facilitation Hub",
+  name: "Its Dad — Affiliation Nation — Affiliate Marketing Hub",
   url: BASE_URL,
   // MANIFEST PATCH: Updated description
   description:

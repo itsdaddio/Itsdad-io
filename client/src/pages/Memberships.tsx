@@ -135,7 +135,7 @@ function SuccessBanner() {
   return (
     <div className="mb-8 rounded-xl bg-green-500/10 border border-green-500/30 p-4 text-center">
       <p className="text-green-400 font-semibold text-lg">
-        Welcome to the Alliance, Dad. Your membership is active. Check your email for next steps.
+        Welcome to Affiliation Nation. Your membership is active — check your email for next steps.
       </p>
     </div>
   );
@@ -165,9 +165,9 @@ function InvitedBanner() {
 
   return (
     <div className="mb-8 rounded-xl bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 p-5 text-center">
-      <p className="text-amber-400 font-bold text-lg mb-1">🤝 You Were Invited to the Table</p>
+      <p className="text-amber-400 font-bold text-lg mb-1">🤝 You Were Invited to Affiliation Nation</p>
       <p className="text-slate-300 text-sm">
-        Someone in the Alliance brought you here. Join today and your first month is on them.
+        Someone in the community brought you here. Join today and your first month is on them.
       </p>
       {ref && (
         <p className="text-slate-500 text-xs mt-2 font-mono">Invite code: {ref}</p>
@@ -262,15 +262,14 @@ export default function Memberships() {
       {/* Hero */}
       <div className="pt-16 pb-10 px-4 text-center">
         <Badge className="mb-4 bg-amber-500/20 text-amber-400 border-amber-500/30 text-sm px-3 py-1">
-          The Its Dad Alliance
+          Affiliation Nation
         </Badge>
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-          Try for <span className="text-amber-400">$1</span>.<br />
-          Change everything.
+          Choose Your Place in<br />
+          <span className="text-amber-400">Affiliation Nation</span>
         </h1>
         <p className="text-slate-400 text-lg max-w-xl mx-auto">
-          Built for people who've tried affiliate marketing and haven't made it work yet.
-          Dad built the system — you just have to show up.
+          Earn your Affiliated Degree. Build recurring income. Try any tier for just $1 — the system does the heavy lifting.
         </p>
       </div>
 

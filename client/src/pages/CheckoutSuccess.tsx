@@ -93,7 +93,7 @@ const NEXT_STEPS = [
   {
     icon: "🔗",
     title: "Get your referral link",
-    desc: "Head to the Alliance page to grab your unique link and start earning free months.",
+    desc: "Head to the Alliance page to grab your unique referral link and start earning inside Affiliation Nation.",
   },
   {
     icon: "📚",
@@ -219,12 +219,12 @@ export default function CheckoutSuccess() {
             ✅ Payment Confirmed
           </div>
           <h1 className="text-4xl font-bold text-white mb-3">
-            You're at the table, Dad.
+            You're In — Welcome to Affiliation Nation.
           </h1>
           <p className="text-slate-400 text-lg leading-relaxed">
             Your{" "}
             <span className="text-amber-400 font-semibold">{tierName}</span>{" "}
-            membership is active. Welcome to the Alliance.
+            membership is active. Your place in Affiliation Nation is confirmed.
           </p>
         </div>
 

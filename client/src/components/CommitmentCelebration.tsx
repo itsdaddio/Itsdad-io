@@ -23,10 +23,9 @@ const MILESTONE_CONTENT: Record<
   { headline: string; subtext: string; cta: string; ctaHref: string }
 > = {
   membership_active: {
-    headline: "You're In — The System Is Ready",
-    // MANIFEST PATCH: was "You're in — I'll personally guide you from here"
+    headline: "You're In — Welcome to Affiliation Nation",
     subtext:
-      "Your dashboard is live, your affiliate links are active, and the system is already working for you. Everything you need is waiting inside.",
+      "Your dashboard is live, your affiliate links are active, and the system is already working for you. Everything you need to earn inside Affiliation Nation is waiting.",
     cta: "Go to Your Dashboard",
     ctaHref: "/dashboard",
   },
@@ -47,11 +46,10 @@ const MILESTONE_CONTENT: Record<
     ctaHref: "/course",
   },
   degree_earned: {
-    headline: "Affiliated Degree Earned",
-    // MANIFEST PATCH: was "I couldn't be more proud — you did the work"
+    headline: "Welcome to Affiliation Nation",
     subtext:
-      "The system has verified your completion. Your Affiliated Degree is now on record and your commission potential is unlocked at the highest level. The platform does the heavy lifting from here.",
-    cta: "View Your Degree",
+      "You earned your Affiliated Degree and your place in Affiliation Nation is official. Your commission potential is unlocked at the highest level — the platform does the heavy lifting from here.",
+    cta: "Enter Affiliation Nation",
     ctaHref: "/dashboard",
   },
 };

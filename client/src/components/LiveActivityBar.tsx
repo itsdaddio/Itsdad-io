@@ -25,11 +25,11 @@ const ACTIVITY_POOL: Omit<ActivityEvent, "id" | "time">[] = [
   { icon: <Award className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />, message: "DeShawn M. completed Module 3 of the Affiliated Degree" },
   { icon: <Zap className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />, message: "Priya K. from Houston joined — Welcome!" },
   { icon: <TrendingUp className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />, message: "Carlos V. earned $124.50 in product commissions this week" },
-  { icon: <Award className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />, message: "Tanya W. earned her Affiliated Degree — Congratulations!" },
+  { icon: <Award className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />, message: "Tanya W. earned her Affiliated Degree — Welcome to Affiliation Nation!" },
   { icon: <Users className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />, message: "Brandon L. from Chicago just activated his membership" },
   { icon: <TrendingUp className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />, message: "Aaliyah S. referred 2 members — earning recurring commissions" },
   { icon: <Zap className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />, message: "Kevin O. from Dallas joined — his dashboard is live" },
-  { icon: <Award className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />, message: "Monique B. completed the full Affiliated Degree course" },
+  { icon: <Award className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />, message: "Monique B. completed the Affiliated Degree — now in Affiliation Nation" },
   { icon: <TrendingUp className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />, message: "James F. earned $312 in his first 30 days" },
   { icon: <Users className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />, message: "Destiny N. from Miami just joined the community" },
 ];
