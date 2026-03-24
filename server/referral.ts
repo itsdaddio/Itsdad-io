@@ -58,7 +58,7 @@ export async function getReferralCode(req: Request, res: Response): Promise<void
   const userId = getSessionUserId(req);
   if (!userId) { res.status(401).json({ error: "Not authenticated" }); return; }
 
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) { res.status(503).json({ error: "Database unavailable" }); return; }
 
   // Check if code already exists
@@ -97,7 +97,7 @@ export async function getReferralStats(req: Request, res: Response): Promise<voi
   const userId = getSessionUserId(req);
   if (!userId) { res.status(401).json({ error: "Not authenticated" }); return; }
 
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) { res.status(503).json({ error: "Database unavailable" }); return; }
 
   const [codeRow] = await db
@@ -155,7 +155,7 @@ export async function trackReferralSignup(req: Request, res: Response): Promise<
     return;
   }
 
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) { res.status(503).json({ error: "Database unavailable" }); return; }
 
   // Find the referral code owner
@@ -246,7 +246,7 @@ export async function getChallengeText(req: Request, res: Response): Promise<voi
   const userId = getSessionUserId(req);
   if (!userId) { res.status(401).json({ error: "Not authenticated" }); return; }
 
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) { res.status(503).json({ error: "Database unavailable" }); return; }
 
   let codeRow = (await db

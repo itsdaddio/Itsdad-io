@@ -11,9 +11,10 @@ import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 import * as schema from "../drizzle/schema";
 import * as emailSchema from "../drizzle/schema-email-sequences";
+import * as referralSchema from "../drizzle/schema-referral";
 
 // Merge all schema tables for full Drizzle type inference
-const fullSchema = { ...schema, ...emailSchema };
+const fullSchema = { ...schema, ...emailSchema, ...referralSchema };
 
 type DrizzleDb = ReturnType<typeof drizzle<typeof fullSchema>>;
 
@@ -44,7 +45,7 @@ export async function getDb(): Promise<DrizzleDb | null> {
       keepAliveInitialDelay: 0,
     });
 
-    db = drizzle(connectionPool, { schema: fullSchema, mode: "default" });
+    db = drizzle(connectionPool, { schema: fullSchema, mode: "default" }) as unknown as DrizzleDb;
 
     console.log("[DB] Database connection pool initialized.");
     return db;

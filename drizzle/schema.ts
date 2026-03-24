@@ -44,11 +44,10 @@ export const memberships = mysqlTable("memberships", {
     .references(() => users.id)
     .notNull(),
   tier: mysqlEnum("tier", [
-    "hustler",
-    "grinder",
-    "affiliate_pro",
-    "rental_basic",
-    "rental_premium",
+    "starter",
+    "builder",
+    "pro-creator",
+    "inner-circle",
     "member",
   ])
     .default("member")

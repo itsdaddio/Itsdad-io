@@ -19,7 +19,7 @@ import { eq } from "drizzle-orm";
 import { triggerInstantOnboarding } from "./instantOnboardingService";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2024-06-20",
+  apiVersion: "2025-02-24.acacia",
 });
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET || "";
@@ -33,25 +33,21 @@ function getMembershipTierFromPriceId(priceId: string): {
   // Map Stripe price IDs to internal tier names
   // Update these IDs to match your live Stripe dashboard
   const tierMap: Record<string, { tier: string; tierName: string }> = {
-    [process.env.STRIPE_PRICE_HUSTLER || "price_hustler"]: {
-      tier: "hustler",
-      tierName: "Hustler",
+    [process.env.STRIPE_PRICE_STARTER_PACK || "price_starter_pack"]: {
+      tier: "starter",
+      tierName: "Starter Pack",
     },
-    [process.env.STRIPE_PRICE_GRINDER || "price_grinder"]: {
-      tier: "grinder",
-      tierName: "Grinder",
+    [process.env.STRIPE_PRICE_BUILDER_CLUB || "price_builder_club"]: {
+      tier: "builder",
+      tierName: "Builder Club",
     },
-    [process.env.STRIPE_PRICE_AFFILIATE_PRO || "price_affiliate_pro"]: {
-      tier: "affiliate_pro",
-      tierName: "Affiliate Pro",
+    [process.env.STRIPE_PRICE_PRO_CLUB || "price_pro_club"]: {
+      tier: "pro-creator",
+      tierName: "Pro Creator",
     },
-    [process.env.STRIPE_PRICE_RENTAL_BASIC || "price_rental_basic"]: {
-      tier: "rental_basic",
-      tierName: "Rental Basic",
-    },
-    [process.env.STRIPE_PRICE_RENTAL_PREMIUM || "price_rental_premium"]: {
-      tier: "rental_premium",
-      tierName: "Rental Premium",
+    [process.env.STRIPE_PRICE_INNER_CIRCLE_CLUB || "price_inner_circle_club"]: {
+      tier: "inner-circle",
+      tierName: "Inner Circle",
     },
   };
 
@@ -67,7 +63,7 @@ function getMembershipTierFromPriceId(priceId: string): {
 async function handleAffiliateMembership(
   session: Stripe.Checkout.Session
 ): Promise<void> {
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) throw new Error("Database unavailable in handleAffiliateMembership");
 
   const customerEmail = session.customer_email || session.customer_details?.email;
@@ -154,7 +150,7 @@ async function handleAffiliateMembership(
 async function handleRentalMembership(
   session: Stripe.Checkout.Session
 ): Promise<void> {
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) throw new Error("Database unavailable in handleRentalMembership");
 
   const customerEmail = session.customer_email || session.customer_details?.email;
@@ -234,7 +230,7 @@ async function handleRentalMembership(
 async function handleSubscriptionCancelled(
   subscription: Stripe.Subscription
 ): Promise<void> {
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) return;
 
   const customerId = subscription.customer as string;

@@ -8,16 +8,20 @@
  *   GET  /api/checkout/session-status  — retrieves session status after redirect
  *
  * Membership tiers (aligned with frontend Memberships.tsx):
- *   starter      — Starter Pass    $9.99/mo  — $1 trial for 7 days
- *   builder      — Builder Access  $19.99/mo — $1 trial for 7 days
- *   inner-circle — Inner Circle    $24.99/mo — $1 trial for 7 days
+ *   starter      — Starter Pack   $7/mo
+ *   builder      — Builder Club   $19/mo
+ *   pro-creator  — Pro Creator    $49.99/mo
+ *   inner-circle — Inner Circle   $99.99/mo
+ *
+ * Railway env vars: STRIPE_PRICE_STARTER_PACK, STRIPE_PRICE_BUILDER_CLUB,
+ *                   STRIPE_PRICE_PRO_CLUB, STRIPE_PRICE_INNER_CIRCLE_CLUB
  */
 
 import { Request, Response } from "express";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2024-06-20",
+  apiVersion: "2025-02-24.acacia",
 });
 
 const APP_URL = process.env.VITE_APP_URL || "https://www.itsdad.io";
@@ -34,25 +38,32 @@ interface TierConfig {
 
 const TIER_CONFIG: Record<string, TierConfig> = {
   starter: {
-    name: "Starter Pass",
-    priceId: process.env.STRIPE_PRICE_STARTER || "",
+    name: "Starter Pack",
+    priceId: process.env.STRIPE_PRICE_STARTER_PACK || "",
     trialDays: 7,
     trialAmount: 100, // $1.00
-    fullPrice: "$9.99/mo",
+    fullPrice: "$7/mo",
   },
   builder: {
-    name: "Builder Access",
-    priceId: process.env.STRIPE_PRICE_BUILDER || "",
+    name: "Builder Club",
+    priceId: process.env.STRIPE_PRICE_BUILDER_CLUB || "",
     trialDays: 7,
     trialAmount: 100,
-    fullPrice: "$19.99/mo",
+    fullPrice: "$19/mo",
+  },
+  "pro-creator": {
+    name: "Pro Creator",
+    priceId: process.env.STRIPE_PRICE_PRO_CLUB || "",
+    trialDays: 7,
+    trialAmount: 100,
+    fullPrice: "$49.99/mo",
   },
   "inner-circle": {
     name: "Inner Circle",
-    priceId: process.env.STRIPE_PRICE_INNER_CIRCLE || "",
+    priceId: process.env.STRIPE_PRICE_INNER_CIRCLE_CLUB || "",
     trialDays: 7,
     trialAmount: 100,
-    fullPrice: "$24.99/mo",
+    fullPrice: "$99.99/mo",
   },
 };
 

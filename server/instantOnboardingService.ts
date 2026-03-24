@@ -393,7 +393,7 @@ export async function triggerInstantOnboarding(params: InstantOnboardingParams):
 
   // 3. SCHEDULE: Queue remaining 4 emails at Day 2/5/10/14
   try {
-    const db = await getDb();
+    const db = await getDb() as any;
     if (!db) throw new Error("Database connection not available");
 
     // Check for existing sequence (idempotency)
@@ -458,7 +458,7 @@ export async function triggerInstantOnboarding(params: InstantOnboardingParams):
  * Called by the existing cron job that processes email queues.
  */
 export async function processInstantOnboardingEmails(): Promise<{ sent: number; failed: number }> {
-  const db = await getDb();
+  const db = await getDb() as any;
   if (!db) return { sent: 0, failed: 0 };
 
   const now = new Date();
