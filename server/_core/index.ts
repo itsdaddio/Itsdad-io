@@ -2,7 +2,7 @@
  * server/_core/index.ts
  *
  * Core server bootstrap: Express app setup, route registration, cron jobs,
- * and middleware configuration for Its Dad LLC.
+ * and middleware configuration for itsdad.io.
  *
  * MANIFEST PATCH (item 7):
  *   - Added processInstantOnboardingEmails import

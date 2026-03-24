@@ -1,7 +1,7 @@
 /**
  * PackageDetailsModal.tsx
  *
- * Full-detail modal for a selected membership package on Its Dad LLC.
+ * Full-detail modal for a selected membership package on itsdad.io.
  * Opened when a user clicks "See full details" on a membership card.
  *
  * MANIFEST PATCH (item 17):

@@ -1,5 +1,5 @@
 /**
- * Home.tsx — Its Dad LLC Homepage (Visual Enhancement v2)
+ * Home.tsx — itsdad.io Homepage (Visual Enhancement v2)
  * - Hero with full background image
  * - Giveaway section with confetti animation
  * - Product category cover images
@@ -428,7 +428,7 @@ export default function Home() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-3">
                 <Heart className="w-5 h-5 text-amber-400" />
-                <span className="font-bold text-foreground text-lg">Its Dad LLC</span>
+                <span className="font-bold text-foreground text-lg">itsdad.io</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
                 An automated affiliate marketing facilitation hub. 51 curated products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault.
@@ -481,7 +481,7 @@ export default function Home() {
 
           {/* Bottom bar */}
           <div className="pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-            <p>© {new Date().getFullYear()} Its Dad LLC. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} itsdad.io. All rights reserved.</p>
             <p className="flex items-center gap-1.5">
               <Shield className="w-3.5 h-3.5 text-emerald-400" />
               Commissions are earned on product sales. Results are not guaranteed.

@@ -1,7 +1,7 @@
 /**
  * CommitmentCelebration.tsx
  *
- * Post-signup / milestone celebration component for Its Dad LLC.
+ * Post-signup / milestone celebration component for itsdad.io.
  * Displayed when a member completes a key action (e.g., first commission,
  * course module completion, Affiliated Degree earned).
  *

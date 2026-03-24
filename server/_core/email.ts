@@ -1,13 +1,13 @@
 /**
  * server/_core/email.ts
  *
- * Transactional email sender for Its Dad LLC.
+ * Transactional email sender for itsdad.io.
  * Supports SendGrid (primary) with a console-log fallback for development.
  *
  * Environment variables required:
  *   SENDGRID_API_KEY  — SendGrid API key
  *   EMAIL_FROM        — Verified sender address (e.g., hello@itsdad.io)
- *   EMAIL_FROM_NAME   — Sender display name (e.g., Its Dad LLC)
+ *   EMAIL_FROM_NAME   — Sender display name (e.g., itsdad.io)
  */
 
 interface SendEmailOptions {
@@ -30,7 +30,7 @@ async function sendViaSendGrid(options: SendEmailOptions): Promise<SendEmailResu
   if (!apiKey) throw new Error("SENDGRID_API_KEY not configured");
 
   const fromEmail = process.env.EMAIL_FROM || "hello@itsdad.io";
-  const fromName = process.env.EMAIL_FROM_NAME || "Its Dad LLC";
+  const fromName = process.env.EMAIL_FROM_NAME || "itsdad.io";
 
   const payload = {
     personalizations: [{ to: [{ email: options.to }] }],

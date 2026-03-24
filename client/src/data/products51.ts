@@ -1,7 +1,7 @@
 /**
  * client/src/data/products51.ts
  *
- * The 51 curated affiliate products available in the Its Dad LLC portal.
+ * The 51 curated affiliate products available in the itsdad.io portal.
  * Each product includes: id, name, category, tripwire price, and commission rate.
  *
  * Products span 6 broad categories:

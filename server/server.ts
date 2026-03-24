@@ -1,7 +1,7 @@
 /**
  * server/server.ts
  *
- * Its Dad LLC — Express server entry point.
+ * itsdad.io — Express server entry point.
  *
  * - Mounts the API (routes registered in _core/index.ts)
  * - Serves the Vite-built frontend from /client/dist in production
@@ -36,7 +36,7 @@ if (IS_PROD) {
 // ─── Start Server ─────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
-  console.log(`[Server] Its Dad LLC API running on port ${PORT}`);
+  console.log(`[Server] itsdad.io API running on port ${PORT}`);
   console.log(`[Server] Environment: ${process.env.NODE_ENV || "development"}`);
   console.log(`[Server] App URL: ${process.env.VITE_APP_URL || "http://localhost:" + PORT}`);
 });

@@ -1,7 +1,7 @@
 /**
  * webhook-stripe.ts
  *
- * Stripe webhook handler for Its Dad LLC.
+ * Stripe webhook handler for itsdad.io.
  * Processes payment events and triggers downstream actions including
  * membership activation, email onboarding sequences, and MailerLite sync.
  *

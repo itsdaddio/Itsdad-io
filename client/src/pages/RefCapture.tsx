@@ -1,7 +1,7 @@
 /**
  * client/src/pages/RefCapture.tsx
  *
- * Its Dad LLC — Referral Link Landing Page
+ * itsdad.io — Referral Link Landing Page
  *
  * Handles the /ref/:code route used by Alliance members when sharing their link.
  *

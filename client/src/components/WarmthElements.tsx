@@ -1,7 +1,7 @@
 /**
  * WarmthElements.tsx
  *
- * Warmth and trust-building UI elements for Its Dad LLC.
+ * Warmth and trust-building UI elements for itsdad.io.
  * Designed to make the platform feel supportive and reliable
  * without implying personal, hands-on involvement.
  *

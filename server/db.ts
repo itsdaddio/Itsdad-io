@@ -1,7 +1,7 @@
 /**
  * server/db.ts
  *
- * Database connection singleton for Its Dad LLC.
+ * Database connection singleton for itsdad.io.
  * Uses Drizzle ORM with a MySQL/TiDB-compatible driver.
  * Returns null gracefully if DATABASE_URL is not configured,
  * allowing the server to start without crashing in dev/test environments.

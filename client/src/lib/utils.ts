@@ -1,6 +1,6 @@
 /**
  * client/src/lib/utils.ts
- * Utility helpers for Its Dad LLC client
+ * Utility helpers for itsdad.io client
  */
 
 import { type ClassValue, clsx } from "clsx";

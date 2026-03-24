@@ -1,5 +1,5 @@
 /**
- * MeetDad.tsx — The "Meet Dad" page for Its Dad LLC
+ * MeetDad.tsx — The "Meet Dad" page for itsdad.io
  * Warm, inviting, authentic introduction to the person behind the platform.
  * No private information disclosed. Feels like meeting a trusted mentor.
  */
@@ -92,7 +92,7 @@ export default function MeetDad() {
             Meet <span className="text-amber-400">Dad</span>
           </h1>
           <p className="text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow">
-            The person behind Its Dad LLC isn't a corporation or a faceless brand. 
+            The person behind itsdad.io isn't a corporation or a faceless brand. 
             It's someone who tried, failed, figured it out, and built a system so 
             you wouldn't have to start from scratch.
           </p>
@@ -118,7 +118,7 @@ export default function MeetDad() {
               support. That's abandonment.
             </p>
             <p>
-              Its Dad LLC was built to be the opposite of that. Every product in the catalog 
+              itsdad.io was built to be the opposite of that. Every product in the catalog 
               comes with done-for-you swipe files. Every membership tier includes automated 
               tracking. The Affiliated Degree gives you the knowledge to understand what you're 
               doing — not just how to do it.

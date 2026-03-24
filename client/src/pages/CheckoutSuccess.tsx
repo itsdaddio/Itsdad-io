@@ -1,7 +1,7 @@
 /**
  * client/src/pages/CheckoutSuccess.tsx
  *
- * Its Dad LLC — Post-Purchase Success + Upsell Page
+ * itsdad.io — Post-Purchase Success + Upsell Page
  *
  * Shown immediately after Stripe Checkout completes.
  * Stripe redirects to: /checkout/success?session_id=XXX&tier=starter

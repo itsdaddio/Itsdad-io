@@ -1,7 +1,7 @@
 /**
  * StickyCTA.tsx
  *
- * Sticky bottom call-to-action bar for Its Dad LLC.
+ * Sticky bottom call-to-action bar for itsdad.io.
  * Visible on scroll to drive conversions from any page position.
  *
  * MANIFEST PATCH (item 15):

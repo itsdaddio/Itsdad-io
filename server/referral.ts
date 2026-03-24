@@ -1,7 +1,7 @@
 /**
  * server/referral.ts
  *
- * Its Dad LLC — Alliance Referral System
+ * itsdad.io — Alliance Referral System
  *
  * Handles:
  * - Referral code generation (unique per member)

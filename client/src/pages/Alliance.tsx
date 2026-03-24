@@ -1,7 +1,7 @@
 /**
  * client/src/pages/Alliance.tsx
  *
- * Its Dad LLC — Alliance Referral Page
+ * itsdad.io — Alliance Referral Page
  *
  * The member-facing page for the Alliance referral system.
  * Shows the Challenge a Friend button, referral link, stats, and commission history.

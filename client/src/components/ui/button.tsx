@@ -1,6 +1,6 @@
 /**
  * client/src/components/ui/button.tsx
- * shadcn/ui Button component — Its Dad LLC themed
+ * shadcn/ui Button component — itsdad.io themed
  */
 
 import * as React from "react";

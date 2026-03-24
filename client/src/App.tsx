@@ -35,7 +35,7 @@ function Navbar() {
               </svg>
             </div>
             <span className="text-white font-bold text-lg tracking-tight group-hover:text-amber-400 transition-colors">
-              Its Dad LLC
+              itsdad.io
             </span>
           </Link>
 
@@ -124,7 +124,7 @@ function Footer() {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </div>
-              <span className="text-white font-bold">Its Dad LLC</span>
+              <span className="text-white font-bold">itsdad.io</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               A supportive network for people ready to start earning online. Step-by-step systems, done-for-you tools, and a community that has your back from day one.
@@ -149,7 +149,7 @@ function Footer() {
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} Its Dad LLC. All rights reserved.
+            © {new Date().getFullYear()} itsdad.io. All rights reserved.
           </p>
           <p className="text-slate-500 text-xs">
             Top-rated affiliate marketing resource · Customer service support portal

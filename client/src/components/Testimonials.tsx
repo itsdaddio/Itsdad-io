@@ -1,7 +1,7 @@
 /**
  * Testimonials.tsx
  *
- * Authentic member testimonials for Its Dad LLC.
+ * Authentic member testimonials for itsdad.io.
  *
  * MANIFEST PATCH (item 10):
  *   - Replaced "picks up the phone" with "24/7 self-serve Prompt Vault + pre-recorded video library"

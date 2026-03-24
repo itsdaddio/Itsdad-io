@@ -1,7 +1,7 @@
 /**
  * MembershipComparisonTable.tsx
  *
- * Full feature comparison table across all Its Dad LLC membership tiers.
+ * Full feature comparison table across all itsdad.io membership tiers.
  *
  * MANIFEST PATCH (item 14):
  *   - Replaced coaching/support features with self-serve alternatives
@@ -110,7 +110,7 @@ export function MembershipComparisonTable() {
         <span>
           Commission percentages apply to product sales generated through your personal affiliate referral link.
           Earnings are not guaranteed and depend on individual promotional activity and market conditions.
-          Its Dad LLC is not a multi-level marketing program. Second-tier commissions apply only to Inner Circle members
+          itsdad.io is not a multi-level marketing program. Second-tier commissions apply only to Inner Circle members
           and are calculated on direct referral earnings, not on membership fees.
         </span>
       </p>

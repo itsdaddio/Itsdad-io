@@ -46,7 +46,7 @@ function getSignatureBlock(): string {
           <td style="border-left: 2px solid ${EMAIL_COLORS.royalGold}; padding-left: 20px;">
             <p style="margin: 0; color: #1e293b; font-size: 14px; font-weight: 600;">Its Daddio</p>
             <p style="margin: 4px 0 0 0; color: #64748b; font-size: 13px;">Founder & Executive Facilitator</p>
-            <p style="margin: 4px 0 0 0; color: ${EMAIL_COLORS.royalGold}; font-size: 12px;">Its Dad L.L.C.</p>
+            <p style="margin: 4px 0 0 0; color: ${EMAIL_COLORS.royalGold}; font-size: 12px;">itsdad.io</p>
           </td>
         </tr>
       </table>

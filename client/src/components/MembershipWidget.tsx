@@ -1,7 +1,7 @@
 /**
  * MembershipWidget.tsx
  *
- * Compact membership tier selection widget for Its Dad LLC.
+ * Compact membership tier selection widget for itsdad.io.
  * Displayed on the homepage and landing pages to drive conversions.
  *
  * MANIFEST PATCH (item 13):
@@ -156,7 +156,7 @@ export function MembershipWidget() {
         <Info className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-500" />
         <span>
           Commission amounts shown are illustrative estimates based on product sales and referral activity.
-          Actual earnings vary and are not guaranteed. Its Dad LLC is not a get-rich-quick program.
+          Actual earnings vary and are not guaranteed. itsdad.io is not a get-rich-quick program.
           Results depend on individual effort, market conditions, and product performance.
         </span>
       </p>

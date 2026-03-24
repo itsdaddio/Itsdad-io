@@ -1,7 +1,7 @@
 /**
  * client/src/pages/Memberships.tsx
  *
- * Its Dad LLC — Memberships page.
+ * itsdad.io — Memberships page.
  *
  * Displays the three membership tiers (Starter Pass, Builder Access, Inner Circle) with a $1 trial
  * CTA for each. On click, calls POST /api/checkout/create-session and redirects

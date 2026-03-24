@@ -1,7 +1,7 @@
 /**
  * server/checkout.ts
  *
- * Stripe Checkout Session API for Its Dad LLC.
+ * Stripe Checkout Session API for itsdad.io.
  *
  * Endpoints:
  *   POST /api/checkout/create-session  — creates a Stripe Checkout session

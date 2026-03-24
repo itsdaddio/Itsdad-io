@@ -1,7 +1,7 @@
 /**
  * server/mailerlite.ts
  *
- * MailerLite API integration for Its Dad LLC.
+ * MailerLite API integration for itsdad.io.
  * Handles subscriber upserts and group assignments for paid members.
  *
  * Environment variables required:

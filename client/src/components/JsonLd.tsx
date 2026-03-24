@@ -1,7 +1,7 @@
 /**
  * JsonLd.tsx
  *
- * Structured data (JSON-LD) component for Its Dad LLC.
+ * Structured data (JSON-LD) component for itsdad.io.
  * Injects schema.org markup for SEO and rich results.
  *
  * MANIFEST PATCH (item 18):
@@ -19,7 +19,7 @@ const BASE_URL = "https://www.itsdad.io";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Its Dad LLC",
+  name: "itsdad.io",
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
   sameAs: [
@@ -28,7 +28,7 @@ const organizationSchema = {
   ],
   // MANIFEST PATCH: Updated description for commission and support language
   description:
-    "Its Dad LLC is an automated affiliate marketing facilitation hub offering 51 curated digital products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault. Members earn 30–40% recurring commissions on product sales with no manual intervention required.",
+    "itsdad.io is an automated affiliate marketing facilitation hub offering 51 curated digital products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault. Members earn 30–40% recurring commissions on product sales with no manual intervention required.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
@@ -74,7 +74,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
   memberships: {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Membership Plans — Its Dad LLC",
+    name: "Membership Plans — itsdad.io",
     url: `${BASE_URL}/memberships`,
     // MANIFEST PATCH: Updated description
     description:
@@ -114,7 +114,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
     url: `${BASE_URL}/course`,
     provider: {
       "@type": "Organization",
-      name: "Its Dad LLC",
+      name: "itsdad.io",
       url: BASE_URL,
     },
     // MANIFEST PATCH: Updated description
@@ -127,7 +127,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
   products: {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "51 Affiliate Products — Its Dad LLC",
+    name: "51 Affiliate Products — itsdad.io",
     url: `${BASE_URL}/products`,
     // MANIFEST PATCH: Updated description
     description:
@@ -137,11 +137,11 @@ const PAGE_SCHEMAS: Record<string, object> = {
   about: {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About Its Dad LLC",
+    name: "About itsdad.io",
     url: `${BASE_URL}/about`,
     // MANIFEST PATCH: Updated description
     description:
-      "Its Dad LLC is an automated affiliate marketing facilitation hub. We provide 51 curated products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault so members can earn commissions on product sales without manual intervention.",
+      "itsdad.io is an automated affiliate marketing facilitation hub. We provide 51 curated products, the Affiliated Degree course, and a 24/7 self-serve Prompt Vault so members can earn commissions on product sales without manual intervention.",
   },
 };
 

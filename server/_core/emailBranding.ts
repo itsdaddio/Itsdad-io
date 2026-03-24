@@ -1,7 +1,7 @@
 /**
  * server/_core/emailBranding.ts
  *
- * Shared email branding constants and HTML helpers for Its Dad LLC.
+ * Shared email branding constants and HTML helpers for itsdad.io.
  * All outbound emails use these utilities to ensure consistent
  * royal purple / gold visual identity.
  */
@@ -55,7 +55,7 @@ export function getRoyalEmailHeader({ subtitle }: HeaderOptions = {}): string {
                 </svg>
               </div>
               <h1 style="margin: 0; color: ${EMAIL_COLORS.white}; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                Its Dad <span style="color: ${EMAIL_COLORS.royalGold};">LLC</span>
+                itsdad.io
               </h1>
               ${
                 subtitle
@@ -95,7 +95,7 @@ export function getRoyalEmailFooter({ includeSignature = true }: FooterOptions =
               </td>
               <td style="border-left: 2px solid ${EMAIL_COLORS.royalGold}; padding-left: 16px;">
                 <p style="margin: 0; color: ${EMAIL_COLORS.darkBg}; font-size: 13px; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Its Daddio</p>
-                <p style="margin: 3px 0 0 0; color: ${EMAIL_COLORS.bodyText}; font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Founder & Executive Facilitator, Its Dad L.L.C.</p>
+                <p style="margin: 3px 0 0 0; color: ${EMAIL_COLORS.bodyText}; font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Founder & Executive Facilitator, itsdad.io</p>
               </td>
             </tr>
           </table>
@@ -103,7 +103,7 @@ export function getRoyalEmailFooter({ includeSignature = true }: FooterOptions =
             : ""
         }
         <p style="margin: 0 0 8px 0; color: ${EMAIL_COLORS.mutedText}; font-size: 11px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-          Its Dad LLC · Affiliate Marketing Facilitation Hub · <a href="${baseUrl}" style="color: ${EMAIL_COLORS.royalGold}; text-decoration: none;">itsdad.io</a>
+          itsdad.io · Affiliate Marketing Facilitation Hub · <a href="${baseUrl}" style="color: ${EMAIL_COLORS.royalGold}; text-decoration: none;">itsdad.io</a>
         </p>
         <p style="margin: 0 0 8px 0; color: ${EMAIL_COLORS.mutedText}; font-size: 11px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
           Commissions are earned on product sales. Individual results vary and are not guaranteed.

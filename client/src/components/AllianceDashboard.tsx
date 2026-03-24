@@ -1,7 +1,7 @@
 /**
  * AllianceDashboard.tsx
  *
- * Its Dad LLC — Alliance Referral Dashboard Widget
+ * itsdad.io — Alliance Referral Dashboard Widget
  *
  * Displays:
  * - New member onboarding state (when totalSignups === 0 and totalEarnedCents === 0)
