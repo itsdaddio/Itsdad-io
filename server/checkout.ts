@@ -5,13 +5,12 @@
  *
  * Endpoints:
  *   POST /api/checkout/create-session  — creates a Stripe Checkout session
- *   GET  /api/checkout/success         — handles post-payment success redirect
- *   GET  /api/checkout/cancel          — handles cancelled checkout redirect
+ *   GET  /api/checkout/session-status  — retrieves session status after redirect
  *
- * Membership tiers:
- *   boss     $9.99/mo  — $1 trial for 7 days
- *   chief    $19.99/mo — $1 trial for 7 days
- *   kingpin  $24.99/mo — $1 trial for 7 days
+ * Membership tiers (aligned with frontend Memberships.tsx):
+ *   starter      — Starter Pass    $9.99/mo  — $1 trial for 7 days
+ *   builder      — Builder Access  $19.99/mo — $1 trial for 7 days
+ *   inner-circle — Inner Circle    $24.99/mo — $1 trial for 7 days
  */
 
 import { Request, Response } from "express";
@@ -27,30 +26,30 @@ const APP_URL = process.env.VITE_APP_URL || "https://www.itsdad.io";
 
 interface TierConfig {
   name: string;
-  priceId: string;       // Stripe Price ID (set in env)
+  priceId: string;     // Stripe Price ID (set in env)
   trialDays: number;
-  trialAmount: number;   // in cents ($1 = 100)
-  fullPrice: string;     // display string
+  trialAmount: number; // in cents ($1 = 100)
+  fullPrice: string;   // display string
 }
 
 const TIER_CONFIG: Record<string, TierConfig> = {
-  boss: {
-    name: "Boss",
-    priceId: process.env.STRIPE_PRICE_BOSS || "",
+  starter: {
+    name: "Starter Pass",
+    priceId: process.env.STRIPE_PRICE_STARTER || "",
     trialDays: 7,
     trialAmount: 100, // $1.00
     fullPrice: "$9.99/mo",
   },
-  chief: {
-    name: "Chief",
-    priceId: process.env.STRIPE_PRICE_CHIEF || "",
+  builder: {
+    name: "Builder Access",
+    priceId: process.env.STRIPE_PRICE_BUILDER || "",
     trialDays: 7,
     trialAmount: 100,
     fullPrice: "$19.99/mo",
   },
-  kingpin: {
-    name: "Kingpin",
-    priceId: process.env.STRIPE_PRICE_KINGPIN || "",
+  "inner-circle": {
+    name: "Inner Circle",
+    priceId: process.env.STRIPE_PRICE_INNER_CIRCLE || "",
     trialDays: 7,
     trialAmount: 100,
     fullPrice: "$24.99/mo",
@@ -67,20 +66,22 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
   };
 
   if (!tier || !TIER_CONFIG[tier]) {
-    res.status(400).json({ error: "Invalid membership tier. Must be boss, chief, or kingpin." });
+    res
+      .status(400)
+      .json({ error: "Invalid membership tier. Must be starter, builder, or inner-circle." });
     return;
   }
 
   const config = TIER_CONFIG[tier];
 
   if (!config.priceId) {
-    console.error(`[Checkout] STRIPE_PRICE_${tier.toUpperCase()} env var not set`);
+    const envKey = `STRIPE_PRICE_${tier.toUpperCase().replace("-", "_")}`;
+    console.error(`[Checkout] ${envKey} env var not set`);
     res.status(500).json({ error: "Checkout not configured. Contact support." });
     return;
   }
 
   try {
-    // Build session params
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
       payment_method_types: ["card"],

@@ -4,6 +4,8 @@ import Memberships from "./pages/Memberships";
 import Hubs from "./pages/Hubs";
 import MeetDad from "./pages/MeetDad";
 import Alliance from "./pages/Alliance";
+import RefCapture from "./pages/RefCapture";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 import { useState } from "react";
 
 function Navbar() {
@@ -170,6 +172,8 @@ export default function App() {
           <Route path="/hubs/:slug" component={Hubs} />
           <Route path="/meet-dad" component={MeetDad} />
           <Route path="/alliance" component={Alliance} />
+          <Route path="/ref/:code" component={RefCapture} />
+          <Route path="/checkout/success" component={CheckoutSuccess} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>

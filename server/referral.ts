@@ -21,20 +21,19 @@ import { eq, and, desc, sql } from "drizzle-orm";
 import crypto from "crypto";
 
 // ─── Commission Rates ─────────────────────────────────────────────────────────
+// Tier IDs match frontend Memberships.tsx: starter | builder | inner-circle
 const DIRECT_COMMISSION_RATES: Record<string, number> = {
-  "starter-pass":   0.30,
-  "builder-access": 0.35,
-  "pro-creator":    0.40,
-  "inner-circle":   0.40,
+  "starter":      0.30, // 30% direct commission
+  "builder":      0.35, // 35% direct commission
+  "inner-circle": 0.40, // 40% direct commission
 };
-const SECOND_TIER_RATE = 0.067;
+const SECOND_TIER_RATE = 0.067; // 6.7% Alliance override on direct commissions
 
 // ─── Tier Monthly Prices (cents) ──────────────────────────────────────────────
 const TIER_PRICES_CENTS: Record<string, number> = {
-  "starter-pass":   700,
-  "builder-access": 1900,
-  "pro-creator":    4900,
-  "inner-circle":   9900,
+  "starter":      999,  // $9.99/mo
+  "builder":      1999, // $19.99/mo
+  "inner-circle": 2499, // $24.99/mo
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -202,7 +201,7 @@ export async function trackReferralSignup(req: Request, res: Response): Promise<
     .where(eq(referralSchema.referralCodes.userId, referrerId));
 
   // Record direct commission for referrer
-  const tierPrice = TIER_PRICES_CENTS[tier] ?? 700;
+  const tierPrice = TIER_PRICES_CENTS[tier] ?? 999;
   const rate = DIRECT_COMMISSION_RATES[tier] ?? 0.30;
   const directCommissionCents = Math.floor(tierPrice * rate);
 

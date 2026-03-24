@@ -156,6 +156,26 @@ function CancelledBanner() {
   );
 }
 
+// ─── Invited Banner ─────────────────────────────────────────────────────────
+
+function InvitedBanner() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.get("invited")) return null;
+  const ref = params.get("ref") ?? "";
+
+  return (
+    <div className="mb-8 rounded-xl bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 p-5 text-center">
+      <p className="text-amber-400 font-bold text-lg mb-1">🤝 You Were Invited to the Table</p>
+      <p className="text-slate-300 text-sm">
+        Someone in the Alliance brought you here. Join today and your first month is on them.
+      </p>
+      {ref && (
+        <p className="text-slate-500 text-xs mt-2 font-mono">Invite code: {ref}</p>
+      )}
+    </div>
+  );
+}
+
 // ─── Tier Card ────────────────────────────────────────────────────────────────
 
 function TierCard({
@@ -258,6 +278,7 @@ export default function Memberships() {
       <div className="max-w-5xl mx-auto px-4">
         <SuccessBanner />
         <CancelledBanner />
+        <InvitedBanner />
       </div>
 
       {/* Error */}

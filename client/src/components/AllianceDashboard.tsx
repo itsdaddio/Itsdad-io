@@ -4,6 +4,7 @@
  * Its Dad LLC — Alliance Referral Dashboard Widget
  *
  * Displays:
+ * - New member onboarding state (when totalSignups === 0 and totalEarnedCents === 0)
  * - Member's unique referral link + copy button
  * - "Challenge a Friend" share button (SMS + Social)
  * - Free months pending
@@ -12,6 +13,7 @@
  */
 
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 
 interface ReferralStats {
   code: string | null;
@@ -47,6 +49,158 @@ function formatDate(iso: string): string {
   });
 }
 
+// ─── New Member Onboarding State ──────────────────────────────────────────────
+// Shown when a member has 0 referrals and $0 earned — replaces dead zeroes
+// with a welcoming, action-oriented start-here guide.
+
+const START_HERE_STEPS = [
+  {
+    number: "01",
+    icon: "🔗",
+    title: "Copy Your Referral Link",
+    desc: "Your unique link is below. Every signup through it earns you a free month + 30–40% commission.",
+    color: "text-amber-400",
+    border: "border-amber-500/30",
+    bg: "bg-amber-500/5",
+  },
+  {
+    number: "02",
+    icon: "📱",
+    title: "Challenge One Person",
+    desc: "Text one person you know who has talked about wanting extra income. One tap — that's it.",
+    color: "text-green-400",
+    border: "border-green-500/30",
+    bg: "bg-green-500/5",
+  },
+  {
+    number: "03",
+    icon: "📚",
+    title: "Start the Affiliated Degree",
+    desc: "Your first module is unlocked. 15 minutes today puts you ahead of 90% of affiliates.",
+    color: "text-blue-400",
+    border: "border-blue-500/30",
+    bg: "bg-blue-500/5",
+  },
+  {
+    number: "04",
+    icon: "💸",
+    title: "Watch the 6.7% Stack",
+    desc: "When your referral earns, you earn 6.7% of their commissions — automatically, forever.",
+    color: "text-purple-400",
+    border: "border-purple-500/30",
+    bg: "bg-purple-500/5",
+  },
+];
+
+function NewMemberOnboarding({ link, code, onCopy, copied }: {
+  link: string | null;
+  code: string | null;
+  onCopy: () => void;
+  copied: boolean;
+}) {
+  return (
+    <div className="space-y-6">
+      {/* Welcome Header */}
+      <div className="bg-gradient-to-br from-amber-900/30 to-gray-900 rounded-2xl p-6 border border-amber-500/30 text-center">
+        <div className="text-4xl mb-3">🤝</div>
+        <h2 className="text-2xl font-bold text-white mb-2">
+          You're at the table, Dad.
+        </h2>
+        <p className="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto">
+          Your Alliance account is active. You haven't referred anyone yet — that changes today.
+          Here's your first four moves.
+        </p>
+      </div>
+
+      {/* Start Here Steps */}
+      <div className="space-y-3">
+        {START_HERE_STEPS.map((step) => (
+          <div
+            key={step.number}
+            className={`rounded-xl p-4 border ${step.border} ${step.bg} flex gap-4 items-start`}
+          >
+            <div className={`text-2xl font-black ${step.color} shrink-0 w-8 text-center`}>
+              {step.icon}
+            </div>
+            <div>
+              <p className={`font-bold text-sm ${step.color} mb-0.5`}>
+                Step {step.number} — {step.title}
+              </p>
+              <p className="text-slate-400 text-xs leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Referral Link — prominent placement for new members */}
+      <div className="bg-gray-900 rounded-xl p-5 border border-amber-500/40">
+        <p className="text-white font-semibold mb-1">Your Referral Link</p>
+        <p className="text-slate-500 text-xs mb-3">
+          Share this. Every click is a potential free month and commission for you.
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="flex-1 bg-gray-800 rounded-lg px-4 py-2.5 text-amber-300 text-sm font-mono truncate">
+            {link ?? "Generating your link…"}
+          </div>
+          <button
+            onClick={onCopy}
+            disabled={!link}
+            className="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-semibold rounded-lg text-sm transition-colors whitespace-nowrap"
+          >
+            {copied ? "Copied!" : "Copy Link"}
+          </button>
+        </div>
+        {code && (
+          <p className="text-gray-500 text-xs mt-2">
+            Your code: <span className="text-amber-400 font-mono">{code}</span>
+          </p>
+        )}
+      </div>
+
+      {/* Milestone Preview */}
+      <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
+        <p className="text-white font-semibold mb-3">Your First Milestone</p>
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <div className="flex justify-between text-xs text-slate-500 mb-1.5">
+              <span>0 referrals</span>
+              <span>1 referral = free month</span>
+            </div>
+            <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="h-full w-0 bg-gradient-to-r from-amber-500 to-amber-400 rounded-full" />
+            </div>
+          </div>
+          <div className="text-center shrink-0">
+            <p className="text-amber-400 font-bold text-lg">0/1</p>
+            <p className="text-slate-500 text-xs">referrals</p>
+          </div>
+        </div>
+        <p className="text-slate-500 text-xs mt-3">
+          One referral = your next month free. Two referrals = you're already in profit.
+        </p>
+      </div>
+
+      {/* Quick Links */}
+      <div className="grid grid-cols-2 gap-3">
+        <Link
+          href="/hubs"
+          className="py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm font-semibold text-center hover:bg-slate-700 transition-colors"
+        >
+          📚 Start Degree
+        </Link>
+        <a
+          href="/memberships"
+          className="py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm font-semibold text-center hover:bg-slate-700 transition-colors"
+        >
+          ⬆️ Upgrade Tier
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Dashboard ───────────────────────────────────────────────────────────
+
 export default function AllianceDashboard() {
   const [stats, setStats] = useState<ReferralStats | null>(null);
   const [challenge, setChallenge] = useState<ChallengeText | null>(null);
@@ -77,10 +231,7 @@ export default function AllianceDashboard() {
 
   function sendSMS() {
     if (!challenge) return;
-    window.open(
-      `sms:?body=${encodeURIComponent(challenge.sms)}`,
-      "_blank"
-    );
+    window.open(`sms:?body=${encodeURIComponent(challenge.sms)}`, "_blank");
   }
 
   function shareToSocial() {
@@ -99,6 +250,22 @@ export default function AllianceDashboard() {
     );
   }
 
+  // ── New Member State: show onboarding instead of empty zeroes ──
+  const isNewMember =
+    (stats?.totalSignups ?? 0) === 0 && (stats?.totalEarnedCents ?? 0) === 0;
+
+  if (isNewMember) {
+    return (
+      <NewMemberOnboarding
+        link={stats?.link ?? null}
+        code={stats?.code ?? null}
+        onCopy={copyLink}
+        copied={copied}
+      />
+    );
+  }
+
+  // ── Active Member State: full dashboard ──
   return (
     <div className="space-y-6">
       {/* ── Header ── */}
