@@ -17,6 +17,7 @@ import { processInstantOnboardingEmails } from "../instantOnboardingService";
 import { createCheckoutSession, getSessionStatus } from "../checkout";
 import { getReferralCode, getReferralStats, trackReferralSignup, getChallengeText } from "../referral";
 import { dadGptChat, supportChat } from "../chat";
+import { trackProductClick, createProductCheckout, recordProductPurchase, getProductStats } from "../products";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -44,6 +45,16 @@ app.get("/api/referral/code", getReferralCode);
 app.get("/api/referral/stats", getReferralStats);
 app.post("/api/referral/track", trackReferralSignup);
 app.get("/api/referral/challenge-text", getChallengeText);
+
+// ─── Affiliate-ly Product Routes ────────────────────────────────────────────
+// POST /api/products/click              — track a product link click
+// POST /api/products/checkout           — create Stripe one-time checkout for a product
+// POST /api/products/purchase-complete  — record purchase + attribute commission
+// GET  /api/products/stats              — per-product stats for logged-in user
+app.post("/api/products/click", trackProductClick);
+app.post("/api/products/checkout", createProductCheckout);
+app.post("/api/products/purchase-complete", recordProductPurchase);
+app.get("/api/products/stats", getProductStats);
 
 // ─── Chat Routes ─────────────────────────────────────────────────────────────
 // POST /api/chat/dad-gpt  — Dad GPT affiliate marketing guide

@@ -7,6 +7,8 @@ import Alliance from "./pages/Alliance";
 import RefCapture from "./pages/RefCapture";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import FreeTools from "./pages/FreeTools";
+import AffiliateLy from "./pages/AffiliateLy";
+import AffiliateLySuccess from "./pages/AffiliateLySuccess";
 import { DadGPTWidget } from "./components/DadGPTWidget";
 import { SupportWidget } from "./components/SupportWidget";
 import { useState } from "react";
@@ -22,6 +24,7 @@ function Navbar() {
     { href: "/hubs", label: "Knowledge Hub" },
     { href: "/alliance", label: "The Alliance" },
     { href: "/free-tools", label: "Free Tools" },
+    { href: "/affiliate-ly", label: "⚡ Affiliate-ly" },
   ];
 
   return (
@@ -179,6 +182,8 @@ export default function App() {
           <Route path="/free-tools" component={FreeTools} />
           <Route path="/ref/:code" component={RefCapture} />
           <Route path="/checkout/success" component={CheckoutSuccess} />
+          <Route path="/affiliate-ly" component={AffiliateLy} />
+          <Route path="/affiliate-ly/success" component={AffiliateLySuccess} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>

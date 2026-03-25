@@ -9,6 +9,7 @@
  * - "Challenge a Friend" share button (SMS + Social)
  * - Free months pending
  * - Total signups and commissions earned
+ * - Affiliate-ly product earnings breakdown
  * - Recent Alliance activity
  */
 
@@ -25,6 +26,16 @@ interface ReferralStats {
   recentCommissions: Array<{
     id: number;
     type: string;
+    amountCents: number;
+    description: string;
+    createdAt: string;
+  }>;
+}
+
+interface ProductStats {
+  totalProductEarningsCents: number;
+  recentProductCommissions: Array<{
+    id: number;
     amountCents: number;
     description: string;
     createdAt: string;
@@ -50,9 +61,6 @@ function formatDate(iso: string): string {
 }
 
 // ─── New Member Onboarding State ──────────────────────────────────────────────
-// Shown when a member has 0 referrals and $0 earned — replaces dead zeroes
-// with a welcoming, action-oriented start-here guide.
-
 const START_HERE_STEPS = [
   {
     number: "01",
@@ -74,9 +82,9 @@ const START_HERE_STEPS = [
   },
   {
     number: "03",
-    icon: "📚",
-    title: "Start the Affiliated Degree",
-    desc: "Your first module is unlocked. 15 minutes today puts you ahead of 90% of affiliates.",
+    icon: "⚡",
+    title: "Share Your Affiliate-ly Products",
+    desc: "Browse 51 products in the Affiliate-ly portal. Copy your link for any product and share it.",
     color: "text-blue-400",
     border: "border-blue-500/30",
     bg: "bg-blue-500/5",
@@ -157,6 +165,20 @@ function NewMemberOnboarding({ link, code, onCopy, copied }: {
         )}
       </div>
 
+      {/* Affiliate-ly CTA */}
+      <Link
+        href="/affiliate-ly"
+        className="block rounded-xl p-5 border border-violet-500/30 bg-violet-500/5 hover:bg-violet-500/10 transition-colors group"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-violet-400 font-bold text-sm mb-0.5">⚡ Affiliate-ly Portal</p>
+            <p className="text-slate-400 text-xs">Browse all 51 products and copy your affiliate link for each one</p>
+          </div>
+          <span className="text-violet-400 text-xl group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </Link>
+
       {/* Milestone Preview */}
       <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
         <p className="text-white font-semibold mb-3">Your First Milestone</p>
@@ -188,12 +210,12 @@ function NewMemberOnboarding({ link, code, onCopy, copied }: {
         >
           📚 Start Degree
         </Link>
-        <a
+        <Link
           href="/memberships"
           className="py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm font-semibold text-center hover:bg-slate-700 transition-colors"
         >
           ⬆️ Upgrade Tier
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -203,6 +225,7 @@ function NewMemberOnboarding({ link, code, onCopy, copied }: {
 
 export default function AllianceDashboard() {
   const [stats, setStats] = useState<ReferralStats | null>(null);
+  const [productStats, setProductStats] = useState<ProductStats | null>(null);
   const [challenge, setChallenge] = useState<ChallengeText | null>(null);
   const [copied, setCopied] = useState(false);
   const [shareMode, setShareMode] = useState<"sms" | "social" | null>(null);
@@ -212,10 +235,12 @@ export default function AllianceDashboard() {
     Promise.all([
       fetch("/api/referral/stats").then((r) => r.json()),
       fetch("/api/referral/challenge-text").then((r) => r.json()),
+      fetch("/api/products/stats").then((r) => r.json()).catch(() => null),
     ])
-      .then(([s, c]) => {
+      .then(([s, c, ps]) => {
         setStats(s);
         setChallenge(c);
+        if (ps && !ps.error) setProductStats(ps);
       })
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -265,6 +290,9 @@ export default function AllianceDashboard() {
     );
   }
 
+  const totalAllEarnings =
+    (stats?.totalEarnedCents ?? 0) + (productStats?.totalProductEarningsCents ?? 0);
+
   // ── Active Member State: full dashboard ──
   return (
     <div className="space-y-6">
@@ -279,26 +307,43 @@ export default function AllianceDashboard() {
       </div>
 
       {/* ── Stats Row ── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-center">
-          <p className="text-3xl font-bold text-amber-400">
+          <p className="text-2xl font-bold text-amber-400">
             {stats?.totalSignups ?? 0}
           </p>
           <p className="text-gray-400 text-xs mt-1">Members Referred</p>
         </div>
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-center">
-          <p className="text-3xl font-bold text-green-400">
+          <p className="text-2xl font-bold text-green-400">
             {formatCents(stats?.totalEarnedCents ?? 0)}
           </p>
           <p className="text-gray-400 text-xs mt-1">Alliance Earnings</p>
         </div>
         <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-center">
-          <p className="text-3xl font-bold text-blue-400">
+          <p className="text-2xl font-bold text-violet-400">
+            {formatCents(productStats?.totalProductEarningsCents ?? 0)}
+          </p>
+          <p className="text-gray-400 text-xs mt-1">Product Earnings</p>
+        </div>
+        <div className="bg-gray-900 rounded-xl p-4 border border-gray-800 text-center">
+          <p className="text-2xl font-bold text-blue-400">
             {stats?.pendingFreeMonths ?? 0}
           </p>
-          <p className="text-gray-400 text-xs mt-1">Free Months Pending</p>
+          <p className="text-gray-400 text-xs mt-1">Free Months</p>
         </div>
       </div>
+
+      {/* ── Total Earnings Banner ── */}
+      {totalAllEarnings > 0 && (
+        <div className="rounded-xl p-4 border border-green-500/20 bg-green-500/5 flex items-center justify-between">
+          <div>
+            <p className="text-green-400 font-bold text-sm">Total Lifetime Earnings</p>
+            <p className="text-slate-500 text-xs">Alliance + Affiliate-ly products combined</p>
+          </div>
+          <p className="text-green-400 font-extrabold text-2xl">{formatCents(totalAllEarnings)}</p>
+        </div>
+      )}
 
       {/* ── Referral Link ── */}
       <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
@@ -314,10 +359,28 @@ export default function AllianceDashboard() {
             {copied ? "Copied!" : "Copy Link"}
           </button>
         </div>
-        <p className="text-gray-500 text-xs mt-2">
-          Your code: <span className="text-amber-400 font-mono">{stats?.code}</span>
-        </p>
+        {stats?.code && (
+          <p className="text-gray-500 text-xs mt-2">
+            Your code: <span className="text-amber-400 font-mono">{stats.code}</span>
+          </p>
+        )}
       </div>
+
+      {/* ── Affiliate-ly Portal Link ── */}
+      <Link
+        href="/affiliate-ly"
+        className="block rounded-xl p-5 border border-violet-500/30 bg-violet-500/5 hover:bg-violet-500/10 transition-colors group"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-violet-400 font-bold mb-0.5">⚡ Affiliate-ly Portal</p>
+            <p className="text-slate-400 text-sm">
+              Browse all 51 products — copy your affiliate link for any product and earn 30–40% per sale
+            </p>
+          </div>
+          <span className="text-violet-400 text-2xl group-hover:translate-x-1 transition-transform shrink-0">→</span>
+        </div>
+      </Link>
 
       {/* ── Challenge a Friend ── */}
       <div className="bg-gradient-to-br from-amber-900/30 to-gray-900 rounded-xl p-5 border border-amber-500/30">
@@ -361,6 +424,11 @@ export default function AllianceDashboard() {
               title: "6.7% When They Win",
               desc: "You earn a 6.7% override on every commission your referral makes. When they eat, you eat.",
             },
+            {
+              icon: "⚡",
+              title: "Affiliate-ly Products",
+              desc: "Earn 30–40% on every PLR product sale you drive through your unique product links.",
+            },
           ].map((item) => (
             <div key={item.title} className="flex gap-3 items-start">
               <span className="text-xl">{item.icon}</span>
@@ -373,27 +441,60 @@ export default function AllianceDashboard() {
         </div>
       </div>
 
-      {/* ── Recent Activity ── */}
-      {(stats?.recentCommissions?.length ?? 0) > 0 && (
+      {/* ── Recent Product Commissions ── */}
+      {(productStats?.recentProductCommissions?.length ?? 0) > 0 && (
         <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
-          <p className="text-white font-semibold mb-3">Recent Alliance Activity</p>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-white font-semibold">Recent Product Sales</p>
+            <Link href="/affiliate-ly" className="text-violet-400 text-xs hover:text-violet-300">
+              View all →
+            </Link>
+          </div>
           <div className="space-y-2">
-            {stats!.recentCommissions.slice(0, 5).map((c) => (
+            {productStats!.recentProductCommissions.slice(0, 5).map((c) => (
               <div
                 key={c.id}
                 className="flex items-center justify-between py-2 border-b border-gray-800 last:border-0"
               >
                 <div>
-                  <p className="text-white text-sm">
-                    {c.type === "direct" ? "Direct Commission" : "6.7% Alliance Override"}
+                  <p className="text-white text-sm truncate max-w-[200px]">
+                    {c.description?.replace("Product commission — ", "") || "Product Sale"}
                   </p>
                   <p className="text-gray-500 text-xs">{formatDate(c.createdAt)}</p>
                 </div>
-                <span className="text-green-400 font-semibold text-sm">
+                <span className="text-violet-400 font-semibold text-sm shrink-0">
                   +{formatCents(c.amountCents)}
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Recent Alliance Activity ── */}
+      {(stats?.recentCommissions?.length ?? 0) > 0 && (
+        <div className="bg-gray-900 rounded-xl p-5 border border-gray-800">
+          <p className="text-white font-semibold mb-3">Recent Alliance Activity</p>
+          <div className="space-y-2">
+            {stats!.recentCommissions
+              .filter((c) => !c.description?.startsWith("Product commission"))
+              .slice(0, 5)
+              .map((c) => (
+                <div
+                  key={c.id}
+                  className="flex items-center justify-between py-2 border-b border-gray-800 last:border-0"
+                >
+                  <div>
+                    <p className="text-white text-sm">
+                      {c.type === "direct" ? "Direct Commission" : "6.7% Alliance Override"}
+                    </p>
+                    <p className="text-gray-500 text-xs">{formatDate(c.createdAt)}</p>
+                  </div>
+                  <span className="text-green-400 font-semibold text-sm">
+                    +{formatCents(c.amountCents)}
+                  </span>
+                </div>
+              ))}
           </div>
         </div>
       )}
