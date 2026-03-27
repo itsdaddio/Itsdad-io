@@ -9,8 +9,12 @@ import CheckoutSuccess from "./pages/CheckoutSuccess";
 import FreeTools from "./pages/FreeTools";
 import AffiliateLy from "./pages/AffiliateLy";
 import AffiliateLySuccess from "./pages/AffiliateLySuccess";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import EarningsDisclaimer from "./pages/EarningsDisclaimer";
 import { DadGPTWidget } from "./components/DadGPTWidget";
 import { SupportWidget } from "./components/SupportWidget";
+import { CookieConsent } from "./components/CookieConsent";
 import { useState } from "react";
 
 function Navbar() {
@@ -184,6 +188,9 @@ export default function App() {
           <Route path="/checkout/success" component={CheckoutSuccess} />
           <Route path="/affiliate-ly" component={AffiliateLy} />
           <Route path="/affiliate-ly/success" component={AffiliateLySuccess} />
+          <Route path="/privacy" component={PrivacyPolicy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/disclaimer" component={EarningsDisclaimer} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>
@@ -199,6 +206,7 @@ export default function App() {
       {/* Global floating chat widgets */}
       <DadGPTWidget />
       <SupportWidget />
+      <CookieConsent />
     </div>
   );
 }

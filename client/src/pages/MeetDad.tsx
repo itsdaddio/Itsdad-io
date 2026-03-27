@@ -224,28 +224,28 @@ export default function MeetDad() {
             Ready to Join <span className="text-amber-400">the Family?</span>
           </h2>
           <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
-            Everything is set up and waiting for you. Pick your tier, unlock your 
-            products, and start earning — with the full system behind you.
+            Everything is set up and waiting for you. Get the free roadmap, 
+            activate your Starter Pack, and start earning — with the full system behind you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/memberships">
+            <a href="/#start-here">
               <Button
                 size="lg"
                 className="btn-gold-gradient gold-shimmer hover:scale-105 transition-transform text-lg px-8 py-6 h-auto rounded-xl font-bold shadow-2xl"
               >
                 <CheckCircle2 className="w-5 h-5 mr-2" />
-                Choose Your Membership
+                Start Here
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-            </Link>
-            <Link href="/">
+            </a>
+            <Link href="/free-tools">
               <Button
                 size="lg"
                 variant="outline"
                 className="text-lg px-8 py-6 h-auto rounded-xl border-border hover:border-amber-500/30"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
-                Explore the Platform
+                Try the Free Tools
               </Button>
             </Link>
           </div>
