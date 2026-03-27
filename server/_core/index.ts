@@ -18,6 +18,7 @@ import { createCheckoutSession, getSessionStatus } from "../checkout";
 import { getReferralCode, getReferralStats, trackReferralSignup, getChallengeText } from "../referral";
 import { dadGptChat, supportChat } from "../chat";
 import { trackProductClick, createProductCheckout, recordProductPurchase, getProductStats } from "../products";
+import { handleBlueprintCapture } from "../blueprintCapture";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -55,6 +56,10 @@ app.post("/api/products/click", trackProductClick);
 app.post("/api/products/checkout", createProductCheckout);
 app.post("/api/products/purchase-complete", recordProductPurchase);
 app.get("/api/products/stats", getProductStats);
+
+// ─── Email Capture Routes ────────────────────────────────────────────────────
+// POST /api/email/blueprint-capture — capture email for free roadmap download
+app.post("/api/email/blueprint-capture", handleBlueprintCapture);
 
 // ─── Chat Routes ─────────────────────────────────────────────────────────────
 // POST /api/chat/dad-gpt  — Dad GPT affiliate marketing guide
