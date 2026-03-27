@@ -94,9 +94,11 @@ function SalesPageView({
   onCheckout,
 }: {
   product: ProductSalesData;
-  onCheckout: (includeOrderBump: boolean) => void;
+  onCheckout: (includeOrderBump: boolean, promoCode?: string) => void;
 }) {
   const [addBump, setAddBump] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [showPromo, setShowPromo] = useState(false);
   const accent = CATEGORY_ACCENTS[product.category] || "text-amber-400";
   const gradient = CATEGORY_GRADIENTS[product.category] || "from-amber-600 to-purple-700";
   const border = CATEGORY_BORDERS[product.category] || "border-amber-500/30";
@@ -230,9 +232,39 @@ function SalesPageView({
             </div>
           )}
 
+          {/* Promo Code */}
+          <div className="mb-4">
+            {!showPromo ? (
+              <button
+                onClick={() => setShowPromo(true)}
+                className="text-slate-500 hover:text-amber-400 text-sm underline transition-colors"
+              >
+                Have a promo code?
+              </button>
+            ) : (
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                  placeholder="Enter promo code"
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 text-sm font-mono tracking-wider"
+                />
+                {promoCode && (
+                  <button
+                    onClick={() => { setPromoCode(""); setShowPromo(false); }}
+                    className="px-3 py-2.5 rounded-lg bg-slate-700 text-slate-400 hover:text-white text-sm transition-colors"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
           {/* CTA Button */}
           <button
-            onClick={() => onCheckout(addBump)}
+            onClick={() => onCheckout(addBump, promoCode || undefined)}
             className={`w-full py-4 sm:py-5 rounded-xl bg-gradient-to-r ${gradient} text-white font-bold text-lg sm:text-xl hover:opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.01] active:scale-[0.99]`}
           >
             Get Instant Access Now
@@ -470,7 +502,7 @@ export default function ProductSalesPage() {
   // ─── Checkout Flow ────────────────────────────────────────────────────────
 
   const handleTripwireCheckout = useCallback(
-    async (includeOrderBump: boolean) => {
+    async (includeOrderBump: boolean, promoCode?: string) => {
       if (!product) return;
       setLoading(true);
       setError(null);
@@ -503,6 +535,7 @@ export default function ProductSalesPage() {
             referralCode: refCode || undefined,
             includeOrderBump,
             funnelType: "tripwire",
+            promoCode: promoCode || undefined,
           }),
         });
 

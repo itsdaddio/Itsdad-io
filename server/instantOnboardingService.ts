@@ -264,6 +264,7 @@ function getDay2ProductsEmail(data: InstantOnboardingParams): { subject: string;
 }
 
 function getDay5CourseEmail(data: InstantOnboardingParams): { subject: string; html: string } {
+  const isStarter = data.membershipTier === "starter";
   const subject = `Watch Module 1 (13 min) — Your First Commission Blueprint`;
 
   const content = `
@@ -284,7 +285,7 @@ function getDay5CourseEmail(data: InstantOnboardingParams): { subject: string; h
       <p style="margin: 0; color: #92400e; font-size: 15px;">
         <strong>Module 1 covers:</strong><br>
         ✅ How affiliate marketing actually works (the real version)<br>
-        ✅ Choosing your first 3 products to promote<br>
+        ✅ ${isStarter ? "Mastering your assigned product for maximum conversion" : "Choosing your first 3 products to promote"}<br>
         ✅ Setting up your tracking links<br>
         ✅ The "first sale in 7 days" framework
       </p>
@@ -328,9 +329,10 @@ function getDay10ReferralEmail(data: InstantOnboardingParams): { subject: string
     <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
       <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">How the math works:</h3>
       <table width="100%" cellpadding="8" cellspacing="0">
-        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>1 member</strong> at $19/mo → You earn ~$6-7/mo recurring</td></tr>
-        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>3 members</strong> → Your membership pays for itself</td></tr>
-        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;">Refer <strong>10 members</strong> → $180-240/mo passive income</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>1 Starter Pack member</strong> ($7/mo) → You earn ~$2.10/mo recurring</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>1 Builder Club member</strong> ($19/mo) → You earn ~$5.70/mo recurring</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>5 members</strong> → Your membership pays for itself</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;">Refer <strong>10 members</strong> → $100-300/mo passive income depending on tier mix</td></tr>
       </table>
     </div>
     
@@ -400,6 +402,174 @@ function getDay14DegreeEmail(data: InstantOnboardingParams): { subject: string; 
   `;
 
   return { subject, html: wrapEmail("EARN YOUR DEGREE", content) };
+}
+
+// ─── Post-Onboarding Retention Emails ────────────────────────────────────────
+
+function getDay21CheckInEmail(data: InstantOnboardingParams): { subject: string; html: string } {
+  const subject = `How's Your First Commission Coming, ${data.userName}?`;
+
+  const content = `
+    <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
+      3 Weeks In — Let's Check In
+    </h2>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Hey ${data.userName},
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      You've been a member for 3 weeks now. Whether you've already earned your first commission 
+      or you're still getting set up — you're exactly where you need to be.
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
+      <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">Quick wins for this week:</h3>
+      <table width="100%" cellpadding="8" cellspacing="0">
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;"><strong>✅ Post your script</strong> — If you haven't yet, today's the day. Copy, paste, post.</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;"><strong>✅ Check your dashboard</strong> — See if you have any clicks or impressions building up.</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;"><strong>✅ Watch Module 2</strong> — It covers the "content flywheel" that turns one post into recurring traffic.</td></tr>
+      </table>
+    </div>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      The members who succeed aren't the ones who know the most — they're the ones who <strong>post consistently</strong>. 
+      One post a day. That's it.
+    </p>
+    
+    ${getGoldButton("Check Your Dashboard", `${BASE_URL}/dashboard`)}
+    
+    ${getSignatureBlock()}
+  `;
+
+  return { subject, html: wrapEmail("3-WEEK CHECK-IN", content) };
+}
+
+function getDay30RecapEmail(data: InstantOnboardingParams): { subject: string; html: string } {
+  const subject = `Your First Month Is Complete, ${data.userName}`;
+
+  const content = `
+    <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
+      One Month Down. Here's Where You Stand.
+    </h2>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Hey ${data.userName},
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      You've been a <strong style="color: ${EMAIL_COLORS.royalGold};">${data.tierName}</strong> member for 30 days. 
+      That's 30 days of access to products, prompts, swipe files, and the course. 
+      Let's make sure you're getting the most out of it.
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
+      <p style="margin: 0; color: #92400e; font-size: 15px;">
+        <strong>Your 30-day checklist:</strong><br>
+        ☐ Posted your first affiliate content<br>
+        ☐ Completed at least 2 course modules<br>
+        ☐ Shared your referral link with someone<br>
+        ☐ Used at least 5 ChatGPT prompts for content<br><br>
+        If you've checked all 4 — you're ahead of 80% of members. If not — no stress. Start with one today.
+      </p>
+    </div>
+    
+    ${getGoldButton("Continue Your Progress", `${BASE_URL}/dashboard`)}
+    
+    <p style="margin: 30px 0 0 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Month 2 is where momentum builds. Keep posting. Keep learning. The system is working for you.
+    </p>
+    
+    ${getSignatureBlock()}
+  `;
+
+  return { subject, html: wrapEmail("YOUR FIRST MONTH", content) };
+}
+
+function getDay60MilestoneEmail(data: InstantOnboardingParams): { subject: string; html: string } {
+  const subject = `Members Who Do This Earn 3x More`;
+
+  const content = `
+    <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
+      The One Thing That Separates Earners From Browsers
+    </h2>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Hey ${data.userName},
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      After 60 days of watching member data, one pattern is clear: <strong>members who complete the 
+      Affiliated Degree course earn 3x more</strong> in their first 90 days than those who skip it.
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      It's 8 modules. Self-paced. No deadlines. Each one builds on the last. And by the end, 
+      you'll have a complete system — not just knowledge, but a <strong>working machine</strong> that generates commissions.
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
+      <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">The 8 Modules:</h3>
+      <table width="100%" cellpadding="8" cellspacing="0">
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">1. Your Commission Blueprint</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">2. The Content Flywheel</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">3. Platform Mastery</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">4. Email & Funnel Basics</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">5. Scaling Your First Win</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">6. Advanced Traffic Strategies</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">7. Building Your Brand</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;">8. The Affiliated Degree Final</td></tr>
+      </table>
+    </div>
+    
+    ${getGoldButton("Continue the Course", `${BASE_URL}/course`)}
+    
+    ${getSignatureBlock()}
+  `;
+
+  return { subject, html: wrapEmail("EARN 3X MORE", content) };
+}
+
+function getDay90DegreeEmail(data: InstantOnboardingParams): { subject: string; html: string } {
+  const isStarter = data.membershipTier === "starter";
+  const subject = `90 Days In — Your Affiliated Degree Progress`;
+
+  const content = `
+    <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
+      90 Days. How Far Have You Come?
+    </h2>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Hey ${data.userName},
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Three months ago, you joined Its Dad. Whether you've earned your first commission, completed the course, 
+      or you're still finding your rhythm — you've invested in yourself. That matters.
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
+      <p style="margin: 0; color: #92400e; font-size: 15px;">
+        <strong>Where to go from here:</strong><br>
+        ${isStarter 
+          ? "✅ <strong>Ready for more products?</strong> Upgrade to Builder Club ($19/mo) to unlock multiple products and daily content prompts.<br>"
+          : ""}
+        ✅ <strong>Haven't finished the course?</strong> Pick up where you left off — each module is under 15 minutes.<br>
+        ✅ <strong>Already earning?</strong> Share your referral link to build passive recurring income.<br>
+        ✅ <strong>Want the full system?</strong> Complete all 8 modules and earn your Affiliated Degree.
+      </p>
+    </div>
+    
+    ${getGoldButton("Check Your Progress", `${BASE_URL}/dashboard`)}
+    
+    <p style="margin: 30px 0 0 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      The tools are here. The system is running. The only variable is you. Keep going.
+    </p>
+    
+    ${getSignatureBlock()}
+  `;
+
+  return { subject, html: wrapEmail("90-DAY MILESTONE", content) };
 }
 
 // ─── Main Orchestrator ────────────────────────────────────────────────────────
@@ -485,6 +655,10 @@ export async function triggerInstantOnboarding(params: InstantOnboardingParams):
       { dayOffset: 5, name: "Day 5: Module 1 Walkthrough", emailNumber: 3, getter: getDay5CourseEmail },
       { dayOffset: 10, name: "Day 10: Referral Link + Success Story", emailNumber: 4, getter: getDay10ReferralEmail },
       { dayOffset: 14, name: "Day 14: Earn Your Affiliated Degree", emailNumber: 5, getter: getDay14DegreeEmail },
+      { dayOffset: 21, name: "Day 21: 3-Week Check-In", emailNumber: 6, getter: getDay21CheckInEmail },
+      { dayOffset: 30, name: "Day 30: First Month Recap", emailNumber: 7, getter: getDay30RecapEmail },
+      { dayOffset: 60, name: "Day 60: Course Completion Push", emailNumber: 8, getter: getDay60MilestoneEmail },
+      { dayOffset: 90, name: "Day 90: Affiliated Degree Progress", emailNumber: 9, getter: getDay90DegreeEmail },
     ];
 
     for (const item of emailSchedule) {
@@ -569,6 +743,18 @@ export async function processInstantOnboardingEmails(): Promise<{ sent: number; 
         case 5:
           emailContent = getDay14DegreeEmail(params);
           break;
+        case 6:
+          emailContent = getDay21CheckInEmail(params);
+          break;
+        case 7:
+          emailContent = getDay30RecapEmail(params);
+          break;
+        case 8:
+          emailContent = getDay60MilestoneEmail(params);
+          break;
+        case 9:
+          emailContent = getDay90DegreeEmail(params);
+          break;
         default:
           throw new Error(`Unknown email number: ${queuedEmail.emailNumber}`);
       }
@@ -604,7 +790,7 @@ export async function processInstantOnboardingEmails(): Promise<{ sent: number; 
         await db.insert(emailSequenceCompletion).values({
           userId: queuedEmail.userId,
           sequenceType: "instant_onboarding",
-          emailsSent: 5, // 1 instant + 4 scheduled
+          emailsSent: 9, // 1 instant + 8 scheduled
         });
         console.log(`[InstantOnboarding] Completed onboarding sequence for user ${queuedEmail.userId}`);
       }

@@ -179,14 +179,15 @@ export async function trackProductClick(req: Request, res: Response): Promise<vo
 // ─── POST /api/products/checkout ──────────────────────────────────────────────
 // Create a Stripe one-time checkout session for a product.
 // Supports full funnel: tripwire, order-bump, upsell, downsell
-// Body: { productId, referralCode?, email?, funnelType?, includeOrderBump? }
+// Body: { productId, referralCode?, email?, funnelType?, includeOrderBump?, promoCode? }
 export async function createProductCheckout(req: Request, res: Response): Promise<void> {
-  const { productId, referralCode, email, funnelType, includeOrderBump } = req.body as {
+  const { productId, referralCode, email, funnelType, includeOrderBump, promoCode } = req.body as {
     productId: number;
     referralCode?: string;
     email?: string;
     funnelType?: FunnelType;
     includeOrderBump?: boolean;
+    promoCode?: string;
   };
 
   if (!productId || !PRODUCT_NAMES[productId]) {
@@ -251,6 +252,27 @@ export async function createProductCheckout(req: Request, res: Response): Promis
 
     if (email) {
       sessionParams.customer_email = email;
+    }
+
+    // Apply promo code if provided (admin-issued codes)
+    if (promoCode) {
+      try {
+        const promotionCodes = await stripe.promotionCodes.list({
+          code: promoCode,
+          active: true,
+          limit: 1,
+        });
+        if (promotionCodes.data.length > 0) {
+          sessionParams.discounts = [
+            { promotion_code: promotionCodes.data[0].id },
+          ];
+          // When using discounts, disable allow_promotion_codes
+          delete sessionParams.allow_promotion_codes;
+        }
+      } catch (promoErr) {
+        console.warn("[Products] Promo code lookup failed:", promoErr);
+        // Continue without promo -- don't block checkout
+      }
     }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
