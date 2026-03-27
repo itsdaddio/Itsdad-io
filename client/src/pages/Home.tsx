@@ -1,7 +1,7 @@
 /**
  * Home.tsx — itsdad.io Homepage
- * First Dollar Priority: Single "Start Here" CTA
- * Funnel: Landing → Free Roadmap → Starter Pack ($7) → Builder Club ($19)
+ * ZERO FRICTION: Single "Start Here" CTA → Free Roadmap → Starter Pack ($7)
+ * No quiz, no tier comparison, no decision-making at entry point.
  */
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -43,9 +43,9 @@ const HOW_IT_WORKS = [
   {
     step: "03",
     icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-    title: "Scale with Builder Club",
+    title: "Scale When You're Ready",
     description:
-      "Once you've made your first sale, upgrade to Builder Club ($19/month) for daily content prompts, multiple products, and a scaling method to grow your income consistently.",
+      "Once you've made your first sale, you can upgrade to unlock more products, daily content prompts, and scaling methods. But that comes later — start here first.",
   },
 ];
 
@@ -188,71 +188,14 @@ export default function Home() {
               variant="outline"
               className="border-amber-500/30 text-amber-400 hover:bg-amber-500/10"
             >
-              Activate Your Starter Pack — $7/mo
+              Activate Your Starter Pack — $1 to Start
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
         </div>
       </section>
 
-      {/* ── Footer ────────────────────────────────────────────────────── */}
-      <footer className="border-t border-border py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-10">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Heart className="w-5 h-5 text-amber-400" />
-                <span className="font-bold text-foreground text-lg">itsdad.io</span>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-                A supportive affiliate marketing platform. Step-by-step systems, done-for-you tools, and a community that has your back from day one.
-              </p>
-            </div>
-
-            {/* Platform links */}
-            <div>
-              <h4 className="font-semibold text-foreground text-sm mb-3">Platform</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/memberships" className="hover:text-foreground transition-colors">Memberships</Link></li>
-                <li><Link href="/free-tools" className="hover:text-foreground transition-colors">Free Tools</Link></li>
-                <li><Link href="/meet-dad" className="hover:text-foreground transition-colors">Meet Dad</Link></li>
-                <li><Link href="/hubs" className="hover:text-foreground transition-colors">Knowledge Hub</Link></li>
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="font-semibold text-foreground text-sm mb-3">Legal & Giving</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link></li>
-                <li><Link href="/disclaimer" className="hover:text-foreground transition-colors">Earnings Disclaimer</Link></li>
-                <li>
-                  <a
-                    href="https://www.allprodad.com/donate"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
-                  >
-                    <Heart className="w-3.5 h-3.5 text-red-400" />
-                    All Pro Dad Program
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} itsdad.io. All rights reserved.</p>
-            <p className="flex items-center gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-emerald-400" />
-              Commissions are earned on product sales. Results are not guaranteed.
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* NOTE: No duplicate footer here — the global App.tsx footer handles it */}
     </>
   );
 }
