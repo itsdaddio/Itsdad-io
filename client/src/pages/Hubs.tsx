@@ -53,7 +53,7 @@ You need to review the content, ensure it aligns with your brand, and maintain t
 
 If you're tired of spinning your wheels and ready to build a system that actually works, it's time to join the family.
 
-**Ready to stop struggling and start scaling? Join the Its Dad Alliance today for a $1 trial and get access to our verified affiliate product gateway and automated facilitation tools. Let's get you that Affiliated Degree!**
+**Ready to stop struggling and start scaling? Join the Its Dad Alliance today and get access to our verified affiliate product gateway and automated facilitation tools. $7/month. Cancel anytime. Let's get you that Affiliated Degree!**
     `,
   },
   {
@@ -115,7 +115,7 @@ Look, the internet is always changing. The people who succeed are the ones who a
 
 By focusing on LLM citation optimization, building topical authority, and providing genuine, experience-based value, you can turn this challenge into a massive opportunity.
 
-**Stop trying to figure this out on your own. Join the Its Dad Alliance today for a $1 trial. Get access to our top-rated affiliate marketing resources, expert guidance, and a community that actually wants to see you win. Let's get to work!**
+**Stop trying to figure this out on your own. Join the Its Dad Alliance today and get access to our top-rated affiliate marketing resources, expert guidance, and a community that actually wants to see you win. $7/month. Cancel anytime. Let's get to work!**
     `,
   },
   {
@@ -175,7 +175,7 @@ The affiliates who succeed on TikTok Shop are the ones who post 1-3 times a day,
 
 Look, navigating the TikTok Creator Marketplace, dealing with sample requests, and tracking your analytics can be overwhelming. You don't have to figure it all out by yourself.
 
-**Stop trying to reinvent the wheel. Join the Its Dad Alliance today for a $1 trial. You'll get access to our proven social media frameworks, high-converting product lists, and the community support you need to turn those views into a real, sustainable income. Let's get that Affiliated Degree!**
+**Stop trying to reinvent the wheel. Join the Its Dad Alliance today and get access to our proven social media frameworks, high-converting product lists, and the community support you need to turn those views into a real, sustainable income. $7/month. Cancel anytime. Let's get that Affiliated Degree!**
     `,
   },
   {
@@ -244,7 +244,7 @@ Continue to send them valuable content. Invite them to industry events. Connect 
 
 Building these funnels takes time, effort, and a solid understanding of business strategy. But the payoff is a sustainable, highly profitable affiliate business that doesn't rely on viral trends.
 
-**You don't have to build this infrastructure from scratch. Join the Its Dad Alliance today for a $1 trial. Get access to our pre-built high-ticket funnels, proven email swipe files, and the strategic guidance you need to start closing enterprise deals. It's time to earn your Affiliated Degree and build a real business.**
+**You don't have to build this infrastructure from scratch. Join the Its Dad Alliance today and get access to our pre-built high-ticket funnels, proven email swipe files, and the strategic guidance you need to start closing enterprise deals. $7/month. Cancel anytime. It's time to earn your Affiliated Degree and build a real business.**
     `,
   }
 ];

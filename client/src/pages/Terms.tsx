@@ -37,7 +37,7 @@ export default function Terms() {
               authorize us to charge your payment method on file for the applicable membership fee.
             </p>
             <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li><strong>Starter Pack:</strong> $1 for the first 7 days, then $7/month</li>
+              <li><strong>Starter Pack:</strong> $7/month</li>
               <li><strong>Builder Club:</strong> $19/month</li>
               <li><strong>Pro Creator:</strong> $49.99/month</li>
               <li><strong>Inner Circle Club:</strong> $99.99/month</li>
@@ -49,11 +49,11 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Trial Period</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Cancellation Policy</h2>
             <p>
-              The Starter Pack includes a 7-day trial period at a reduced rate of $1. If you do not cancel
-              before the trial period ends, your membership will automatically renew at the standard monthly
-              rate of $7/month. You may cancel at any time during the trial period.
+              All memberships are billed monthly with no long-term contracts. You may cancel your membership
+              at any time from your account dashboard. Cancellation takes effect at the end of your current
+              billing period. No refunds are provided for partial months.
             </p>
           </section>
 

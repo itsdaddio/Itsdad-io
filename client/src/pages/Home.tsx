@@ -188,7 +188,7 @@ export default function Home() {
               variant="outline"
               className="border-amber-500/30 text-amber-400 hover:bg-amber-500/10"
             >
-              Activate Your Starter Pack — $1 to Start
+              Activate My Starter Pack — $7/mo
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>

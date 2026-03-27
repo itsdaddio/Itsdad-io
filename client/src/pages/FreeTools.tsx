@@ -399,7 +399,7 @@ export default function FreeTools() {
               href="/memberships"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-purple-600 text-white font-semibold hover:opacity-90 transition-opacity"
             >
-              Start for $1 Today
+              Activate My Starter Pack
               <TrendingUp className="w-4 h-4" />
             </a>
           </div>

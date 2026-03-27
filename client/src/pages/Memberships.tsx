@@ -10,9 +10,9 @@
  * - Other tiers visible but dimmed — positioned as upgrades
  * - Quiz moved to bottom as an UPGRADE tool, not entry tool
  *
- * UPDATED: Starter Pack features now accurately reflect the full value
- * (course, prompts, swipe files) while leading with the "one product focus"
- * action strategy.
+ * UPDATED: No trials. Straight pricing. Action-oriented CTAs.
+ * Starter Pack $7/mo, Builder Club $19/mo, Pro Club $49.99/mo,
+ * Inner Circle Club $99.99/mo. Cancel anytime.
  *
  * Route: /memberships
  */
@@ -31,7 +31,7 @@ interface Tier {
   name: string;
   price: string;
   monthlyPrice: string;
-  trialCopy: string;
+  pricingCopy: string;
   badge?: string;
   badgeColor?: string;
   icon: React.ReactNode;
@@ -47,7 +47,7 @@ const STARTER: Tier = {
   name: "Starter Pack",
   price: "$7/mo",
   monthlyPrice: "$7",
-  trialCopy: "$1 for 7 days — then $7/mo — cancel anytime",
+  pricingCopy: "$7/month. Cancel anytime.",
   icon: <Zap className="w-7 h-7 text-amber-400" />,
   features: [
     "First Dollar System\u2122 — your step-by-step action plan",
@@ -62,7 +62,7 @@ const STARTER: Tier = {
     "Done-for-you swipe files & templates",
     "30% recurring commissions",
   ],
-  cta: "Start for $1",
+  cta: "Activate My Starter Pack",
 };
 
 const UPGRADE_TIERS: Tier[] = [
@@ -71,7 +71,7 @@ const UPGRADE_TIERS: Tier[] = [
     name: "Builder Club",
     price: "$19/mo",
     monthlyPrice: "$19",
-    trialCopy: "Start for $1 — 7-day trial",
+    pricingCopy: "$19/month. Cancel anytime. Best value.",
     badge: "Best Value",
     badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
     icon: <Star className="w-6 h-6 text-amber-400" />,
@@ -89,14 +89,14 @@ const UPGRADE_TIERS: Tier[] = [
       "Done-for-you swipe files & templates",
       "30% recurring commissions",
     ],
-    cta: "Join Builder Club",
+    cta: "Unlock Builder Club",
   },
   {
     id: "pro",
     name: "Pro Club",
     price: "$49.99/mo",
     monthlyPrice: "$49.99",
-    trialCopy: "Start for $1 — 7-day trial",
+    pricingCopy: "$49.99/month. Cancel anytime.",
     badge: "Scale Up",
     badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
     icon: <Rocket className="w-6 h-6 text-emerald-400" />,
@@ -114,14 +114,14 @@ const UPGRADE_TIERS: Tier[] = [
       "Done-for-you swipe files & templates",
       "35% recurring commissions",
     ],
-    cta: "Join Pro Club",
+    cta: "Unlock Pro Club",
   },
   {
     id: "inner-circle",
     name: "Inner Circle Club",
     price: "$99.99/mo",
     monthlyPrice: "$99.99",
-    trialCopy: "Start for $1 — 7-day trial",
+    pricingCopy: "$99.99/month. Cancel anytime.",
     badge: "Full Access",
     badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
     icon: <Handshake className="w-6 h-6 text-purple-400" />,
@@ -139,7 +139,7 @@ const UPGRADE_TIERS: Tier[] = [
       "Done-for-you swipe files & templates",
       "40% recurring commissions (highest tier)",
     ],
-    cta: "Join Inner Circle Club",
+    cta: "Join the Inner Circle",
   },
 ];
 
@@ -271,12 +271,11 @@ export default function Memberships() {
                 </div>
               </div>
               <h2 className="text-2xl font-bold text-white mb-1">{STARTER.name}</h2>
-              <p className="text-slate-400 text-sm">{STARTER.price} after trial</p>
 
               <div className="rounded-xl bg-slate-800/60 border border-amber-500/20 px-6 py-4 text-center mt-4">
-                <span className="text-4xl font-extrabold text-white">$1</span>
-                <span className="text-slate-400 text-lg ml-2">for 7 days</span>
-                <p className="text-xs text-slate-500 mt-1">Then {STARTER.price} — cancel anytime</p>
+                <span className="text-4xl font-extrabold text-white">{STARTER.monthlyPrice}</span>
+                <span className="text-slate-400 text-lg ml-2">/month</span>
+                <p className="text-xs text-slate-500 mt-1">Cancel anytime — no contracts</p>
               </div>
             </CardHeader>
 
@@ -319,10 +318,10 @@ export default function Memberships() {
                 ) : (
                   <ArrowRight className="w-5 h-5 mr-2" />
                 )}
-                {loading === STARTER.id ? "Loading..." : "Start for $1"}
+                {loading === STARTER.id ? "Loading..." : STARTER.cta}
               </Button>
 
-              <p className="text-center text-xs text-slate-500">{STARTER.trialCopy}</p>
+              <p className="text-center text-xs text-slate-500">{STARTER.pricingCopy}</p>
             </CardContent>
           </Card>
         </div>
@@ -387,14 +386,14 @@ export default function Memberships() {
                       <div className="p-2 rounded-lg bg-slate-800">{tier.icon}</div>
                       <div>
                         <h3 className="text-xl font-bold text-white">{tier.name}</h3>
-                        <p className="text-slate-400 text-sm">{tier.price} after trial</p>
+                        <p className="text-slate-400 text-sm">{tier.price}</p>
                       </div>
                     </div>
 
                     <div className="rounded-lg bg-slate-800/60 border border-slate-700/40 px-4 py-3 text-center">
-                      <span className="text-2xl font-extrabold text-white">$1</span>
-                      <span className="text-slate-400 text-sm ml-1">for 7 days</span>
-                      <p className="text-xs text-slate-500 mt-0.5">Then {tier.price} — cancel anytime</p>
+                      <span className="text-2xl font-extrabold text-white">{tier.monthlyPrice}</span>
+                      <span className="text-slate-400 text-sm ml-1">/month</span>
+                      <p className="text-xs text-slate-500 mt-0.5">Cancel anytime — no contracts</p>
                     </div>
                   </CardHeader>
 
@@ -440,7 +439,7 @@ export default function Memberships() {
                       {loading === tier.id ? "Loading..." : tier.cta}
                     </Button>
 
-                    <p className="text-center text-xs text-slate-500">{tier.trialCopy}</p>
+                    <p className="text-center text-xs text-slate-500">{tier.pricingCopy}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -478,9 +477,8 @@ export default function Memberships() {
       {/* Fine print */}
       <div className="max-w-lg mx-auto px-4 pb-16">
         <p className="text-center text-xs text-slate-600">
-          * $1 trial lasts 7 days. After the trial period, your card will be charged the full
-          membership price. You can cancel at any time before the trial ends with no charge.
           Commission rates of 30–40% apply to eligible referred sales only.
+          All memberships are billed monthly. Cancel anytime from your dashboard — no questions asked.
         </p>
       </div>
     </div>

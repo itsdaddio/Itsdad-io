@@ -4,6 +4,7 @@ import { Check, ArrowRight, Shield, Clock, Zap, BookOpen, MessageSquare, FileTex
 // ─── Starter Pack Landing Page ───────────────────────────────────────────────
 // Focused, conversion-optimized page for paid traffic (ads/social).
 // Single CTA. No nav distractions. No upgrade tiers visible.
+// No trials. Straight $7/mo pricing. Action-oriented CTAs.
 
 export default function StarterPack() {
   const [loading, setLoading] = useState(false);
@@ -54,7 +55,7 @@ export default function StarterPack() {
             disabled={loading}
             className="px-5 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-purple-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            {loading ? "Loading..." : "Start for $1"}
+            {loading ? "Loading..." : "Activate My Starter Pack"}
           </button>
         </div>
       </div>
@@ -90,12 +91,12 @@ export default function StarterPack() {
               disabled={loading}
               className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-purple-600 text-white font-bold text-lg hover:opacity-90 transition-all shadow-lg shadow-purple-500/25 disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              {loading ? "Loading..." : "Start for $1"} <ArrowRight className="w-5 h-5" />
+              {loading ? "Loading..." : "Activate My Starter Pack"} <ArrowRight className="w-5 h-5" />
             </button>
           </div>
 
           <p className="text-sm text-slate-500">
-            $1 for 7 days, then $7/month. Cancel anytime.
+            $7/month. Cancel anytime. Your first product and script are ready the moment you sign up.
           </p>
 
           {error && (
@@ -173,7 +174,7 @@ export default function StarterPack() {
             {[
               {
                 step: "01",
-                title: "Sign up for $1",
+                title: "Activate your Starter Pack",
                 desc: "Get instant access to your dashboard, your product, and your script. No waiting period.",
               },
               {
@@ -229,7 +230,7 @@ export default function StarterPack() {
               },
               {
                 q: "\"What if it doesn't work?\"",
-                a: "It's $1 to try for 7 days. If it's not for you, cancel before the trial ends. No questions asked.",
+                a: "Cancel anytime — no contracts, no commitments. But most people who follow the system post their first commission within 14 days.",
               },
             ].map((item, i) => (
               <div key={i} className="bg-slate-800/50 rounded-xl border border-white/10 p-5">
@@ -245,13 +246,13 @@ export default function StarterPack() {
       <section className="py-16 md:py-24 px-4 border-t border-white/5">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your first dollar is{" "}
+            Your first product is{" "}
             <span className="bg-gradient-to-r from-amber-400 to-purple-400 bg-clip-text text-transparent">
-              one post away
+              waiting
             </span>
           </h2>
           <p className="text-slate-400 mb-8 max-w-lg mx-auto">
-            $1 gets you in. One product. One script. The full course and 40K prompts to back you up.
+            One product. One script. The full course and 40K prompts to back you up.
             Cancel anytime.
           </p>
 
@@ -260,11 +261,11 @@ export default function StarterPack() {
             disabled={loading}
             className="px-10 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-purple-600 text-white font-bold text-lg hover:opacity-90 transition-all shadow-lg shadow-purple-500/25 disabled:opacity-50 inline-flex items-center gap-2"
           >
-            {loading ? "Loading..." : "Start for $1"} <ArrowRight className="w-5 h-5" />
+            {loading ? "Loading..." : "Activate My Starter Pack"} <ArrowRight className="w-5 h-5" />
           </button>
 
           <p className="text-sm text-slate-500 mt-4">
-            $1 for 7 days, then $7/month. Cancel anytime. No contracts.
+            $7/month. Cancel anytime. No contracts.
           </p>
 
           {error && (

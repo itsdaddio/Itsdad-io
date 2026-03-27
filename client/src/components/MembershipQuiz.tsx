@@ -166,7 +166,7 @@ export function MembershipQuiz({ onRecommend }: MembershipQuizProps) {
           {tier.icon}
           <div className="text-left">
             <p className="font-bold text-foreground text-lg">{tier.name}</p>
-            <p className="text-sm text-muted-foreground">{tier.price} — starts at $1</p>
+            <p className="text-sm text-muted-foreground">{tier.price} — cancel anytime</p>
           </div>
         </div>
 
