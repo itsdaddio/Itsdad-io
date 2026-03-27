@@ -13,6 +13,8 @@ import AffiliateLySuccess from "./pages/AffiliateLySuccess";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import EarningsDisclaimer from "./pages/EarningsDisclaimer";
+import ProductSalesPage from "./pages/ProductSalesPage";
+import CoursePage from "./pages/CoursePage";
 import { DadGPTWidget } from "./components/DadGPTWidget";
 import { SupportWidget } from "./components/SupportWidget";
 import { CookieConsent } from "./components/CookieConsent";
@@ -178,6 +180,8 @@ function Footer() {
 export default function App() {
   const [loc] = useLocation();
   const isStarter = loc === "/starter";
+  const isProductPage = loc.startsWith("/product/");
+  const hideChrome = isStarter || isProductPage;
 
   // Track SPA page views in GA4
   useEffect(() => {
@@ -186,7 +190,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      {!isStarter && <Navbar />}
+      {!hideChrome && <Navbar />}
       <main>
         <Switch>
           <Route path="/" component={Home} />
@@ -199,11 +203,13 @@ export default function App() {
           <Route path="/ref/:code" component={RefCapture} />
           <Route path="/checkout/success" component={CheckoutSuccess} />
           <Route path="/starter" component={StarterPack} />
+          <Route path="/product/:id" component={ProductSalesPage} />
           <Route path="/affiliate-ly" component={AffiliateLy} />
           <Route path="/affiliate-ly/success" component={AffiliateLySuccess} />
           <Route path="/privacy" component={PrivacyPolicy} />
           <Route path="/terms" component={Terms} />
           <Route path="/disclaimer" component={EarningsDisclaimer} />
+          <Route path="/course" component={CoursePage} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>
@@ -215,7 +221,7 @@ export default function App() {
           </Route>
         </Switch>
       </main>
-      {!isStarter && <Footer />}
+      {!hideChrome && <Footer />}
       {/* Global floating chat widgets */}
       <DadGPTWidget />
       <SupportWidget />

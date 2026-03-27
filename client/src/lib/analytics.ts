@@ -110,3 +110,10 @@ export function trackUpsellDeclined(tier: string) {
     tier,
   });
 }
+
+// ─── Generic Event Tracker ─────────────────────────────────────────────────
+// Flexible event tracking for product funnels, course progress, etc.
+
+export function trackEvent(eventName: string, params?: Record<string, unknown>) {
+  gtag("event", eventName, params || {});
+}

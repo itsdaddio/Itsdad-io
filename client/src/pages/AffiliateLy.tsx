@@ -31,7 +31,7 @@ function getRefCode(): string | null {
 }
 
 function buildAffiliateLink(productId: number, refCode: string | null): string {
-  const base = `${window.location.origin}/affiliate-ly/product/${productId}`;
+  const base = `${window.location.origin}/product/${productId}`;
   return refCode ? `${base}?ref=${refCode}` : base;
 }
 
@@ -39,20 +39,9 @@ function formatPrice(cents: number): string {
   return `$${(cents / 100).toFixed(0)}`;
 }
 
-// Product prices in cents (matching server/products.ts)
-const PRODUCT_PRICES: Record<number, number> = {
-  1: 2700, 2: 4700, 3: 1700, 4: 3700, 5: 2700,
-  6: 4700, 7: 1700, 8: 3700, 9: 2700, 10: 4700,
-  11: 4700, 12: 2700, 13: 3700, 14: 1700, 15: 4700,
-  16: 2700, 17: 3700, 18: 1700, 19: 4700, 20: 2700,
-  21: 3700, 22: 1700, 23: 4700, 24: 2700, 25: 3700,
-  26: 1700, 27: 4700, 28: 2700, 29: 3700, 30: 1700,
-  31: 4700, 32: 1700, 33: 2700, 34: 3700, 35: 2700,
-  36: 1700, 37: 3700, 38: 2700, 39: 3700, 40: 2700,
-  41: 4700, 42: 1700, 43: 2700, 44: 3700, 45: 4700,
-  46: 2700, 47: 3700, 48: 4700, 49: 3700, 50: 2700,
-  51: 4700,
-};
+// Product prices in cents (matching server/products.ts) — all tripwires are $7
+const PRODUCT_PRICES: Record<number, number> = {};
+for (let i = 1; i <= 51; i++) PRODUCT_PRICES[i] = 700;
 
 // Category color mapping
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string; dot: string }> = {
@@ -105,25 +94,10 @@ function ProductCard({
     }
   }
 
-  async function handleBuyNow() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/products/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: product.id, referralCode: refCode }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert("Checkout failed. Please try again.");
-        setLoading(false);
-      }
-    } catch {
-      alert("Checkout failed. Please try again.");
-      setLoading(false);
-    }
+  function handleBuyNow() {
+    // Navigate to the full product sales page with funnel
+    const refParam = refCode ? `?ref=${refCode}` : "";
+    window.location.href = `/product/${product.id}${refParam}`;
   }
 
   return (
