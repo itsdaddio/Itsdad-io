@@ -17,6 +17,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
+import { trackPurchaseComplete, trackUpsellClick, trackUpsellDeclined } from "@/lib/analytics";
 
 // ─── Tier Display Names ───────────────────────────────────────────────────────
 
@@ -144,7 +145,7 @@ function UpsellCard({
       </div>
       <div className="mb-3">
         <h3 className="text-white font-bold text-xl">{offer.name}</h3>
-        <p className="text-slate-400 text-sm">{offer.price} — same $1 trial applies</p>
+        <p className="text-slate-400 text-sm">{offer.price} — cancel anytime</p>
       </div>
       <p className="text-slate-300 text-sm mb-4 leading-relaxed">{offer.headline}</p>
       <ul className="space-y-2 mb-6">
@@ -156,7 +157,10 @@ function UpsellCard({
         ))}
       </ul>
       <button
-        onClick={() => onUpgrade(offer.tierId)}
+        onClick={() => {
+          trackUpsellClick("current", offer.tierId);
+          onUpgrade(offer.tierId);
+        }}
         disabled={upgrading !== null}
         className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
@@ -185,6 +189,13 @@ export default function CheckoutSuccess() {
   const [upgrading, setUpgrading] = useState<string | null>(null);
   const [upgradeError, setUpgradeError] = useState<string | null>(null);
   const [declined, setDeclined] = useState(false);
+
+  // GA4: Track purchase completion
+  useEffect(() => {
+    if (sessionId) {
+      trackPurchaseComplete(tier, tierName, sessionId);
+    }
+  }, [sessionId, tier, tierName]);
 
   // Track referral if one was stored in cookie or sessionStorage
   useEffect(() => {
@@ -257,7 +268,7 @@ export default function CheckoutSuccess() {
                 Ready to level up?
               </h2>
               <p className="text-slate-400 text-sm mt-2">
-                Upgrade now and your $1 trial applies to the higher tier. No extra charge today.
+                Upgrade now — same cancel-anytime policy. Level up your commissions and product access.
               </p>
             </div>
 
@@ -278,7 +289,10 @@ export default function CheckoutSuccess() {
 
             <div className="text-center mt-4">
               <button
-                onClick={() => setDeclined(true)}
+                onClick={() => {
+                  trackUpsellDeclined(tier);
+                  setDeclined(true);
+                }}
                 className="text-slate-500 hover:text-slate-400 text-sm transition-colors underline underline-offset-2"
               >
                 No thanks, {tierName} is right for me right now

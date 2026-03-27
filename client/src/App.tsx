@@ -16,7 +16,8 @@ import EarningsDisclaimer from "./pages/EarningsDisclaimer";
 import { DadGPTWidget } from "./components/DadGPTWidget";
 import { SupportWidget } from "./components/SupportWidget";
 import { CookieConsent } from "./components/CookieConsent";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackPageView } from "./lib/analytics";
 
 function Navbar() {
   const [location] = useLocation();
@@ -177,6 +178,11 @@ function Footer() {
 export default function App() {
   const [loc] = useLocation();
   const isStarter = loc === "/starter";
+
+  // Track SPA page views in GA4
+  useEffect(() => {
+    trackPageView(loc);
+  }, [loc]);
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">

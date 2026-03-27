@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, ArrowRight, Shield, Clock, Zap, BookOpen, MessageSquare, FileText } from "lucide-react";
+import { trackCTAClick, trackCheckoutInitiated } from "@/lib/analytics";
 
 // ─── Starter Pack Landing Page ───────────────────────────────────────────────
 // Focused, conversion-optimized page for paid traffic (ads/social).
@@ -13,6 +14,10 @@ export default function StarterPack() {
   async function startCheckout() {
     setLoading(true);
     setError("");
+
+    // GA4: Track CTA click and checkout initiation
+    trackCTAClick("starter", "Starter Pack", "starter_landing");
+    trackCheckoutInitiated("starter", "Starter Pack", "$7");
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",

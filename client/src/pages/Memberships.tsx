@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { MembershipQuiz } from "@/components/MembershipQuiz";
+import { trackCTAClick, trackCheckoutInitiated } from "@/lib/analytics";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -152,6 +153,12 @@ function useCheckout() {
   async function startCheckout(tierId: string) {
     setLoading(tierId);
     setError(null);
+
+    // GA4: Track CTA click and checkout initiation
+    const tierNames: Record<string, string> = { starter: "Starter Pack", builder: "Builder Club", pro: "Pro Club", "inner-circle": "Inner Circle Club" };
+    const tierPrices: Record<string, string> = { starter: "$7", builder: "$19", pro: "$49.99", "inner-circle": "$99.99" };
+    trackCTAClick(tierId, tierNames[tierId] || tierId, "memberships_page");
+    trackCheckoutInitiated(tierId, tierNames[tierId] || tierId, tierPrices[tierId] || "$0");
 
     try {
       const res = await fetch("/api/checkout/create-session", {
