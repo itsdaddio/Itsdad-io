@@ -37,11 +37,13 @@ const TIERS: MembershipTier[] = [
     period: "/mo",
     icon: <Zap className="w-5 h-5 text-blue-400" />,
     features: [
-      "First Dollar System™",
+      "First Dollar System\u2122 — step-by-step action plan",
       "1 product to promote (single-offer focus)",
       "1 viral script (copy-and-post ready)",
-      "Step-by-step posting instructions",
-      "Immediate action onboarding",
+      "Affiliated Degree course (8 modules)",
+      "40,000 ChatGPT Prompt Vault",
+      "Done-for-you swipe files & templates",
+      "30% recurring commissions",
     ],
     cta: "Get Starter Pack",
     ctaHref: "/memberships?tier=starter",
@@ -57,8 +59,8 @@ const TIERS: MembershipTier[] = [
     highlighted: true,
     features: [
       "Everything in Starter Pack",
+      "Multiple products to promote (expand your catalog)",
       "Daily content prompts",
-      "Multiple product options (unlocked after first action)",
       "Content rotation engine",
       "Scaling method (increase output + consistency)",
       "Priority execution path",
@@ -76,6 +78,7 @@ const TIERS: MembershipTier[] = [
     icon: <Crown className="w-5 h-5 text-emerald-400" />,
     features: [
       "Everything in Builder Club",
+      "Full library of 51 products unlocked",
       "Automation frameworks",
       "Funnel strategies",
       "Content scaling systems",
@@ -94,6 +97,7 @@ const TIERS: MembershipTier[] = [
     icon: <Handshake className="w-5 h-5 text-purple-400" />,
     features: [
       "Everything in Pro Club",
+      "All 51 products + 40% commissions",
       "Advanced monetization systems",
       "Early access tools and features",
       "Strategy drops and system updates",

@@ -86,7 +86,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
         price: "7.00",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
-        description: "First Dollar System, 1 product to promote, 1 viral script, step-by-step posting instructions, immediate action onboarding.",
+        description: "First Dollar System, 1 product to promote, 1 viral script, step-by-step posting instructions, Affiliated Degree course (8 modules), 40,000 ChatGPT Prompt Vault, done-for-you swipe files, 30% recurring commissions.",
       },
       {
         "@type": "Offer",
@@ -94,21 +94,21 @@ const PAGE_SCHEMAS: Record<string, object> = {
         price: "19.00",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
-        description: "Everything in Starter Pack, daily content prompts, multiple product options, content rotation engine, scaling method, priority execution path.",
+        description: "Everything in Starter Pack, multiple products to promote, daily content prompts, content rotation engine, scaling method, priority execution path.",
       },
       {
         "@type": "Offer",
         name: "Pro Club",
         price: "49.99",
         priceCurrency: "USD",
-        description: "Everything in Builder Club, automation frameworks, funnel strategies, content scaling systems, performance optimization tools.",
+        description: "Everything in Builder Club, full library of 51 products unlocked, automation frameworks, funnel strategies, content scaling systems, performance optimization tools.",
       },
       {
         "@type": "Offer",
         name: "Inner Circle Club",
         price: "99.99",
         priceCurrency: "USD",
-        description: "Everything in Pro Club, advanced monetization systems, early access tools and features, strategy drops and system updates, high-level income expansion methods.",
+        description: "Everything in Pro Club, all 51 products at 40% commissions, advanced monetization systems, early access tools and features, strategy drops and system updates, high-level income expansion methods.",
       },
     ],
   },

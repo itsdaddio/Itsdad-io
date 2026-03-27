@@ -38,7 +38,7 @@ const HOW_IT_WORKS = [
     icon: <Package className="w-6 h-6 text-purple-400" />,
     title: "Activate Your Starter Pack",
     description:
-      "For $7/month, you get your first product to promote, a viral script ready to post, and step-by-step instructions. One product. One script. One platform. First dollar.",
+      "For $7/month, you get your first product to promote, a viral script ready to post, step-by-step instructions, plus the full Affiliated Degree course, 40K ChatGPT prompts, and done-for-you swipe files. One product to focus on — a full system behind you.",
   },
   {
     step: "03",
@@ -82,7 +82,7 @@ export default function Home() {
             If you're new, start here. This will walk you through everything step-by-step.
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow">
-            One product. One script. One platform. That's all you need to make your first sale.
+            One product to focus on. One script to post. Plus the full course, prompts, and swipe files to back you up.
           </p>
 
           {/* Single CTA */}

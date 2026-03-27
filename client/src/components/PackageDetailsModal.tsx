@@ -39,12 +39,16 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
     period: "/month",
     tagline: "Make your first dollar today",
     description:
-      "The Starter Pack is your First Dollar Activation. One product, one script, one platform — that's all you need to earn your first commission. No overwhelm, just action.",
+      "The Starter Pack is your First Dollar Activation. One product to focus on, one script to post, plus the full Affiliated Degree course, 40K ChatGPT prompts, and done-for-you swipe files. A full system behind you — zero overwhelm.",
     features: [
-      "First Dollar System™",
+      "First Dollar System\u2122 — your step-by-step action plan",
       "1 product to promote (single-offer focus)",
       "1 viral script (copy-and-post ready)",
       "Step-by-step posting instructions",
+      "Affiliated Degree course (8 self-paced modules)",
+      "40,000 ChatGPT Prompt Vault",
+      "Done-for-you swipe files & templates",
+      "30% recurring commissions",
       "Immediate action onboarding",
     ],
     ctaHref: "/memberships?tier=boss",
@@ -59,8 +63,8 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "Builder Club is designed for members ready to build consistency. You unlock daily content prompts, multiple product options, and a content rotation engine to keep your output flowing.",
     features: [
       "Everything in Starter Pack",
+      "Multiple products to promote (expand your catalog)",
       "Daily content prompts",
-      "Multiple product options (unlocked after first action)",
       "Content rotation engine",
       "Scaling method (increase output + consistency)",
       "Priority execution path",
@@ -77,6 +81,7 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "Pro Club gives you the automation and funnel systems to scale without burning out. Pre-built frameworks, content scaling systems, and performance optimization tools.",
     features: [
       "Everything in Builder Club",
+      "Full library of 51 products unlocked",
       "Automation frameworks",
       "Funnel strategies",
       "Content scaling systems",
@@ -94,6 +99,7 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "Inner Circle Club is the complete Its Dad experience. Advanced monetization systems, early access tools, strategy drops, and high-level income expansion methods.",
     features: [
       "Everything in Pro Club",
+      "All 51 products + 40% commissions",
       "Advanced monetization systems",
       "Early access tools and features",
       "Strategy drops and system updates",

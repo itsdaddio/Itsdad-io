@@ -21,17 +21,20 @@ interface ComparisonFeature {
 const FEATURES: ComparisonFeature[] = [
   // Products
   { category: "Products", label: "Curated Affiliate Products", starter: "1 product", builder: "Multiple products", pro: "All 51 products", inner: "All 51 products" },
-  { category: "Products", label: "Done-for-You Swipe Files", starter: true, builder: true, pro: true, inner: true },
+  { category: "Products", label: "Done-for-You Swipe Files & Templates", starter: true, builder: true, pro: true, inner: true },
+  { category: "Products", label: "Recurring Commission Rate", starter: "30%", builder: "30%", pro: "30\u201340%", inner: "40%" },
   { category: "Products", label: "Content Rotation Engine", starter: false, builder: true, pro: true, inner: true },
   { category: "Products", label: "Automation Frameworks", starter: false, builder: false, pro: true, inner: true },
   { category: "Products", label: "Complete Funnel System", starter: false, builder: false, pro: true, inner: true },
 
-  // Course
-  { category: "Course", label: "First Dollar System™", starter: true, builder: true, pro: true, inner: true },
-  { category: "Course", label: "Viral Script (copy-and-post ready)", starter: "1 script", builder: "Multiple", pro: "Full library", inner: "Full library" },
-  { category: "Course", label: "Step-by-Step Posting Instructions", starter: true, builder: true, pro: true, inner: true },
-  { category: "Course", label: "Daily Content Prompts", starter: false, builder: true, pro: true, inner: true },
-  { category: "Course", label: "Content Scaling Systems", starter: false, builder: false, pro: true, inner: true },
+  // Course & Tools
+  { category: "Course & Tools", label: "Affiliated Degree Course (8 modules)", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course & Tools", label: "40,000 ChatGPT Prompt Vault", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course & Tools", label: "First Dollar System\u2122", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course & Tools", label: "Viral Script (copy-and-post ready)", starter: "1 script", builder: "Multiple", pro: "Full library", inner: "Full library" },
+  { category: "Course & Tools", label: "Step-by-Step Posting Instructions", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course & Tools", label: "Daily Content Prompts", starter: false, builder: true, pro: true, inner: true },
+  { category: "Course & Tools", label: "Content Scaling Systems", starter: false, builder: false, pro: true, inner: true },
 
   // Strategy
   { category: "Strategy", label: "Immediate Action Onboarding", starter: true, builder: true, pro: true, inner: true },

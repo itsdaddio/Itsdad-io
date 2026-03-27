@@ -10,6 +10,10 @@
  * - Other tiers visible but dimmed — positioned as upgrades
  * - Quiz moved to bottom as an UPGRADE tool, not entry tool
  *
+ * UPDATED: Starter Pack features now accurately reflect the full value
+ * (course, prompts, swipe files) while leading with the "one product focus"
+ * action strategy.
+ *
  * Route: /memberships
  */
 
@@ -32,6 +36,7 @@ interface Tier {
   badgeColor?: string;
   icon: React.ReactNode;
   features: string[];
+  bonusFeatures?: string[];
   cta: string;
 }
 
@@ -45,11 +50,17 @@ const STARTER: Tier = {
   trialCopy: "$1 for 7 days — then $7/mo — cancel anytime",
   icon: <Zap className="w-7 h-7 text-amber-400" />,
   features: [
-    "First Dollar System\u2122",
+    "First Dollar System\u2122 — your step-by-step action plan",
     "1 product to promote (single-offer focus)",
     "1 viral script (copy-and-post ready)",
     "Step-by-step posting instructions",
     "Immediate action onboarding",
+  ],
+  bonusFeatures: [
+    "Affiliated Degree course (8 self-paced modules)",
+    "40,000 ChatGPT Prompt Vault",
+    "Done-for-you swipe files & templates",
+    "30% recurring commissions",
   ],
   cta: "Start for $1",
 };
@@ -66,8 +77,8 @@ const UPGRADE_TIERS: Tier[] = [
     icon: <Star className="w-6 h-6 text-amber-400" />,
     features: [
       "Everything in Starter Pack",
+      "Multiple products to promote (expand your catalog)",
       "Daily content prompts",
-      "Multiple product options (unlocked after first action)",
       "Content rotation engine",
       "Scaling method (increase output + consistency)",
       "Priority execution path",
@@ -85,6 +96,7 @@ const UPGRADE_TIERS: Tier[] = [
     icon: <Rocket className="w-6 h-6 text-emerald-400" />,
     features: [
       "Everything in Builder Club",
+      "Full library of 51 products unlocked",
       "Automation frameworks",
       "Funnel strategies",
       "Content scaling systems",
@@ -103,6 +115,7 @@ const UPGRADE_TIERS: Tier[] = [
     icon: <Handshake className="w-6 h-6 text-purple-400" />,
     features: [
       "Everything in Pro Club",
+      "All 51 products + 40% commissions",
       "Advanced monetization systems",
       "Early access tools and features",
       "Strategy drops and system updates",
@@ -220,7 +233,7 @@ export default function Memberships() {
             <span className="text-amber-400">Starts With This.</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-lg mx-auto">
-            One product. One script. One platform. Everything you need to earn your first commission — nothing you don't.
+            One product to promote. One script to post. Plus the full course, 40K prompts, and swipe files to back you up. Everything you need — nothing you don't.
           </p>
         </div>
 
@@ -250,14 +263,33 @@ export default function Memberships() {
             </CardHeader>
 
             <CardContent className="flex flex-col gap-4 pb-8">
-              <ul className="space-y-3">
-                {STARTER.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+              {/* Core action features */}
+              <div>
+                <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-wider mb-3">Your Action Plan</p>
+                <ul className="space-y-3">
+                  {STARTER.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3 text-sm text-slate-200">
+                      <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Bonus/included features */}
+              {STARTER.bonusFeatures && (
+                <div className="mt-2 pt-3 border-t border-white/10">
+                  <p className="text-xs font-semibold text-purple-400/70 uppercase tracking-wider mb-3">Also Included</p>
+                  <ul className="space-y-3">
+                    {STARTER.bonusFeatures.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-slate-300">
+                        <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <Button
                 onClick={() => startCheckout(STARTER.id)}
