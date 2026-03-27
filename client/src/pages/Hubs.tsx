@@ -283,6 +283,23 @@ export default function Hubs() {
           </Card>
         ))}
       </div>
+
+      {/* CTA Section */}
+      <div className="mt-16 mb-8">
+        <div className="bg-gradient-to-br from-amber-500/10 to-purple-600/10 border border-amber-500/20 rounded-2xl p-8 text-center">
+          <h2 className="text-2xl font-bold text-white mb-3">Ready to Put This Knowledge to Work?</h2>
+          <p className="text-slate-400 mb-6 max-w-xl mx-auto">
+            Stop reading about affiliate marketing and start doing it. Your first product and script are ready the moment you sign up.
+          </p>
+          <a
+            href="/memberships"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-purple-600 text-white font-semibold hover:opacity-90 transition-opacity"
+          >
+            Activate My Starter Pack
+          </a>
+          <p className="text-sm text-slate-500 mt-3">$7/month. Cancel anytime.</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,10 +8,13 @@
  *   GET  /api/checkout/session-status  — retrieves session status after redirect
  *
  * Membership tiers (aligned with frontend Memberships.tsx):
- *   starter      — Starter Pack   $7/mo
- *   builder      — Builder Club   $19/mo
- *   pro          — Pro Club       $49.99/mo
- *   inner-circle — Inner Circle Club  $99.99/mo
+ *   starter      — Starter Pack         $7/mo
+ *   builder      — Builder Club         $19/mo
+ *   pro          — Pro Club             $49.99/mo
+ *   inner-circle — Inner Circle Club    $99.99/mo
+ *
+ * No trials. No free periods. Full price charged immediately.
+ * Cancel anytime — no contracts.
  *
  * Railway env vars: STRIPE_PRICE_STARTER_PACK, STRIPE_PRICE_BUILDER_CLUB,
  *                   STRIPE_PRICE_PRO_CLUB, STRIPE_PRICE_INNER_CIRCLE_CLUB
@@ -31,8 +34,6 @@ const APP_URL = process.env.VITE_APP_URL || "https://www.itsdad.io";
 interface TierConfig {
   name: string;
   priceId: string;     // Stripe Price ID (set in env)
-  trialDays: number;
-  trialAmount: number; // in cents ($1 = 100)
   fullPrice: string;   // display string
 }
 
@@ -40,29 +41,21 @@ const TIER_CONFIG: Record<string, TierConfig> = {
   starter: {
     name: "Starter Pack",
     priceId: process.env.STRIPE_PRICE_STARTER_PACK || "",
-    trialDays: 7,
-    trialAmount: 100, // $1.00
     fullPrice: "$7/mo",
   },
   builder: {
     name: "Builder Club",
     priceId: process.env.STRIPE_PRICE_BUILDER_CLUB || "",
-    trialDays: 7,
-    trialAmount: 100,
     fullPrice: "$19/mo",
   },
   "pro": {
     name: "Pro Club",
     priceId: process.env.STRIPE_PRICE_PRO_CLUB || "",
-    trialDays: 7,
-    trialAmount: 100,
     fullPrice: "$49.99/mo",
   },
   "inner-circle": {
     name: "Inner Circle Club",
     priceId: process.env.STRIPE_PRICE_INNER_CIRCLE_CLUB || "",
-    trialDays: 7,
-    trialAmount: 100,
     fullPrice: "$99.99/mo",
   },
 };
@@ -102,21 +95,13 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
           quantity: 1,
         },
       ],
-      // $1 trial — charge $1 now, full price after 7 days
+      // No trials — full price charged immediately
       subscription_data: {
-        trial_settings: {
-          end_behavior: {
-            missing_payment_method: "cancel",
-          },
-        },
-        trial_period_days: config.trialDays,
         metadata: {
           tier,
           tierName: config.name,
         },
       },
-      // Collect payment method upfront even during trial
-      payment_method_collection: "always",
       success_url: `${APP_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}&tier=${tier}`,
       cancel_url: `${APP_URL}/memberships?cancelled=true`,
       metadata: {

@@ -28,6 +28,7 @@ function Navbar() {
     { href: "/meet-dad", label: "Meet Dad" },
     { href: "/memberships", label: "Memberships" },
     { href: "/free-tools", label: "Free Tools" },
+    { href: "/hubs", label: "Knowledge Hub" },
   ];
 
   return (
@@ -147,6 +148,7 @@ function Footer() {
               <li><Link href="/memberships" className="text-slate-400 hover:text-white text-sm transition-colors">Memberships</Link></li>
               <li><Link href="/free-tools" className="text-slate-400 hover:text-white text-sm transition-colors">Free Tools</Link></li>
               <li><Link href="/meet-dad" className="text-slate-400 hover:text-white text-sm transition-colors">Meet Dad</Link></li>
+              <li><Link href="/hubs" className="text-slate-400 hover:text-white text-sm transition-colors">Knowledge Hub</Link></li>
             </ul>
           </div>
           <div>
@@ -173,9 +175,12 @@ function Footer() {
 }
 
 export default function App() {
+  const [loc] = useLocation();
+  const isStarter = loc === "/starter";
+
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      <Navbar />
+      {!isStarter && <Navbar />}
       <main>
         <Switch>
           <Route path="/" component={Home} />
@@ -204,7 +209,7 @@ export default function App() {
           </Route>
         </Switch>
       </main>
-      <Footer />
+      {!isStarter && <Footer />}
       {/* Global floating chat widgets */}
       <DadGPTWidget />
       <SupportWidget />

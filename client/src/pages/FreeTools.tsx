@@ -393,7 +393,7 @@ export default function FreeTools() {
           <div className="bg-gradient-to-br from-amber-500/10 to-purple-600/10 border border-amber-500/20 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Ready to Put These Numbers to Work?</h2>
             <p className="text-slate-400 mb-6 max-w-xl mx-auto">
-              Join Affiliation Nation — 51 curated products, done-for-you swipe files, and the Affiliated Degree course. Start earning real commissions from day one.
+              Join Affiliation Nation — curated products, done-for-you swipe files, and the Affiliated Degree course. Your first product and script are ready the moment you sign up.
             </p>
             <a
               href="/memberships"
