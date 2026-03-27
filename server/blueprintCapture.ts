@@ -34,7 +34,6 @@ async function createHubSpotContact(
       email,
       lifecyclestage: "subscriber",
       hs_lead_status: "NEW",
-      itsdad_source: "free_roadmap",
     };
 
     if (name) {
@@ -68,7 +67,7 @@ async function createHubSpotContact(
           },
           body: JSON.stringify({
             properties: {
-              itsdad_source: "free_roadmap",
+              hs_lead_status: "NEW",
               ...(name ? { firstname: name } : {}),
             },
           }),
