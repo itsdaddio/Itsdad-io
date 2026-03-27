@@ -17,18 +17,42 @@ const IS_PROD = process.env.NODE_ENV === "production";
 // ─── Serve Frontend in Production ────────────────────────────────────────────
 
 if (IS_PROD) {
+  const express = require("express");
   const distPath = path.resolve(__dirname, "../../client/dist");
 
-  // Serve static assets (JS, CSS, images)
+  // Serve hashed assets (JS, CSS) with long cache — filenames change on rebuild
   app.use(
-    require("express").static(distPath, {
+    "/assets",
+    express.static(path.join(distPath, "assets"), {
       maxAge: "1y",
+      immutable: true,
       etag: true,
     })
   );
 
-  // SPA fallback — serve index.html for all non-API routes
+  // Serve images with moderate cache
+  app.use(
+    "/images",
+    express.static(path.join(distPath, "images"), {
+      maxAge: "7d",
+      etag: true,
+    })
+  );
+
+  // Serve other static files (favicon, og-image, etc.) with short cache
+  app.use(
+    express.static(distPath, {
+      maxAge: "0",
+      etag: true,
+      index: false, // Don't auto-serve index.html from static middleware
+    })
+  );
+
+  // SPA fallback — serve index.html for all non-API routes with no-cache
   app.get(/^(?!\/api).*/, (_req, res) => {
+    res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
     res.sendFile(path.join(distPath, "index.html"));
   });
 }
