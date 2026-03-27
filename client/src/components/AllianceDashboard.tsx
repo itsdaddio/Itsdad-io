@@ -66,7 +66,7 @@ const START_HERE_STEPS = [
     number: "01",
     icon: "🔗",
     title: "Copy Your Referral Link",
-    desc: "Your unique link is below. Every signup through it earns you a free month + 30–40% commission.",
+    desc: "Your unique link is below. Every signup through it earns you a free month + recurring commissions.",
     color: "text-amber-400",
     border: "border-amber-500/30",
     bg: "bg-amber-500/5",
@@ -84,7 +84,7 @@ const START_HERE_STEPS = [
     number: "03",
     icon: "⚡",
     title: "Share Your Affiliate-ly Products",
-    desc: "Browse 51 products in the Affiliate-ly portal. Copy your link for any product and share it.",
+    desc: "Browse your products in the Affiliate-ly portal. Copy your link for any product and share it.",
     color: "text-blue-400",
     border: "border-blue-500/30",
     bg: "bg-blue-500/5",
@@ -173,7 +173,7 @@ function NewMemberOnboarding({ link, code, onCopy, copied }: {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-violet-400 font-bold text-sm mb-0.5">⚡ Affiliate-ly Portal</p>
-            <p className="text-slate-400 text-xs">Browse all 51 products and copy your affiliate link for each one</p>
+            <p className="text-slate-400 text-xs">Browse your products and copy your affiliate link for each one</p>
           </div>
           <span className="text-violet-400 text-xl group-hover:translate-x-1 transition-transform">→</span>
         </div>
@@ -375,7 +375,7 @@ export default function AllianceDashboard() {
           <div>
             <p className="text-violet-400 font-bold mb-0.5">⚡ Affiliate-ly Portal</p>
             <p className="text-slate-400 text-sm">
-              Browse all 51 products — copy your affiliate link for any product and earn 30–40% per sale
+              Browse your products — copy your affiliate link for any product and earn commissions per sale
             </p>
           </div>
           <span className="text-violet-400 text-2xl group-hover:translate-x-1 transition-transform shrink-0">→</span>
@@ -427,7 +427,7 @@ export default function AllianceDashboard() {
             {
               icon: "⚡",
               title: "Affiliate-ly Products",
-              desc: "Earn 30–40% on every PLR product sale you drive through your unique product links.",
+              desc: "Earn commissions on every product sale you drive through your unique product links.",
             },
           ].map((item) => (
             <div key={item.title} className="flex gap-3 items-start">

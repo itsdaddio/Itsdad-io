@@ -8,6 +8,7 @@ import RefCapture from "./pages/RefCapture";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import FreeTools from "./pages/FreeTools";
 import AffiliateLy from "./pages/AffiliateLy";
+import StarterPack from "./pages/StarterPack";
 import AffiliateLySuccess from "./pages/AffiliateLySuccess";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
@@ -186,6 +187,7 @@ export default function App() {
           <Route path="/free-tools" component={FreeTools} />
           <Route path="/ref/:code" component={RefCapture} />
           <Route path="/checkout/success" component={CheckoutSuccess} />
+          <Route path="/starter" component={StarterPack} />
           <Route path="/affiliate-ly" component={AffiliateLy} />
           <Route path="/affiliate-ly/success" component={AffiliateLySuccess} />
           <Route path="/privacy" component={PrivacyPolicy} />

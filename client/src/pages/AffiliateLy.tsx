@@ -286,15 +286,15 @@ export default function AffiliateLy() {
             ⚡ Affiliate-ly — The Super Affiliate Portal
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
-            51 Products.
+            Your Products.
             <br />
             <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-              One Link Each.
+              Your Links.
             </span>{" "}
             Real Commissions.
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-            Copy your affiliate link for any product, share it, and earn 30–40% on every sale.
+            Copy your affiliate link, share it, and earn commissions on every sale.
             Your referral code is automatically embedded in every link.
           </p>
 

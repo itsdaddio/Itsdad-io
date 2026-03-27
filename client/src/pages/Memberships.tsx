@@ -76,12 +76,18 @@ const UPGRADE_TIERS: Tier[] = [
     badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
     icon: <Star className="w-6 h-6 text-amber-400" />,
     features: [
-      "Everything in Starter Pack",
       "Multiple products to promote (expand your catalog)",
       "Daily content prompts",
       "Content rotation engine",
       "Scaling method (increase output + consistency)",
       "Priority execution path",
+    ],
+    bonusFeatures: [
+      "Everything in Starter Pack included",
+      "Affiliated Degree course (8 modules)",
+      "40,000 ChatGPT Prompt Vault",
+      "Done-for-you swipe files & templates",
+      "30% recurring commissions",
     ],
     cta: "Join Builder Club",
   },
@@ -95,12 +101,18 @@ const UPGRADE_TIERS: Tier[] = [
     badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
     icon: <Rocket className="w-6 h-6 text-emerald-400" />,
     features: [
-      "Everything in Builder Club",
       "Full library of 51 products unlocked",
       "Automation frameworks",
       "Funnel strategies",
       "Content scaling systems",
       "Performance optimization tools",
+    ],
+    bonusFeatures: [
+      "Everything in Builder Club included",
+      "Affiliated Degree course (8 modules)",
+      "40,000 ChatGPT Prompt Vault",
+      "Done-for-you swipe files & templates",
+      "35% recurring commissions",
     ],
     cta: "Join Pro Club",
   },
@@ -114,12 +126,18 @@ const UPGRADE_TIERS: Tier[] = [
     badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
     icon: <Handshake className="w-6 h-6 text-purple-400" />,
     features: [
-      "Everything in Pro Club",
-      "All 51 products + 40% commissions",
+      "All 51 products + highest commissions",
       "Advanced monetization systems",
       "Early access tools and features",
       "Strategy drops and system updates",
       "High-level income expansion methods",
+    ],
+    bonusFeatures: [
+      "Everything in Pro Club included",
+      "Affiliated Degree course (8 modules)",
+      "40,000 ChatGPT Prompt Vault",
+      "Done-for-you swipe files & templates",
+      "40% recurring commissions (highest tier)",
     ],
     cta: "Join Inner Circle Club",
   },
@@ -381,14 +399,33 @@ export default function Memberships() {
                   </CardHeader>
 
                   <CardContent className="flex flex-col flex-1 gap-4">
-                    <ul className="space-y-2.5 flex-1">
-                      {tier.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-300">
-                          <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                    {/* Growth Plan features */}
+                    <div>
+                      <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-wider mb-2.5">Your Growth Plan</p>
+                      <ul className="space-y-2.5">
+                        {tier.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-200">
+                            <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Also Included */}
+                    {tier.bonusFeatures && (
+                      <div className="pt-3 border-t border-white/10">
+                        <p className="text-xs font-semibold text-purple-400/70 uppercase tracking-wider mb-2.5">Also Included</p>
+                        <ul className="space-y-2.5">
+                          {tier.bonusFeatures.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-400">
+                              <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
                     <Button
                       onClick={() => startCheckout(tier.id)}

@@ -90,6 +90,15 @@ const BASE_URL = process.env.VITE_APP_URL || "https://www.itsdad.io";
 
 function getInstantWelcomeEmail(data: InstantOnboardingParams): { subject: string; html: string } {
   const subject = `You're In, ${data.userName}! Your Dashboard Is Live`;
+  const isStarter = data.membershipTier === "starter";
+
+  // Tier-aware product row
+  const productRow = isStarter
+    ? `<strong>🛍️ 1 Curated Product</strong> — Your single-offer focus to earn your first dollar`
+    : `<strong>🛍️ ${data.membershipTier === "builder" ? "Multiple" : "51"} Curated Products</strong> — Ready to promote with your unique affiliate links`;
+
+  // Tier-aware commission rate
+  const commissionRate = isStarter ? "30%" : data.membershipTier === "pro" ? "35%" : data.membershipTier === "inner-circle" ? "40%" : "30-40%";
 
   const content = `
     <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
@@ -104,9 +113,15 @@ function getInstantWelcomeEmail(data: InstantOnboardingParams): { subject: strin
     <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
       <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">Here's what's waiting for you right now:</h3>
       <table width="100%" cellpadding="8" cellspacing="0">
+        ${isStarter ? `
         <tr>
           <td style="color: #5b21b6; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #ddd6fe;">
-            <strong>🛍️ 51 Curated Products</strong> — Ready to promote with your unique affiliate links
+            <strong>⚡ First Dollar System™</strong> — Your step-by-step action plan to earn your first commission
+          </td>
+        </tr>` : ""}
+        <tr>
+          <td style="color: #5b21b6; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #ddd6fe;">
+            ${productRow}
           </td>
         </tr>
         <tr>
@@ -136,13 +151,14 @@ function getInstantWelcomeEmail(data: InstantOnboardingParams): { subject: strin
     
     <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
       <p style="margin: 0; color: #92400e; font-size: 15px;">
-        <strong>Quick Start:</strong> Log in, browse the 51 products, and grab your first affiliate link. 
-        The system handles tracking, attribution, and payouts automatically.
+        <strong>Quick Start:</strong> ${isStarter
+          ? "Log in, find your assigned product, and use the viral script to make your first post. The system handles tracking, attribution, and payouts automatically."
+          : "Log in, browse your products, and grab your first affiliate link. The system handles tracking, attribution, and payouts automatically."}
       </p>
     </div>
     
     <p style="margin: 20px 0 0 0; color: #475569; font-size: 16px; line-height: 1.8;">
-      In 2 days, you'll get an email with your complete product catalog and done-for-you swipe files. 
+      In 2 days, you'll get an email with ${isStarter ? "your product details and" : "your complete product catalog and"} done-for-you swipe files. 
       For now, explore your dashboard and get familiar with the tools.
     </p>
     
@@ -153,9 +169,57 @@ function getInstantWelcomeEmail(data: InstantOnboardingParams): { subject: strin
 }
 
 function getDay2ProductsEmail(data: InstantOnboardingParams): { subject: string; html: string } {
-  const subject = `Your 51 Products + Swipe Files Are Ready`;
+  const isStarter = data.membershipTier === "starter";
+  const subject = isStarter
+    ? `Your Product + Swipe Files Are Ready`
+    : `Your ${data.membershipTier === "builder" ? "Products" : "51 Products"} + Swipe Files Are Ready`;
 
-  const content = `
+  const starterContent = `
+    <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
+      Your First Dollar Kit Is Ready
+    </h2>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Hey ${data.userName},
+    </p>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Your Starter Pack is built around <strong>one product, one script, one platform</strong> — 
+      the fastest path to your first commission. Here's what's ready for you:
+    </p>
+    
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
+      <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">Your Action Kit:</h3>
+      <table width="100%" cellpadding="8" cellspacing="0">
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;"><strong>⚡ Your Assigned Product</strong> — Hand-picked for high conversion</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;"><strong>📝 Viral Script</strong> — Copy-and-post ready for social media</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;"><strong>📋 Swipe Files</strong> — Pre-written ad copy and email templates</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;"><strong>📚 Step-by-Step Instructions</strong> — Exactly what to post, where, and when</td></tr>
+      </table>
+    </div>
+    
+    <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      Your swipe files are ready to use — just copy, paste, and customize with your affiliate link. 
+      No guesswork. No overwhelm. Just action.
+    </p>
+    
+    ${getGoldButton("Access Your Product Kit", `${BASE_URL}/dashboard`)}
+    
+    <p style="margin: 30px 0 0 0; color: #475569; font-size: 16px; line-height: 1.8;">
+      In 3 days, you'll get a walkthrough of Module 1 of the Affiliated Degree course — 
+      a 13-minute video that shows you exactly how to turn your product into commissions.
+    </p>
+    
+    <div style="background: #f8fafc; padding: 15px 20px; margin: 20px 0; border-radius: 8px; border: 1px solid #e2e8f0;">
+      <p style="margin: 0; color: #64748b; font-size: 13px;">
+        <strong>Ready for more products?</strong> Upgrade to Builder Club ($19/mo) to unlock multiple products and daily content prompts.
+      </p>
+    </div>
+    
+    ${getSignatureBlock()}
+  `;
+
+  const fullContent = `
     <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
       Your Product Arsenal Is Loaded
     </h2>
@@ -165,7 +229,7 @@ function getDay2ProductsEmail(data: InstantOnboardingParams): { subject: string;
     </p>
     
     <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
-      You now have access to <strong>51 curated digital products</strong> across 6 categories — 
+      You now have access to <strong>${data.membershipTier === "builder" ? "multiple curated digital products" : "51 curated digital products"}</strong> across 6 categories — 
       each one hand-picked for high conversion rates and strong commission potential.
     </p>
     
@@ -186,7 +250,7 @@ function getDay2ProductsEmail(data: InstantOnboardingParams): { subject: string;
       and social media posts. Just copy, paste, and customize with your affiliate link.
     </p>
     
-    ${getGoldButton("Browse All 51 Products", `${BASE_URL}/products`)}
+    ${getGoldButton("Browse Your Products", `${BASE_URL}/products`)}
     
     <p style="margin: 30px 0 0 0; color: #475569; font-size: 16px; line-height: 1.8;">
       In 3 days, you'll get a walkthrough of Module 1 of the Affiliated Degree course — 
@@ -196,7 +260,7 @@ function getDay2ProductsEmail(data: InstantOnboardingParams): { subject: string;
     ${getSignatureBlock()}
   `;
 
-  return { subject, html: wrapEmail("YOUR PRODUCT CATALOG", content) };
+  return { subject, html: wrapEmail(isStarter ? "YOUR ACTION KIT" : "YOUR PRODUCT CATALOG", isStarter ? starterContent : fullContent) };
 }
 
 function getDay5CourseEmail(data: InstantOnboardingParams): { subject: string; html: string } {
@@ -244,7 +308,8 @@ function getDay5CourseEmail(data: InstantOnboardingParams): { subject: string; h
 }
 
 function getDay10ReferralEmail(data: InstantOnboardingParams): { subject: string; html: string } {
-  const subject = `Your Referral Link Is Live — Earn 30-40% Recurring`;
+  const commissionRate = data.membershipTier === "inner-circle" ? "40%" : data.membershipTier === "pro" ? "35%" : "30%";
+  const subject = `Your Referral Link Is Live — Earn ${commissionRate} Recurring`;
 
   const content = `
     <h2 style="margin: 0 0 20px 0; color: #1e293b; font-size: 28px; text-align: center;">
@@ -257,7 +322,7 @@ function getDay10ReferralEmail(data: InstantOnboardingParams): { subject: string
     
     <p style="margin: 0 0 20px 0; color: #475569; font-size: 16px; line-height: 1.8;">
       Every Its Dad member gets a <strong>personal referral link</strong> that earns you 
-      <strong style="color: ${EMAIL_COLORS.royalGold};">30-40% recurring commission</strong> on anyone who joins through your link.
+      <strong style="color: ${EMAIL_COLORS.royalGold};">${commissionRate} recurring commission</strong> on anyone who joins through your link.
     </p>
     
     <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
