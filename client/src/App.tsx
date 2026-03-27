@@ -17,14 +17,12 @@ function Navbar() {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // First Dollar Priority: Simplified navigation — only essential links
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/meet-dad", label: "Meet Dad" },
     { href: "/memberships", label: "Memberships" },
-    { href: "/hubs", label: "Knowledge Hub" },
-    { href: "/alliance", label: "The Alliance" },
     { href: "/free-tools", label: "Free Tools" },
-    { href: "/affiliate-ly", label: "⚡ Affiliate-ly" },
   ];
 
   return (
@@ -61,12 +59,12 @@ function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/memberships"
+            <a
+              href="/#start-here"
               className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-purple-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity"
             >
-              Start for $1
-            </Link>
+              Start Here
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -102,13 +100,13 @@ function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/memberships"
+            <a
+              href="/#start-here"
               className="block mt-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-purple-600 text-white text-sm font-semibold text-center hover:opacity-90 transition-opacity"
               onClick={() => setMenuOpen(false)}
             >
-              Start for $1
-            </Link>
+              Start Here
+            </a>
           </div>
         )}
       </div>
@@ -142,7 +140,7 @@ function Footer() {
             <ul className="space-y-2">
               <li><Link href="/" className="text-slate-400 hover:text-white text-sm transition-colors">Home</Link></li>
               <li><Link href="/memberships" className="text-slate-400 hover:text-white text-sm transition-colors">Memberships</Link></li>
-              <li><Link href="/hubs" className="text-slate-400 hover:text-white text-sm transition-colors">Knowledge Hub</Link></li>
+              <li><Link href="/free-tools" className="text-slate-400 hover:text-white text-sm transition-colors">Free Tools</Link></li>
               <li><Link href="/meet-dad" className="text-slate-400 hover:text-white text-sm transition-colors">Meet Dad</Link></li>
             </ul>
           </div>
@@ -156,11 +154,13 @@ function Footer() {
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} itsdad.io. All rights reserved.
+            &copy; {new Date().getFullYear()} itsdad.io. All rights reserved.
           </p>
-          <p className="text-slate-500 text-xs">
-            Top-rated affiliate marketing resource · Customer service support portal
-          </p>
+          <div className="flex gap-4 text-slate-500 text-xs">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/disclaimer" className="hover:text-white transition-colors">Earnings Disclaimer</Link>
+          </div>
         </div>
       </div>
     </footer>

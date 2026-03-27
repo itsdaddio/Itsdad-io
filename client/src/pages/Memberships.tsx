@@ -3,19 +3,20 @@
  *
  * itsdad.io — Memberships page.
  *
- * Displays the four membership tiers (Starter Pack, Builder Club, Pro Club,
- * Inner Circle Club) with a $1 trial CTA for each.
- * On click, calls POST /api/checkout/create-session and redirects
- * the user to Stripe Checkout.
+ * FIRST DOLLAR PRIORITY:
+ * - Quiz at top helps users determine which tier is right for them
+ * - All 4 tiers visible below with clear pricing and features
+ * - One clear path: Take Quiz → See Recommendation → Checkout
  *
  * Route: /memberships
  */
 
 import { useState } from "react";
-import { Check, Users, Zap, Star, Shield, ArrowRight, Loader2, Handshake, Rocket } from "lucide-react";
+import { Check, Zap, Star, Shield, ArrowRight, Loader2, Handshake, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { MembershipQuiz } from "@/components/MembershipQuiz";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -128,7 +129,6 @@ function useCheckout() {
         throw new Error(data.error || "Failed to start checkout. Please try again.");
       }
 
-      // Redirect to Stripe Checkout
       window.location.href = data.url;
     } catch (err) {
       const message = err instanceof Error ? err.message : "Something went wrong.";
@@ -140,7 +140,7 @@ function useCheckout() {
   return { startCheckout, loading, error };
 }
 
-// ─── Success Banner ───────────────────────────────────────────────────────────
+// ─── Banners ─────────────────────────────────────────────────────────────────
 
 function SuccessBanner() {
   const params = new URLSearchParams(window.location.search);
@@ -155,8 +155,6 @@ function SuccessBanner() {
   );
 }
 
-// ─── Cancelled Banner ─────────────────────────────────────────────────────────
-
 function CancelledBanner() {
   const params = new URLSearchParams(window.location.search);
   if (!params.get("cancelled")) return null;
@@ -169,8 +167,6 @@ function CancelledBanner() {
     </div>
   );
 }
-
-// ─── Invited Banner ─────────────────────────────────────────────────────────
 
 function InvitedBanner() {
   const params = new URLSearchParams(window.location.search);
@@ -196,20 +192,31 @@ function TierCard({
   tier,
   onSelect,
   isLoading,
+  recommended,
 }: {
   tier: Tier;
   onSelect: (id: string) => void;
   isLoading: boolean;
+  recommended?: boolean;
 }) {
+  const isHighlighted = tier.highlighted || recommended;
+
   return (
     <Card
-      className={`relative flex flex-col h-full transition-all duration-200 ${
-        tier.highlighted
-          ? "border-amber-500/50 bg-gradient-to-b from-amber-950/30 to-slate-900 shadow-lg shadow-amber-900/20 scale-105"
+      className={`relative flex flex-col h-full transition-all duration-300 ${
+        isHighlighted
+          ? "border-amber-500/50 bg-gradient-to-b from-amber-950/30 to-slate-900 shadow-lg shadow-amber-900/20 md:scale-105"
           : "border-slate-700/50 bg-slate-900/80"
-      }`}
+      } ${recommended ? "ring-2 ring-amber-400/60" : ""}`}
     >
-      {tier.badge && (
+      {recommended && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+          <span className="text-xs font-bold px-4 py-1 rounded-full bg-amber-500 text-black">
+            Recommended for You
+          </span>
+        </div>
+      )}
+      {!recommended && tier.badge && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
           <span className={`text-xs font-semibold px-3 py-1 rounded-full ${tier.badgeColor}`}>
             {tier.badge}
@@ -247,7 +254,7 @@ function TierCard({
           onClick={() => onSelect(tier.id)}
           disabled={isLoading}
           className={`w-full font-semibold text-base py-5 mt-2 ${
-            tier.highlighted
+            isHighlighted
               ? "bg-amber-500 hover:bg-amber-400 text-black"
               : "bg-slate-700 hover:bg-slate-600 text-white"
           }`}
@@ -270,6 +277,7 @@ function TierCard({
 
 export default function Memberships() {
   const { startCheckout, loading, error } = useCheckout();
+  const [recommendedTier, setRecommendedTier] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -279,11 +287,11 @@ export default function Memberships() {
           Affiliation Nation
         </Badge>
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-          Choose Your Place in<br />
-          <span className="text-amber-400">Affiliation Nation</span>
+          Not Sure Where to Start?<br />
+          <span className="text-amber-400">We'll Help You Pick.</span>
         </h1>
         <p className="text-slate-400 text-lg max-w-xl mx-auto">
-          Earn your Affiliated Degree. Build recurring income. Try any tier for just $1 — the system does the heavy lifting.
+          Take the 60-second quiz below and we'll recommend the perfect plan based on where you are right now. Every plan starts at just $1.
         </p>
       </div>
 
@@ -292,6 +300,17 @@ export default function Memberships() {
         <SuccessBanner />
         <CancelledBanner />
         <InvitedBanner />
+      </div>
+
+      {/* Quiz Section */}
+      <div className="max-w-3xl mx-auto px-4 pb-12" id="quiz">
+        <MembershipQuiz onRecommend={(tierId: string) => {
+          setRecommendedTier(tierId);
+          // Scroll to the tier cards after recommendation
+          setTimeout(() => {
+            document.getElementById("tier-cards")?.scrollIntoView({ behavior: "smooth" });
+          }, 300);
+        }} />
       </div>
 
       {/* Error */}
@@ -304,7 +323,11 @@ export default function Memberships() {
       )}
 
       {/* Tier Cards */}
-      <div className="max-w-6xl mx-auto px-4 pb-16">
+      <div className="max-w-6xl mx-auto px-4 pb-16" id="tier-cards">
+        <h2 className="text-2xl font-bold text-center mb-8">
+          {recommendedTier ? "Here's Your Best Fit" : "All Membership Tiers"}
+        </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
           {TIERS.map((tier) => (
             <TierCard
@@ -312,6 +335,7 @@ export default function Memberships() {
               tier={tier}
               onSelect={startCheckout}
               isLoading={loading === tier.id}
+              recommended={recommendedTier === tier.id}
             />
           ))}
         </div>

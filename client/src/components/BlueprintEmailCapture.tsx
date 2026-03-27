@@ -1,29 +1,24 @@
 /**
  * BlueprintEmailCapture.tsx
  *
- * Email capture form offering a free strategy blueprint download
- * in exchange for an email address. Used on the homepage and landing pages.
- *
- * MANIFEST PATCH (item 16):
- *   - Replaced "1-on-1 Coaching" with "Strategy Blueprints"
- *   - Replaced "Direct Line to Dad" with "Complete Funnel System"
+ * Email capture form offering a free affiliate roadmap download.
+ * First Dollar Priority: This is the primary conversion step.
+ * Funnel: Start Here → Free Roadmap → Starter Pack ($7) → Builder Club ($19)
  */
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FileText, Download, Check, Loader2, Zap, BarChart2, BookOpen } from "lucide-react";
+import { Download, Check, Loader2, Zap, BarChart2, BookOpen, Map } from "lucide-react";
 
-const BLUEPRINT_BENEFITS = [
+const ROADMAP_BENEFITS = [
   {
-    icon: <FileText className="w-4 h-4 text-amber-400" />,
-    // MANIFEST PATCH: was "1-on-1 Coaching Session Included"
-    label: "Strategy Blueprints — Done-for-You Frameworks",
+    icon: <Map className="w-4 h-4 text-amber-400" />,
+    label: "Step-by-Step Roadmap — Exactly What to Do First",
   },
   {
     icon: <Zap className="w-4 h-4 text-emerald-400" />,
-    // MANIFEST PATCH: was "Direct Line to Dad"
-    label: "Complete Funnel System — Pre-Built & Ready to Deploy",
+    label: "First Dollar Framework — One Product, One Script, One Platform",
   },
   {
     icon: <BarChart2 className="w-4 h-4 text-purple-400" />,
@@ -31,7 +26,7 @@ const BLUEPRINT_BENEFITS = [
   },
   {
     icon: <BookOpen className="w-4 h-4 text-blue-400" />,
-    label: "First-Sale-in-7-Days Framework — Step by Step",
+    label: "First-Sale-in-7-Days Plan — Clear Daily Actions",
   },
 ];
 
@@ -73,7 +68,7 @@ export function BlueprintEmailCapture() {
         </div>
         <div>
           <h3 className="font-bold text-foreground text-lg leading-tight">
-            Free Affiliate Blueprint
+            Free Affiliate Roadmap
           </h3>
           <p className="text-xs text-muted-foreground">Instant download — no credit card needed</p>
         </div>
@@ -81,7 +76,7 @@ export function BlueprintEmailCapture() {
 
       {/* Benefits */}
       <ul className="space-y-2.5 mb-6">
-        {BLUEPRINT_BENEFITS.map((b, i) => (
+        {ROADMAP_BENEFITS.map((b, i) => (
           <li key={i} className="flex items-center gap-2.5 text-sm text-muted-foreground">
             {b.icon}
             {b.label}
@@ -94,7 +89,7 @@ export function BlueprintEmailCapture() {
         <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4">
           <Check className="w-5 h-5 text-emerald-400 flex-shrink-0" />
           <p className="text-sm text-emerald-400 font-medium">
-            Blueprint sent! Check your inbox — it should arrive within 2 minutes.
+            Roadmap sent! Check your inbox — it should arrive within 2 minutes.
           </p>
         </div>
       ) : (
@@ -127,12 +122,12 @@ export function BlueprintEmailCapture() {
             {status === "loading" ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Sending Blueprint…
+                Sending Roadmap…
               </>
             ) : (
               <>
                 <Download className="w-4 h-4 mr-2" />
-                Send Me the Free Blueprint
+                Send Me the Free Roadmap
               </>
             )}
           </Button>
