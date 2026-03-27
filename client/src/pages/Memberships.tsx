@@ -3,15 +3,16 @@
  *
  * itsdad.io — Memberships page.
  *
- * Displays the three membership tiers (Starter Pass, Builder Access, Inner Circle) with a $1 trial
- * CTA for each. On click, calls POST /api/checkout/create-session and redirects
+ * Displays the four membership tiers (Starter Pack, Builder Club, Pro Club,
+ * Inner Circle Club) with a $1 trial CTA for each.
+ * On click, calls POST /api/checkout/create-session and redirects
  * the user to Stripe Checkout.
  *
  * Route: /memberships
  */
 
 import { useState } from "react";
-import { Check, Users, Zap, Star, Shield, ArrowRight, Loader2, Handshake } from "lucide-react";
+import { Check, Users, Zap, Star, Shield, ArrowRight, Loader2, Handshake, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -36,58 +37,71 @@ interface Tier {
 const TIERS: Tier[] = [
   {
     id: "starter",
-    name: "Starter Pass",
-    price: "$9.99/mo",
+    name: "Starter Pack",
+    price: "$7/mo",
     trialCopy: "Start for $1 — 7-day trial",
     icon: <Zap className="w-6 h-6 text-blue-400" />,
     features: [
-      "Access to 10 curated affiliate products",
-      "Done-for-you swipe files & ad copy",
-      "Affiliated Degree — Modules 1–3",
-      "40,000 ChatGPT Prompt Vault",
-      "Automated commission tracking dashboard",
-      "Personal affiliate referral link",
+      "First Dollar System\u2122",
+      "1 product to promote (single-offer focus)",
+      "1 viral script (copy-and-post ready)",
+      "Step-by-step posting instructions",
+      "Immediate action onboarding",
     ],
-    cta: "Get Instant Access",
+    cta: "Get Starter Pack",
   },
   {
     id: "builder",
-    name: "Builder Access",
-    price: "$19.99/mo",
+    name: "Builder Club",
+    price: "$19/mo",
     trialCopy: "Start for $1 — 7-day trial",
-    badge: "Most Popular",
+    badge: "Best Value",
     badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
     highlighted: true,
     icon: <Star className="w-6 h-6 text-amber-400" />,
     features: [
-      "Everything in Starter Pass",
-      "Access to 30 curated affiliate products",
-      "Advanced swipe file library (email + social)",
-      "Affiliated Degree — Modules 1–6",
-      "Done-for-you sales page templates",
-      "Priority commission processing",
-      "30–40% recurring referral commissions",
+      "Everything in Starter Pack",
+      "Daily content prompts",
+      "Multiple product options (unlocked after first action)",
+      "Content rotation engine",
+      "Scaling method (increase output + consistency)",
+      "Priority execution path",
     ],
-    cta: "Start Building Today",
+    cta: "Join Builder Club",
+  },
+  {
+    id: "pro",
+    name: "Pro Club",
+    price: "$49.99/mo",
+    trialCopy: "Start for $1 — 7-day trial",
+    badge: "Scale Up",
+    badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
+    icon: <Rocket className="w-6 h-6 text-emerald-400" />,
+    features: [
+      "Everything in Builder Club",
+      "Automation frameworks",
+      "Funnel strategies",
+      "Content scaling systems",
+      "Performance optimization tools",
+    ],
+    cta: "Join Pro Club",
   },
   {
     id: "inner-circle",
-    name: "Inner Circle",
-    price: "$24.99/mo",
+    name: "Inner Circle Club",
+    price: "$99.99/mo",
     trialCopy: "Start for $1 — 7-day trial",
     badge: "Full Access",
     badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
     icon: <Handshake className="w-6 h-6 text-purple-400" />,
     features: [
-      "Everything in Builder Access",
-      "All 51 curated affiliate products",
-      "Complete Affiliated Degree — all 8 modules",
-      "Inner Circle community access",
-      "Done-for-you funnel system",
-      "Direct support from Dad",
-      "First access to new products & drops",
+      "Everything in Pro Club",
+      "Advanced monetization systems",
+      "Early access tools and features",
+      "Strategy drops and system updates",
+      "High-level income expansion methods",
     ],
-    cta: "Join the Inner Circle",
+    cta: "Join Inner Circle Club",
   },
 ];
 
@@ -165,7 +179,7 @@ function InvitedBanner() {
 
   return (
     <div className="mb-8 rounded-xl bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 p-5 text-center">
-      <p className="text-amber-400 font-bold text-lg mb-1">🤝 You Were Invited to Affiliation Nation</p>
+      <p className="text-amber-400 font-bold text-lg mb-1">You Were Invited to Affiliation Nation</p>
       <p className="text-slate-300 text-sm">
         Someone in the community brought you here. Join today and your first month is on them.
       </p>
@@ -274,7 +288,7 @@ export default function Memberships() {
       </div>
 
       {/* Banners */}
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <SuccessBanner />
         <CancelledBanner />
         <InvitedBanner />
@@ -282,7 +296,7 @@ export default function Memberships() {
 
       {/* Error */}
       {error && (
-        <div className="max-w-5xl mx-auto px-4 mb-6">
+        <div className="max-w-6xl mx-auto px-4 mb-6">
           <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-center">
             <p className="text-red-400 text-sm">{error}</p>
           </div>
@@ -290,8 +304,8 @@ export default function Memberships() {
       )}
 
       {/* Tier Cards */}
-      <div className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
           {TIERS.map((tier) => (
             <TierCard
               key={tier.id}

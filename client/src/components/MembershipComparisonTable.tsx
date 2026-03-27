@@ -2,10 +2,7 @@
  * MembershipComparisonTable.tsx
  *
  * Full feature comparison table across all itsdad.io membership tiers.
- *
- * MANIFEST PATCH (item 14):
- *   - Replaced coaching/support features with self-serve alternatives
- *   - Added commission disclaimer (line 288 equivalent)
+ * Updated to match locked core configuration (4 tiers).
  */
 
 import { Check, X, Minus, Info } from "lucide-react";
@@ -17,38 +14,35 @@ interface ComparisonFeature {
   label: string;
   starter: FeatureValue;
   builder: FeatureValue;
+  pro: FeatureValue;
   inner: FeatureValue;
 }
 
 const FEATURES: ComparisonFeature[] = [
   // Products
-  { category: "Products", label: "Curated Affiliate Products", starter: "10 products", builder: "30 products", inner: "All 51 products" },
-  { category: "Products", label: "Done-for-You Swipe Files", starter: true, builder: true, inner: true },
-  { category: "Products", label: "Advanced Email Swipe Library", starter: false, builder: true, inner: true },
-  { category: "Products", label: "Done-for-You Sales Page Templates", starter: false, builder: true, inner: true },
-  { category: "Products", label: "Complete Funnel System", starter: false, builder: false, inner: true },
+  { category: "Products", label: "Curated Affiliate Products", starter: "1 product", builder: "Multiple products", pro: "All 51 products", inner: "All 51 products" },
+  { category: "Products", label: "Done-for-You Swipe Files", starter: true, builder: true, pro: true, inner: true },
+  { category: "Products", label: "Content Rotation Engine", starter: false, builder: true, pro: true, inner: true },
+  { category: "Products", label: "Automation Frameworks", starter: false, builder: false, pro: true, inner: true },
+  { category: "Products", label: "Complete Funnel System", starter: false, builder: false, pro: true, inner: true },
 
   // Course
-  { category: "Course", label: "Affiliated Degree — Module Access", starter: "Modules 1–3", builder: "Modules 1–6", inner: "All 8 Modules" },
-  // MANIFEST PATCH: Replaced "Live Group Coaching Calls" with self-serve alternative
-  { category: "Course", label: "Pre-Recorded Video Library (24/7)", starter: "partial", builder: true, inner: true },
-  // MANIFEST PATCH: Replaced "1-on-1 Coaching Sessions" with self-serve alternative
-  { category: "Course", label: "40,000 ChatGPT Prompt Vault", starter: true, builder: true, inner: true },
-  { category: "Course", label: "Final Assessment + Degree Certificate", starter: false, builder: "partial", inner: true },
+  { category: "Course", label: "First Dollar System™", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course", label: "Viral Script (copy-and-post ready)", starter: "1 script", builder: "Multiple", pro: "Full library", inner: "Full library" },
+  { category: "Course", label: "Step-by-Step Posting Instructions", starter: true, builder: true, pro: true, inner: true },
+  { category: "Course", label: "Daily Content Prompts", starter: false, builder: true, pro: true, inner: true },
+  { category: "Course", label: "Content Scaling Systems", starter: false, builder: false, pro: true, inner: true },
 
-  // Commissions
-  { category: "Commissions", label: "Personal Affiliate Referral Link", starter: true, builder: true, inner: true },
-  { category: "Commissions", label: "Referral Commission Rate", starter: "30%", builder: "35%", inner: "40%" },
-  { category: "Commissions", label: "Second-Tier Referral Commission", starter: false, builder: false, inner: "6.7%" },
-  { category: "Commissions", label: "Automated Commission Tracking", starter: true, builder: true, inner: true },
-  { category: "Commissions", label: "Priority Commission Processing", starter: false, builder: true, inner: true },
-
-  // Support
-  // MANIFEST PATCH: Replaced "Direct Line to Dad" with self-serve alternative
-  { category: "Support", label: "Prompt Vault Self-Serve Support (24/7)", starter: true, builder: true, inner: true },
-  // MANIFEST PATCH: Replaced "Monthly Strategy Call" with self-serve alternative
-  { category: "Support", label: "Strategy Blueprint Library", starter: false, builder: true, inner: true },
-  { category: "Support", label: "Automated Earnings & Analytics Reports", starter: false, builder: "partial", inner: true },
+  // Strategy
+  { category: "Strategy", label: "Immediate Action Onboarding", starter: true, builder: true, pro: true, inner: true },
+  { category: "Strategy", label: "Scaling Method", starter: false, builder: true, pro: true, inner: true },
+  { category: "Strategy", label: "Priority Execution Path", starter: false, builder: true, pro: true, inner: true },
+  { category: "Strategy", label: "Funnel Strategies", starter: false, builder: false, pro: true, inner: true },
+  { category: "Strategy", label: "Performance Optimization Tools", starter: false, builder: false, pro: true, inner: true },
+  { category: "Strategy", label: "Advanced Monetization Systems", starter: false, builder: false, pro: false, inner: true },
+  { category: "Strategy", label: "Strategy Drops & System Updates", starter: false, builder: false, pro: false, inner: true },
+  { category: "Strategy", label: "Early Access Tools & Features", starter: false, builder: false, pro: false, inner: true },
+  { category: "Strategy", label: "High-Level Income Expansion Methods", starter: false, builder: false, pro: false, inner: true },
 ];
 
 const CATEGORIES = [...new Set(FEATURES.map((f) => f.category))];
@@ -63,14 +57,15 @@ function FeatureCell({ value }: { value: FeatureValue }) {
 export function MembershipComparisonTable() {
   return (
     <div className="w-full overflow-x-auto">
-      <table className="w-full min-w-[640px] border-collapse text-sm">
+      <table className="w-full min-w-[800px] border-collapse text-sm">
         {/* Header */}
         <thead>
           <tr>
-            <th className="text-left py-4 px-4 text-muted-foreground font-medium w-1/2">Feature</th>
-            <th className="text-center py-4 px-3 text-foreground font-bold">Starter Pass<br /><span className="text-amber-400 font-normal text-xs">$9.99/mo</span></th>
-            <th className="text-center py-4 px-3 text-foreground font-bold bg-amber-500/5 border-x border-amber-500/20">Builder Access<br /><span className="text-amber-400 font-normal text-xs">$19.99/mo</span></th>
-            <th className="text-center py-4 px-3 text-foreground font-bold">Inner Circle<br /><span className="text-amber-400 font-normal text-xs">$24.99/mo</span></th>
+            <th className="text-left py-4 px-4 text-muted-foreground font-medium w-1/3">Feature</th>
+            <th className="text-center py-4 px-3 text-foreground font-bold">Starter Pack<br /><span className="text-amber-400 font-normal text-xs">$7/mo</span></th>
+            <th className="text-center py-4 px-3 text-foreground font-bold bg-amber-500/5 border-x border-amber-500/20">Builder Club<br /><span className="text-amber-400 font-normal text-xs">$19/mo</span></th>
+            <th className="text-center py-4 px-3 text-foreground font-bold">Pro Club<br /><span className="text-amber-400 font-normal text-xs">$49.99/mo</span></th>
+            <th className="text-center py-4 px-3 text-foreground font-bold">Inner Circle Club<br /><span className="text-amber-400 font-normal text-xs">$99.99/mo</span></th>
           </tr>
         </thead>
 
@@ -80,7 +75,7 @@ export function MembershipComparisonTable() {
               {/* Category row */}
               <tr key={`cat-${category}`}>
                 <td
-                  colSpan={4}
+                  colSpan={5}
                   className="py-2 px-4 text-xs font-semibold uppercase tracking-widest text-purple-400 bg-purple-500/5 border-t border-b border-purple-500/10"
                 >
                   {category}
@@ -96,6 +91,7 @@ export function MembershipComparisonTable() {
                   <td className="py-3 px-4 text-muted-foreground">{feature.label}</td>
                   <td className="py-3 px-3 text-center"><FeatureCell value={feature.starter} /></td>
                   <td className="py-3 px-3 text-center bg-amber-500/5 border-x border-amber-500/10"><FeatureCell value={feature.builder} /></td>
+                  <td className="py-3 px-3 text-center"><FeatureCell value={feature.pro} /></td>
                   <td className="py-3 px-3 text-center"><FeatureCell value={feature.inner} /></td>
                 </tr>
               ))}
@@ -104,13 +100,11 @@ export function MembershipComparisonTable() {
         </tbody>
       </table>
 
-      {/* MANIFEST PATCH: Commission disclaimer (line 288 equivalent) */}
       <p className="mt-5 text-xs text-muted-foreground flex items-start gap-1.5 px-1">
         <Info className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-slate-500" />
         <span>
-          Commission percentages apply to product sales generated through your personal affiliate referral link.
           Earnings are not guaranteed and depend on individual promotional activity and market conditions.
-          itsdad.io is not a multi-level marketing program. Second-tier commissions apply only to Inner Circle members
+          itsdad.io is not a multi-level marketing program. Second-tier commissions apply only to Inner Circle Club members
           and are calculated on direct referral earnings, not on membership fees.
         </span>
       </p>

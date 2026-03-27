@@ -46,7 +46,7 @@ export const memberships = mysqlTable("memberships", {
   tier: mysqlEnum("tier", [
     "starter",
     "builder",
-    "pro-creator",
+    "pro",
     "inner-circle",
     "member",
   ])

@@ -10,8 +10,8 @@
  * Membership tiers (aligned with frontend Memberships.tsx):
  *   starter      — Starter Pack   $7/mo
  *   builder      — Builder Club   $19/mo
- *   pro-creator  — Pro Creator    $49.99/mo
- *   inner-circle — Inner Circle   $99.99/mo
+ *   pro          — Pro Club       $49.99/mo
+ *   inner-circle — Inner Circle Club  $99.99/mo
  *
  * Railway env vars: STRIPE_PRICE_STARTER_PACK, STRIPE_PRICE_BUILDER_CLUB,
  *                   STRIPE_PRICE_PRO_CLUB, STRIPE_PRICE_INNER_CIRCLE_CLUB
@@ -51,15 +51,15 @@ const TIER_CONFIG: Record<string, TierConfig> = {
     trialAmount: 100,
     fullPrice: "$19/mo",
   },
-  "pro-creator": {
-    name: "Pro Creator",
+  "pro": {
+    name: "Pro Club",
     priceId: process.env.STRIPE_PRICE_PRO_CLUB || "",
     trialDays: 7,
     trialAmount: 100,
     fullPrice: "$49.99/mo",
   },
   "inner-circle": {
-    name: "Inner Circle",
+    name: "Inner Circle Club",
     priceId: process.env.STRIPE_PRICE_INNER_CIRCLE_CLUB || "",
     trialDays: 7,
     trialAmount: 100,
@@ -79,7 +79,7 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
   if (!tier || !TIER_CONFIG[tier]) {
     res
       .status(400)
-      .json({ error: "Invalid membership tier. Must be starter, builder, or inner-circle." });
+      .json({ error: "Invalid membership tier. Must be starter, builder, pro, or inner-circle." });
     return;
   }
 

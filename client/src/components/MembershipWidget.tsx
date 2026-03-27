@@ -12,7 +12,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Check, Users, Zap, Star, Info, Handshake } from "lucide-react";
+import { Check, Users, Zap, Star, Crown, Info, Handshake } from "lucide-react";
 import { Link } from "wouter";
 
 interface MembershipTier {
@@ -32,60 +32,74 @@ interface MembershipTier {
 const TIERS: MembershipTier[] = [
   {
     id: "starter",
-    name: "Starter Pass",
-    price: "$9.99",
+    name: "Starter Pack",
+    price: "$7",
     period: "/mo",
     icon: <Zap className="w-5 h-5 text-blue-400" />,
     features: [
-      "Access to 10 curated affiliate products",
-      "Done-for-you swipe files & ad copy",
-      "Affiliated Degree — Modules 1–3",
-      "40,000 ChatGPT Prompt Vault",
-      "Automated commission tracking dashboard",
-      "Personal affiliate referral link",
+      "First Dollar System™",
+      "1 product to promote (single-offer focus)",
+      "1 viral script (copy-and-post ready)",
+      "Step-by-step posting instructions",
+      "Immediate action onboarding",
     ],
-    cta: "Get Instant Access",
+    cta: "Get Starter Pack",
     ctaHref: "/memberships?tier=starter",
   },
   {
     id: "builder",
-    name: "Builder Access",
-    price: "$19.99",
+    name: "Builder Club",
+    price: "$19",
     period: "/mo",
-    badge: "Most Popular",
+    badge: "Best Value",
     badgeColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
     icon: <Star className="w-5 h-5 text-amber-400" />,
     highlighted: true,
     features: [
-      "Everything in Starter Pass",
-      "Access to 30 curated affiliate products",
-      "Advanced swipe file library (email + social)",
-      "Affiliated Degree — Modules 1–6",
-      "Done-for-you sales page templates",
-      "Priority commission processing",
-      "30–40% recurring referral commissions",
+      "Everything in Starter Pack",
+      "Daily content prompts",
+      "Multiple product options (unlocked after first action)",
+      "Content rotation engine",
+      "Scaling method (increase output + consistency)",
+      "Priority execution path",
     ],
-    cta: "Start Building Today",
+    cta: "Join Builder Club",
     ctaHref: "/memberships?tier=builder",
   },
   {
+    id: "pro",
+    name: "Pro Club",
+    price: "$49.99",
+    period: "/mo",
+    badge: "Automation",
+    badgeColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+    icon: <Crown className="w-5 h-5 text-emerald-400" />,
+    features: [
+      "Everything in Builder Club",
+      "Automation frameworks",
+      "Funnel strategies",
+      "Content scaling systems",
+      "Performance optimization tools",
+    ],
+    cta: "Join Pro Club",
+    ctaHref: "/memberships?tier=pro",
+  },
+  {
     id: "inner-circle",
-    name: "Inner Circle",
-    price: "$24.99",
+    name: "Inner Circle Club",
+    price: "$99.99",
     period: "/mo",
     badge: "Full Access",
     badgeColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
     icon: <Handshake className="w-5 h-5 text-purple-400" />,
     features: [
-      "Everything in Builder Access",
-      "All 51 curated affiliate products",
-      "Complete Affiliated Degree (8 modules)",
-      "Full Prompt Vault + pre-recorded video library",
-      "Done-for-you funnel system",
-      "Second-tier referral commissions (6.7%)",
-      "Direct support from Dad",
+      "Everything in Pro Club",
+      "Advanced monetization systems",
+      "Early access tools and features",
+      "Strategy drops and system updates",
+      "High-level income expansion methods",
     ],
-    cta: "Join the Inner Circle",
+    cta: "Join Inner Circle Club",
     ctaHref: "/memberships?tier=inner-circle",
   },
 ];
@@ -93,7 +107,7 @@ const TIERS: MembershipTier[] = [
 export function MembershipWidget() {
   return (
     <div>
-      <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
         {TIERS.map((tier) => (
           <Card
             key={tier.id}

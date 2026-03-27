@@ -78,31 +78,37 @@ const PAGE_SCHEMAS: Record<string, object> = {
     url: `${BASE_URL}/memberships`,
     // MANIFEST PATCH: Updated description
     description:
-      "Choose your Its Dad membership plan. Starter Pass ($9.99/mo), Builder Access ($19.99/mo), and Inner Circle ($24.99/mo). All plans include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
+      "Choose your Its Dad membership plan. Starter Pack ($7/mo), Builder Club ($19/mo), Pro Club ($49.99/mo), and Inner Circle Club ($99.99/mo). All plans include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
     offers: [
       {
         "@type": "Offer",
-        name: "Starter Pass",
-        price: "9.99",
+        name: "Starter Pack",
+        price: "7.00",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
-        description: "10 curated affiliate products, Affiliated Degree Modules 1–3, 40,000 Prompt Vault, automated commission tracking, 30% recurring referral commissions on product sales.",
+        description: "First Dollar System, 1 product to promote, 1 viral script, step-by-step posting instructions, immediate action onboarding.",
       },
       {
         "@type": "Offer",
-        name: "Builder Access",
-        price: "19.99",
+        name: "Builder Club",
+        price: "19.00",
         priceCurrency: "USD",
         // MANIFEST PATCH: Updated description
-        description: "30 curated affiliate products, Affiliated Degree Modules 1–6, Advanced Strategy Blueprints, done-for-you sales page templates, 35% recurring referral commissions on product sales.",
+        description: "Everything in Starter Pack, daily content prompts, multiple product options, content rotation engine, scaling method, priority execution path.",
       },
       {
         "@type": "Offer",
-        name: "Inner Circle",
-        price: "24.99",
+        name: "Pro Club",
+        price: "49.99",
         priceCurrency: "USD",
-        // MANIFEST PATCH: Updated description
-        description: "All 51 curated affiliate products, complete Affiliated Degree (8 modules), Complete Funnel System, second-tier referral commissions (6.7%), 40% recurring commissions on product sales.",
+        description: "Everything in Builder Club, automation frameworks, funnel strategies, content scaling systems, performance optimization tools.",
+      },
+      {
+        "@type": "Offer",
+        name: "Inner Circle Club",
+        price: "99.99",
+        priceCurrency: "USD",
+        description: "Everything in Pro Club, advanced monetization systems, early access tools and features, strategy drops and system updates, high-level income expansion methods.",
       },
     ],
   },

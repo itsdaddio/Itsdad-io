@@ -263,7 +263,7 @@ function getDay10ReferralEmail(data: InstantOnboardingParams): { subject: string
     <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 25px; margin: 30px 0; border-radius: 12px; border: 1px solid #c4b5fd;">
       <h3 style="margin: 0 0 15px 0; color: #4c1d95; font-size: 18px;">How the math works:</h3>
       <table width="100%" cellpadding="8" cellspacing="0">
-        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>1 member</strong> at $59.99/mo → You earn ~$18-24/mo recurring</td></tr>
+        <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>1 member</strong> at $19/mo → You earn ~$6-7/mo recurring</td></tr>
         <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #ddd6fe;">Refer <strong>3 members</strong> → Your membership pays for itself</td></tr>
         <tr><td style="color: #5b21b6; font-size: 14px; padding: 8px 0;">Refer <strong>10 members</strong> → $180-240/mo passive income</td></tr>
       </table>

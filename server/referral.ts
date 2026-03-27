@@ -25,15 +25,17 @@ import crypto from "crypto";
 const DIRECT_COMMISSION_RATES: Record<string, number> = {
   "starter":      0.30, // 30% direct commission
   "builder":      0.35, // 35% direct commission
+  "pro":          0.38, // 38% direct commission
   "inner-circle": 0.40, // 40% direct commission
 };
 const SECOND_TIER_RATE = 0.067; // 6.7% Alliance override on direct commissions
 
 // ─── Tier Monthly Prices (cents) ──────────────────────────────────────────────
 const TIER_PRICES_CENTS: Record<string, number> = {
-  "starter":      999,  // $9.99/mo
-  "builder":      1999, // $19.99/mo
-  "inner-circle": 2499, // $24.99/mo
+  "starter":      700,   // $7/mo
+  "builder":      1900,  // $19/mo
+  "pro":          4999,  // $49.99/mo
+  "inner-circle": 9999,  // $99.99/mo
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

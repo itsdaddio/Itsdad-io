@@ -7,9 +7,10 @@
  * Stripe redirects to: /checkout/success?session_id=XXX&tier=starter
  *
  * Tier IDs (matching Memberships.tsx and checkout.ts):
- *   starter      — Starter Pass    $9.99/mo
- *   builder      — Builder Access  $19.99/mo
- *   inner-circle — Inner Circle    $24.99/mo
+ *   starter      — Starter Pack       $7/mo
+ *   builder      — Builder Club       $19/mo
+ *   pro          — Pro Club           $49.99/mo
+ *   inner-circle — Inner Circle Club  $99.99/mo
  *
  * Route: /checkout/success
  */
@@ -20,9 +21,10 @@ import { Link } from "wouter";
 // ─── Tier Display Names ───────────────────────────────────────────────────────
 
 const TIER_NAMES: Record<string, string> = {
-  "starter":      "Starter Pass",
-  "builder":      "Builder Access",
-  "inner-circle": "Inner Circle",
+  "starter":      "Starter Pack",
+  "builder":      "Builder Club",
+  "pro":          "Pro Club",
+  "inner-circle": "Inner Circle Club",
 };
 
 // ─── Upsell Config ────────────────────────────────────────────────────────────
@@ -39,42 +41,58 @@ interface UpsellOffer {
 }
 
 const UPSELL_MAP: Record<string, UpsellOffer[]> = {
-  // Starter buyer → show Builder Access (most popular upgrade)
+  // Starter buyer → show Builder Club
   starter: [
     {
       tierId: "builder",
-      name: "Builder Access",
-      price: "$19.99/mo",
-      headline: "3x your product library. Unlock the full swipe file system.",
+      name: "Builder Club",
+      price: "$19/mo",
+      headline: "Build consistency with daily content prompts and multiple products.",
       features: [
-        "30 curated affiliate products (vs 10)",
-        "Advanced email + social swipe file library",
-        "Affiliated Degree — Modules 1–6",
-        "Done-for-you sales page templates",
-        "Priority commission processing",
-        "35% direct commission rate (vs 30%)",
+        "Everything in Starter Pack",
+        "Daily content prompts",
+        "Multiple product options (unlocked after first action)",
+        "Content rotation engine",
+        "Scaling method (increase output + consistency)",
+        "Priority execution path",
       ],
-      cta: "Upgrade to Builder Access — $19.99/mo",
+      cta: "Upgrade to Builder Club — $19/mo",
       highlight: true,
     },
   ],
-  // Builder buyer → show Inner Circle
+  // Builder buyer → show Pro Club
   builder: [
     {
-      tierId: "inner-circle",
-      name: "Inner Circle",
-      price: "$24.99/mo",
-      headline: "All 51 products. Complete degree. Direct support from Dad.",
+      tierId: "pro",
+      name: "Pro Club",
+      price: "$49.99/mo",
+      headline: "Automate your income with funnels and scaling systems.",
       features: [
-        "All 51 curated affiliate products",
-        "Complete Affiliated Degree — all 8 modules",
-        "Inner Circle community access",
-        "Done-for-you funnel system",
-        "Direct support from Dad",
-        "40% direct commission rate",
-        "First access to new products and drops",
+        "Everything in Builder Club",
+        "Automation frameworks",
+        "Funnel strategies",
+        "Content scaling systems",
+        "Performance optimization tools",
       ],
-      cta: "Go All In — Inner Circle $24.99/mo",
+      cta: "Upgrade to Pro Club — $49.99/mo",
+      highlight: true,
+    },
+  ],
+  // Pro buyer → show Inner Circle Club
+  pro: [
+    {
+      tierId: "inner-circle",
+      name: "Inner Circle Club",
+      price: "$99.99/mo",
+      headline: "Advanced monetization, early access tools, and strategy drops.",
+      features: [
+        "Everything in Pro Club",
+        "Advanced monetization systems",
+        "Early access tools and features",
+        "Strategy drops and system updates",
+        "High-level income expansion methods",
+      ],
+      cta: "Go All In — Inner Circle Club $99.99/mo",
       highlight: true,
     },
   ],
@@ -161,7 +179,7 @@ export default function CheckoutSuccess() {
   const params = new URLSearchParams(window.location.search);
   const sessionId = params.get("session_id");
   const tier = params.get("tier") ?? "starter";
-  const tierName = TIER_NAMES[tier] ?? "Starter Pass";
+  const tierName = TIER_NAMES[tier] ?? "Starter Pack";
   const upsells = UPSELL_MAP[tier] ?? UPSELL_MAP.starter;
 
   const [upgrading, setUpgrading] = useState<string | null>(null);
@@ -236,7 +254,7 @@ export default function CheckoutSuccess() {
                 Before You Dive In
               </p>
               <h2 className="text-2xl font-bold text-white">
-                Want more products and higher commissions?
+                Ready to level up?
               </h2>
               <p className="text-slate-400 text-sm mt-2">
                 Upgrade now and your $1 trial applies to the higher tier. No extra charge today.

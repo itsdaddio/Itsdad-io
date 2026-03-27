@@ -2,17 +2,12 @@
  * MembershipQuiz.tsx
  *
  * Interactive quiz that recommends a membership tier based on user responses.
- * Reduces decision fatigue and increases conversion by guiding visitors
- * to the right plan for their situation.
- *
- * MANIFEST PATCH (item 19):
- *   - Changed "How important is personal support?" to
- *     "How many done-for-you resources do you need?"
+ * Updated to match locked core configuration (4 tiers).
  */
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Users, Zap, Star, RotateCcw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Users, Zap, Star, Crown, RotateCcw } from "lucide-react";
 import { Link } from "wouter";
 
 interface QuizQuestion {
@@ -26,62 +21,68 @@ const QUESTIONS: QuizQuestion[] = [
     id: "experience",
     question: "How much affiliate marketing experience do you have?",
     options: [
-      { label: "I'm completely new to this", value: "new", score: { starter: 3, builder: 1, inner: 0 } },
-      { label: "I've tried it but haven't earned yet", value: "tried", score: { starter: 2, builder: 2, inner: 1 } },
-      { label: "I've earned some commissions before", value: "some", score: { starter: 1, builder: 3, inner: 2 } },
-      { label: "I'm actively earning and want to scale", value: "active", score: { starter: 0, builder: 2, inner: 3 } },
+      { label: "I'm completely new to this", value: "new", score: { starter: 3, builder: 1, pro: 0, inner: 0 } },
+      { label: "I've tried it but haven't earned yet", value: "tried", score: { starter: 2, builder: 2, pro: 1, inner: 0 } },
+      { label: "I've earned some commissions before", value: "some", score: { starter: 0, builder: 2, pro: 3, inner: 1 } },
+      { label: "I'm actively earning and want to scale", value: "active", score: { starter: 0, builder: 1, pro: 2, inner: 3 } },
     ],
   },
   {
     id: "goal",
     question: "What's your primary goal in the next 90 days?",
     options: [
-      { label: "Earn my first commission", value: "first", score: { starter: 3, builder: 1, inner: 0 } },
-      { label: "Build a consistent monthly income", value: "consistent", score: { starter: 1, builder: 3, inner: 2 } },
-      { label: "Replace my current income", value: "replace", score: { starter: 0, builder: 2, inner: 3 } },
-      { label: "Build a passive income stream", value: "passive", score: { starter: 1, builder: 2, inner: 3 } },
+      { label: "Earn my first commission", value: "first", score: { starter: 3, builder: 1, pro: 0, inner: 0 } },
+      { label: "Build a consistent monthly income", value: "consistent", score: { starter: 1, builder: 3, pro: 1, inner: 0 } },
+      { label: "Automate and scale my income", value: "automate", score: { starter: 0, builder: 1, pro: 3, inner: 2 } },
+      { label: "Build advanced monetization systems", value: "advanced", score: { starter: 0, builder: 0, pro: 2, inner: 3 } },
     ],
   },
   {
-    // MANIFEST PATCH: was "How important is personal support?"
     id: "resources",
     question: "How many done-for-you resources do you need?",
     options: [
-      { label: "Just the basics — I'll figure the rest out", value: "minimal", score: { starter: 3, builder: 1, inner: 0 } },
-      { label: "A solid toolkit to get me started", value: "moderate", score: { starter: 2, builder: 3, inner: 1 } },
-      { label: "Everything pre-built and ready to deploy", value: "full", score: { starter: 0, builder: 2, inner: 3 } },
-      { label: "The complete system — funnels, templates, prompts", value: "complete", score: { starter: 0, builder: 1, inner: 3 } },
+      { label: "Just the basics — I'll figure the rest out", value: "minimal", score: { starter: 3, builder: 1, pro: 0, inner: 0 } },
+      { label: "A solid toolkit to get me started", value: "moderate", score: { starter: 1, builder: 3, pro: 1, inner: 0 } },
+      { label: "Automation and funnels ready to deploy", value: "full", score: { starter: 0, builder: 1, pro: 3, inner: 1 } },
+      { label: "The complete system — everything pre-built", value: "complete", score: { starter: 0, builder: 0, pro: 1, inner: 3 } },
     ],
   },
   {
     id: "products",
     question: "How many products do you want to promote?",
     options: [
-      { label: "A few to start — keep it simple", value: "few", score: { starter: 3, builder: 1, inner: 0 } },
-      { label: "A solid selection across a few niches", value: "medium", score: { starter: 1, builder: 3, inner: 1 } },
-      { label: "As many as possible — maximum earning potential", value: "all", score: { starter: 0, builder: 1, inner: 3 } },
+      { label: "Just one — keep it focused", value: "one", score: { starter: 3, builder: 1, pro: 0, inner: 0 } },
+      { label: "A few across different niches", value: "few", score: { starter: 1, builder: 3, pro: 1, inner: 0 } },
+      { label: "As many as possible — maximum earning potential", value: "all", score: { starter: 0, builder: 1, pro: 3, inner: 3 } },
     ],
   },
 ];
 
 const TIER_DETAILS: Record<string, { name: string; price: string; icon: React.ReactNode; color: string; href: string }> = {
   starter: {
-    name: "Starter Pass",
-    price: "$9.99/mo",
+    name: "Starter Pack",
+    price: "$7/mo",
     icon: <Zap className="w-5 h-5 text-blue-400" />,
     color: "border-blue-500/30 bg-blue-500/5",
     href: "/memberships?tier=starter",
   },
   builder: {
-    name: "Builder Access",
-    price: "$19.99/mo",
+    name: "Builder Club",
+    price: "$19/mo",
     icon: <Star className="w-5 h-5 text-amber-400" />,
     color: "border-amber-500/30 bg-amber-500/5",
     href: "/memberships?tier=builder",
   },
+  pro: {
+    name: "Pro Club",
+    price: "$49.99/mo",
+    icon: <Crown className="w-5 h-5 text-emerald-400" />,
+    color: "border-emerald-500/30 bg-emerald-500/5",
+    href: "/memberships?tier=pro",
+  },
   inner: {
-    name: "Inner Circle",
-    price: "$24.99/mo",
+    name: "Inner Circle Club",
+    price: "$99.99/mo",
     icon: <Users className="w-5 h-5 text-purple-400" />,
     color: "border-purple-500/30 bg-purple-500/5",
     href: "/memberships?tier=inner-circle",
@@ -101,7 +102,7 @@ export function MembershipQuiz() {
       setCurrentQ((prev) => prev + 1);
     } else {
       // Calculate result
-      const scores: Record<string, number> = { starter: 0, builder: 0, inner: 0 };
+      const scores: Record<string, number> = { starter: 0, builder: 0, pro: 0, inner: 0 };
       for (const q of QUESTIONS) {
         const answer = newAnswers[q.id];
         const option = q.options.find((o) => o.value === answer);
@@ -164,36 +165,33 @@ export function MembershipQuiz() {
         />
       </div>
 
-      {/* Question counter */}
-      <p className="text-xs text-muted-foreground mb-3">
+      <p className="text-xs text-muted-foreground mb-2">
         Question {currentQ + 1} of {QUESTIONS.length}
       </p>
+      <h3 className="text-lg font-semibold text-foreground mb-5">{question.question}</h3>
 
-      {/* Question */}
-      <h3 className="text-lg font-bold text-foreground mb-5">{question.question}</h3>
-
-      {/* Options */}
-      <div className="space-y-3">
+      <div className="flex flex-col gap-3">
         {question.options.map((option) => (
-          <button
+          <Button
             key={option.value}
+            variant="outline"
+            className="w-full justify-start text-left h-auto py-3 px-4 rounded-xl hover:border-amber-500/50 hover:bg-amber-500/5 transition-all"
             onClick={() => handleAnswer(question.id, option.value)}
-            className="w-full text-left px-4 py-3 rounded-xl border border-border hover:border-amber-500/40 hover:bg-amber-500/5 transition-all text-sm text-muted-foreground hover:text-foreground"
           >
             {option.label}
-          </button>
+          </Button>
         ))}
       </div>
 
-      {/* Back button */}
       {currentQ > 0 && (
-        <button
+        <Button
+          variant="ghost"
           onClick={() => setCurrentQ((prev) => prev - 1)}
-          className="mt-4 text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
+          className="mt-4 text-muted-foreground text-sm"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Back
-        </button>
+          <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />
+          Previous question
+        </Button>
       )}
     </div>
   );

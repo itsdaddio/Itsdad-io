@@ -197,10 +197,10 @@ function CommissionCalculator() {
   const annualTotal = totalMonthly * 12;
 
   const presets = [
-    { label: "Starter Pass", price: "27", rate: "30" },
-    { label: "Builder Access", price: "67", rate: "35" },
-    { label: "Inner Circle", price: "97", rate: "40" },
-    { label: "Annual Inner Circle", price: "797", rate: "40" },
+    { label: "Starter Pack", price: "7", rate: "30" },
+    { label: "Builder Club", price: "19", rate: "35" },
+    { label: "Pro Club", price: "49.99", rate: "35" },
+    { label: "Inner Circle Club", price: "99.99", rate: "40" },
   ];
 
   return (
@@ -275,7 +275,7 @@ function CommissionCalculator() {
           <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-colors ${showTier2 ? "bg-amber-500 border-amber-500" : "border-slate-500"}`}>
             {showTier2 && <CheckCircle className="w-3 h-3 text-white" />}
           </div>
-          Add second-tier referral commissions (Inner Circle feature)
+          Add second-tier referral commissions (Inner Circle Club feature)
         </button>
 
         {showTier2 && (
@@ -334,9 +334,9 @@ function CommissionCalculator() {
             <span className="text-slate-400 text-xs uppercase tracking-wide">Break Even</span>
           </div>
           <div className="text-2xl font-bold text-amber-400">
-            {perSale > 0 ? Math.ceil(27 / perSale) : "—"} sales
+            {perSale > 0 ? Math.ceil(7 / perSale) : "—"} sales
           </div>
-          <div className="text-slate-500 text-xs mt-1">to cover $27/mo membership</div>
+          <div className="text-slate-500 text-xs mt-1">to cover $7/mo membership</div>
         </div>
       </div>
 

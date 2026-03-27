@@ -23,7 +23,7 @@ commission tracking questions, refund policy (7-day trial, cancel anytime),
 and general platform questions.
 Key info: 
 - Email support: itsdad@itsdad.io
-- Memberships: Starter Pass ($9.99/mo), Builder Access ($19.99/mo), Inner Circle ($24.99/mo)
+- Memberships: Starter Pack ($7/mo), Builder Club ($19/mo), Pro Club ($49.99/mo), Inner Circle Club ($99.99/mo)
 - All plans start with a $1 / 7-day trial, cancel anytime
 - Commissions: 30-40% recurring on referred product sales
 - For complex billing issues, always offer to escalate to itsdad@itsdad.io
