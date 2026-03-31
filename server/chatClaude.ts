@@ -1,12 +1,12 @@
 /**
  * server/chatClaude.ts
  *
- * itsdad.io — Claude-powered AI Chat with Founding 500 code distribution.
+ * itsdad.io — GPT-powered AI Chat with Founding 500 code distribution.
  *
- * POST /api/chat/claude  — Dad GPT powered by Claude (Anthropic)
+ * POST /api/chat/claude  — Dad GPT powered by OpenAI GPT
  *
  * Features:
- *   - Warm, supportive "Dad" persona via Claude
+ *   - Warm, supportive "Dad" persona via GPT
  *   - Automatic Founding 500 promo code distribution
  *   - Tracks issued codes in-memory (persists across requests, resets on deploy)
  *   - Knows all pricing, products, and platform details
@@ -14,10 +14,10 @@
 
 import { Request, Response } from "express";
 
-// ─── Claude API Client ───────────────────────────────────────────────────────
+// ─── OpenAI API Client ──────────────────────────────────────────────────────
 
-const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY || "";
-const CLAUDE_API_URL = "https://api.anthropic.com/v1/messages";
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
+const OPENAI_API_BASE = process.env.OPENAI_API_BASE || "https://api.openai.com/v1";
 
 // ─── Founding 500 Code Tracker ───────────────────────────────────────────────
 
@@ -107,11 +107,6 @@ interface ChatMessage {
   content: string;
 }
 
-interface ClaudeMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
 export async function claudeChat(req: Request, res: Response): Promise<void> {
   try {
     const { messages, email, name } = req.body as {
@@ -125,10 +120,9 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    if (!CLAUDE_API_KEY) {
-      // Fallback: use the existing OpenAI endpoint behavior
+    if (!OPENAI_API_KEY) {
       res.status(500).json({
-        error: "Claude API not configured",
+        error: "Chat API not configured",
         reply: "I'm having trouble connecting right now. Please try again in a moment.",
       });
       return;
@@ -142,30 +136,33 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
     const issued = getCodesIssuedCount();
     const dynamicContext = `\n\nCURRENT CODE STATUS: ${issued} Founding 500 codes issued, ${remaining} remaining out of 488 total public codes.`;
 
-    const claudeMessages: ClaudeMessage[] = recentMessages.map((m) => ({
-      role: m.role,
-      content: m.content,
-    }));
+    const openaiMessages = [
+      { role: "system" as const, content: SYSTEM_PROMPT + dynamicContext },
+      ...recentMessages.map((m) => ({
+        role: m.role as "user" | "assistant",
+        content: m.content,
+      })),
+    ];
 
-    // Call Claude API
-    const response = await fetch(CLAUDE_API_URL, {
+    // Call OpenAI API
+    const apiUrl = `${OPENAI_API_BASE}/chat/completions`;
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": CLAUDE_API_KEY,
-        "anthropic-version": "2023-06-01",
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "gpt-4o-mini",
         max_tokens: 300,
-        system: SYSTEM_PROMPT + dynamicContext,
-        messages: claudeMessages,
+        temperature: 0.8,
+        messages: openaiMessages,
       }),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("[Claude Chat] API error:", response.status, errText);
+      console.error("[DadGPT Chat] API error:", response.status, errText);
       res.status(500).json({
         error: "Chat service unavailable",
         reply: "I'm having a moment — try again in a sec.",
@@ -174,9 +171,11 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
     }
 
     const data: any = await response.json();
-    let reply = data.content?.[0]?.text || "I'm not sure how to answer that right now. Try again in a moment.";
+    let reply =
+      data.choices?.[0]?.message?.content ||
+      "I'm not sure how to answer that right now. Try again in a moment.";
 
-    // Check if Claude wants to issue a Founding 500 code
+    // Check if GPT wants to issue a Founding 500 code
     let issuedCode: string | null = null;
     if (reply.includes("[ISSUE_FOUNDING_CODE]")) {
       const code = getNextFoundingCode();
@@ -196,7 +195,9 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
           `\n\n🎉 **Your Founding 500 Code: ${code}**\n\nHere's how to use it:\n1. Go to https://itsdad.io/memberships\n2. Choose your plan and click "Activate"\n3. Enter code **${code}** in the promotion code field at checkout\n4. You'll get 50% off your first 3 months!\n\nCard is required at checkout — but you won't be charged full price for 3 months. Welcome to the family!`
         );
 
-        console.log(`[Claude Chat] Issued Founding 500 code: ${code} to ${email || "anonymous"}`);
+        console.log(
+          `[DadGPT Chat] Issued Founding 500 code: ${code} to ${email || "anonymous"}`
+        );
       } else {
         // All codes used up
         reply = reply.replace(
@@ -213,7 +214,7 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("[Claude Chat] Error:", message);
+    console.error("[DadGPT Chat] Error:", message);
     res.status(500).json({
       error: "Chat service unavailable",
       reply: "Something went sideways on my end. Try again in a moment.",
@@ -223,24 +224,33 @@ export async function claudeChat(req: Request, res: Response): Promise<void> {
 
 // ─── Code Status Endpoint ────────────────────────────────────────────────────
 
-export async function getCodeStatus(_req: Request, res: Response): Promise<void> {
+export async function getCodeStatus(
+  _req: Request,
+  res: Response
+): Promise<void> {
   res.json({
     totalCodes: FOUNDING_CODE_END - FOUNDING_CODE_START + 1,
     issued: getCodesIssuedCount(),
     remaining: getCodesRemaining(),
-    nextCode: nextFoundingCodeIndex <= FOUNDING_CODE_END
-      ? `DAD${nextFoundingCodeIndex.toString().padStart(3, "0")}`
-      : null,
+    nextCode:
+      nextFoundingCodeIndex <= FOUNDING_CODE_END
+        ? `DAD${nextFoundingCodeIndex.toString().padStart(3, "0")}`
+        : null,
   });
 }
 
 // ─── Founding 500 Direct Code Request ────────────────────────────────────────
 
-export async function requestFoundingCode(req: Request, res: Response): Promise<void> {
+export async function requestFoundingCode(
+  req: Request,
+  res: Response
+): Promise<void> {
   const { email, name } = req.body as { email?: string; name?: string };
 
   if (!email) {
-    res.status(400).json({ error: "Email is required to receive a Founding 500 code." });
+    res
+      .status(400)
+      .json({ error: "Email is required to receive a Founding 500 code." });
     return;
   }
 
@@ -261,7 +271,8 @@ export async function requestFoundingCode(req: Request, res: Response): Promise<
     res.json({
       success: false,
       code: null,
-      message: "All 500 Founding 500 codes have been claimed! You can still join at full price at https://itsdad.io/memberships",
+      message:
+        "All 500 Founding 500 codes have been claimed! You can still join at full price at https://itsdad.io/memberships",
     });
     return;
   }
@@ -274,7 +285,9 @@ export async function requestFoundingCode(req: Request, res: Response): Promise<
     tier: "founding",
   });
 
-  console.log(`[Founding 500] Code ${code} issued to ${email} (${name || "no name"})`);
+  console.log(
+    `[Founding 500] Code ${code} issued to ${email} (${name || "no name"})`
+  );
 
   res.json({
     success: true,
