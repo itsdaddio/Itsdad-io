@@ -15,6 +15,7 @@ import Terms from "./pages/Terms";
 import EarningsDisclaimer from "./pages/EarningsDisclaimer";
 import ProductSalesPage from "./pages/ProductSalesPage";
 import CoursePage from "./pages/CoursePage";
+import Founding500 from "./pages/Founding500";
 import { DadGPTWidget } from "./components/DadGPTWidget";
 import { SupportWidget } from "./components/SupportWidget";
 import { CookieConsent } from "./components/CookieConsent";
@@ -210,6 +211,7 @@ export default function App() {
           <Route path="/terms" component={Terms} />
           <Route path="/disclaimer" component={EarningsDisclaimer} />
           <Route path="/course" component={CoursePage} />
+          <Route path="/founding500" component={Founding500} />
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>

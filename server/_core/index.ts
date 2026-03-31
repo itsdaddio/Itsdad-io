@@ -17,6 +17,7 @@ import { processInstantOnboardingEmails } from "../instantOnboardingService";
 import { createCheckoutSession, getSessionStatus } from "../checkout";
 import { getReferralCode, getReferralStats, trackReferralSignup, getChallengeText } from "../referral";
 import { dadGptChat, supportChat } from "../chat";
+import { claudeChat, getCodeStatus, requestFoundingCode } from "../chatClaude";
 import { trackProductClick, createProductCheckout, recordProductPurchase, getProductStats } from "../products";
 import { handleBlueprintCapture } from "../blueprintCapture";
 
@@ -26,7 +27,7 @@ export const app = express();
 
 app.use(
   cors({
-    origin: process.env.VITE_APP_URL || "https://www.itsdad.io",
+    origin: process.env.VITE_APP_URL || ["https://www.itsdad.io", "https://itsdad.io"],
     credentials: true,
   })
 );
@@ -66,6 +67,14 @@ app.post("/api/email/blueprint-capture", handleBlueprintCapture);
 // POST /api/chat/support  — Customer support assistant
 app.post("/api/chat/dad-gpt", dadGptChat);
 app.post("/api/chat/support", supportChat);
+
+// ─── Claude Chat Routes (Founding 500 code distribution) ────────────────────
+// POST /api/chat/claude          — Claude-powered Dad GPT with code distribution
+// GET  /api/founding500/status    — check how many codes remain
+// POST /api/founding500/request   — request a Founding 500 code via email
+app.post("/api/chat/claude", claudeChat);
+app.get("/api/founding500/status", getCodeStatus);
+app.post("/api/founding500/request", requestFoundingCode);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 
