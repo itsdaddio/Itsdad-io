@@ -32,7 +32,7 @@ interface PackageDetail {
 }
 
 const PACKAGE_DETAILS: Record<string, PackageDetail> = {
-  boss: {
+  starter: {
     id: "starter",
     name: "Starter Pack",
     price: "$7",
@@ -51,9 +51,9 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "30% recurring commissions",
       "Immediate action onboarding",
     ],
-    ctaHref: "/memberships?tier=boss",
+    ctaHref: "/memberships?tier=starter",
   },
-  chief: {
+  builder: {
     id: "builder",
     name: "Builder Club",
     price: "$19",
@@ -69,7 +69,7 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "Scaling method (increase output + consistency)",
       "Priority execution path",
     ],
-    ctaHref: "/memberships?tier=chief",
+    ctaHref: "/memberships?tier=builder",
   },
   pro: {
     id: "pro",
@@ -89,9 +89,9 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
     ],
     ctaHref: "/memberships?tier=pro",
   },
-  kingpin: {
+  "inner-circle": {
     id: "inner-circle",
-    name: "Inner Circle Club",
+    name: "Inner Circle",
     price: "$99.99",
     period: "/month",
     tagline: "Advanced monetization and strategy",
@@ -105,7 +105,7 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
       "Strategy drops and system updates",
       "High-level income expansion methods",
     ],
-    ctaHref: "/memberships?tier=kingpin",
+    ctaHref: "/memberships?tier=inner-circle",
   },
 };
 

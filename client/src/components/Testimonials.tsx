@@ -25,7 +25,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 1,
     name: "Marcus T.",
     location: "Atlanta, GA",
-    tier: "Grinder",
+    tier: "Builder Club",
     rating: 5,
     quote:
       "I tried three other affiliate programs before Its Dad. The difference? When I had a question at 11 PM, I didn't have to wait — the 24/7 self-serve Prompt Vault + pre-recorded video library had the exact answer I needed. Earned my first commission in 9 days.",
@@ -45,7 +45,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 3,
     name: "DeShawn M.",
     location: "Chicago, IL",
-    tier: "Hustler",
+    tier: "Starter Pack",
     rating: 5,
     quote:
       "I was skeptical. I've been burned before. But the Affiliated Degree course is the real deal — 8 modules, self-paced, and the material actually works. Completed it in 3 weeks and my commissions tripled.",
@@ -55,7 +55,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 4,
     name: "Priya K.",
     location: "Dallas, TX",
-    tier: "Grinder",
+    tier: "Pro Creator",
     rating: 5,
     quote:
       "What I love most is that the system does the heavy lifting. My referral link is out there working 24/7. I wake up, check my dashboard, and see new commissions. It's exactly what they promised.",
@@ -75,7 +75,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 6,
     name: "Carlos V.",
     location: "Phoenix, AZ",
-    tier: "Hustler",
+    tier: "Starter Pack",
     rating: 5,
     quote:
       "The 40,000 ChatGPT prompts changed everything for my content game. I went from spending 3 hours writing one post to publishing 5 pieces of content a day. The done-for-you system is no joke.",
