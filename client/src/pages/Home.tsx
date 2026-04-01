@@ -74,15 +74,15 @@ export default function Home() {
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Ready to Earn Your First Dollar<br />
-            <span className="text-amber-400">in Affiliate Marketing?</span>
+            Make Your First $1 Online<br />
+            <span className="text-amber-400">in 72 Hours</span>
           </h1>
 
           <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-4 leading-relaxed drop-shadow">
-            If you're new, start here. This will walk you through everything step-by-step.
+            Without guessing what to do.
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow">
-            One product to focus on. One script to post. Plus the full course, prompts, and swipe files to back you up.
+            Follow a simple system. We tell you exactly what to post, promote, and repeat.
           </p>
 
           {/* Single CTA */}
@@ -93,14 +93,14 @@ export default function Home() {
                 className="btn-gold-gradient gold-shimmer hover:scale-105 transition-transform text-xl px-10 py-7 h-auto rounded-xl font-bold shadow-2xl"
               >
                 <HandHeart className="w-6 h-6 mr-3" />
-                Start Here
+                Start for $7
                 <ArrowRight className="w-6 h-6 ml-3" />
               </Button>
             </a>
           </div>
 
           <p className="text-sm text-slate-400">
-            Free roadmap — no credit card required
+            No guesswork. Just follow the system.
           </p>
         </div>
       </section>
