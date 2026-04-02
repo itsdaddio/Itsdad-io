@@ -23,6 +23,12 @@ import {
   Users,
   BookOpen,
   Crown,
+  Bot,
+  TrendingUp,
+  PenTool,
+  Layout,
+  ShoppingBag,
+  Search,
 } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { LiveActivityBar } from "@/components/LiveActivityBar";
@@ -87,6 +93,55 @@ export default function Home() {
           </a>
           <p className="text-sm mt-4" style={{ color: "#6B7280" }}>
             Cancel anytime. No contracts.
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          PRODUCT GRID — "51 Done-For-You Products Included"
+          ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        className="py-12 px-4"
+        style={{ backgroundColor: "#0B0B0F", borderTop: "1px solid rgba(212,175,55,0.08)" }}
+      >
+        <div className="max-w-3xl mx-auto">
+          <p
+            className="text-center text-sm font-semibold uppercase tracking-widest mb-8"
+            style={{ color: "#D4AF37" }}
+          >
+            51 Done-For-You Products Included
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              { icon: <Bot className="w-6 h-6" />, name: "AI Starter Kit" },
+              { icon: <TrendingUp className="w-6 h-6" />, name: "TikTok Viral Secrets" },
+              { icon: <PenTool className="w-6 h-6" />, name: "Copywriting Cash Machine" },
+              { icon: <Layout className="w-6 h-6" />, name: "Landing Page Mastery" },
+              { icon: <ShoppingBag className="w-6 h-6" />, name: "Shopify Blueprint" },
+              { icon: <Search className="w-6 h-6" />, name: "SEO Domination Guide" },
+            ].map((product, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-2 p-4 rounded-xl text-center"
+                style={{
+                  backgroundColor: "rgba(15,23,42,0.6)",
+                  border: "1px solid rgba(212,175,55,0.1)",
+                }}
+              >
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: "rgba(212,175,55,0.1)", color: "#D4AF37" }}
+                >
+                  {product.icon}
+                </div>
+                <span className="text-sm font-medium" style={{ color: "#F9FAFB" }}>
+                  {product.name}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs mt-4" style={{ color: "#6B7280" }}>
+            + 45 more products inside the portal
           </p>
         </div>
       </section>
