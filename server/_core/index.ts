@@ -76,6 +76,11 @@ app.post("/api/chat/claude", claudeChat);
 app.get("/api/founding500/status", getCodeStatus);
 app.post("/api/founding500/request", requestFoundingCode);
 
+// ─── Admin Dashboard ──────────────────────────────────────────────────────────
+// GET /api/admin/dashboard?pin=XXXX — Daddio's personal admin dashboard data
+import { getAdminDashboard } from "../adminDashboard";
+app.get("/api/admin/dashboard", getAdminDashboard);
+
 // ─── Health Check ─────────────────────────────────────────────────────────────
 
 app.get("/api/health", (_req: Request, res: Response) => {
