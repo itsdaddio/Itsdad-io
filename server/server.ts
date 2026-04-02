@@ -48,6 +48,19 @@ if (IS_PROD) {
     })
   );
 
+  // Serve robots.txt and sitemap.xml directly (must be before SPA fallback)
+  app.get("/robots.txt", (_req, res) => {
+    res.set("Content-Type", "text/plain");
+    res.set("Cache-Control", "public, max-age=86400");
+    res.sendFile(path.join(distPath, "robots.txt"));
+  });
+
+  app.get("/sitemap.xml", (_req, res) => {
+    res.set("Content-Type", "application/xml");
+    res.set("Cache-Control", "public, max-age=86400");
+    res.sendFile(path.join(distPath, "sitemap.xml"));
+  });
+
   // SPA fallback — serve index.html for all non-API routes with no-cache
   app.get(/^(?!\/api).*/, (_req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
