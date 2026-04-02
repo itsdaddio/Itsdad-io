@@ -69,6 +69,9 @@ function maskEmail(email: string): string {
   return local.slice(0, 2) + "***@" + domain;
 }
 
+const ADMIN_EMAILS = ["itsdad@itsdad.io", "walker.brooksc1987@gmail.com"];
+const ADMIN_PIN_KEY = "itsdad_admin_pin";
+
 export default function AdminDashboard() {
   const [pin, setPin] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
@@ -76,6 +79,15 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [data, setData] = useState<DashboardData | null>(null);
   const [showEmails, setShowEmails] = useState(false);
+
+  // Auto-login: check localStorage for saved PIN on mount
+  useEffect(() => {
+    const savedPin = localStorage.getItem(ADMIN_PIN_KEY);
+    if (savedPin) {
+      setPin(savedPin);
+      fetchDashboard(savedPin);
+    }
+  }, []);
 
   async function fetchDashboard(pinCode: string) {
     setLoading(true);
@@ -85,6 +97,7 @@ export default function AdminDashboard() {
       if (res.status === 401) {
         setError("Wrong PIN. Try again.");
         setAuthenticated(false);
+        localStorage.removeItem(ADMIN_PIN_KEY);
         setLoading(false);
         return;
       }
@@ -92,6 +105,8 @@ export default function AdminDashboard() {
       const json = await res.json();
       setData(json);
       setAuthenticated(true);
+      // Save PIN for auto-login
+      localStorage.setItem(ADMIN_PIN_KEY, pinCode);
     } catch {
       setError("Could not load dashboard. Server may be unavailable.");
     }
@@ -105,6 +120,13 @@ export default function AdminDashboard() {
 
   function refresh() {
     if (pin) fetchDashboard(pin);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem(ADMIN_PIN_KEY);
+    setAuthenticated(false);
+    setPin("");
+    setData(null);
   }
 
   // ── PIN Gate ──
@@ -423,14 +445,73 @@ export default function AdminDashboard() {
           </div>
         )}
 
+        {/* ══════════════════════════════════════════════════════════════════
+            YOUR STATUS — Inner Circle + Affiliated Degree
+            ══════════════════════════════════════════════════════════════════ */}
+        <div className="mb-10">
+          <h2 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: "#D4AF37" }}>
+            <Crown className="w-5 h-5" /> Your Status
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Inner Circle Badge */}
+            <div
+              className="p-6 rounded-xl text-center"
+              style={{
+                backgroundColor: "rgba(15,23,42,0.6)",
+                border: "2px solid rgba(212,175,55,0.5)",
+                background: "linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(212,175,55,0.05) 100%)",
+              }}
+            >
+              <Crown className="w-10 h-10 mx-auto mb-3" style={{ color: "#D4AF37" }} />
+              <p className="text-xs uppercase tracking-widest font-bold mb-1" style={{ color: "#D4AF37" }}>Active Membership</p>
+              <p className="text-2xl font-extrabold mb-1" style={{ color: "#F9FAFB" }}>Inner Circle Club</p>
+              <p className="text-sm" style={{ color: "#9CA3AF" }}>$99.99/mo — MOST VALUE</p>
+              <p className="text-xs mt-2" style={{ color: "#6B7280" }}>Full access to all 51 products + all tiers</p>
+            </div>
+
+            {/* Affiliated Degree Certificate */}
+            <div
+              className="p-6 rounded-xl text-center"
+              style={{
+                backgroundColor: "rgba(15,23,42,0.6)",
+                border: "2px solid rgba(212,175,55,0.5)",
+                background: "linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(212,175,55,0.05) 100%)",
+              }}
+            >
+              <div className="w-10 h-10 mx-auto mb-3 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <p className="text-xs uppercase tracking-widest font-bold mb-1" style={{ color: "#D4AF37" }}>Certification</p>
+              <p className="text-2xl font-extrabold mb-1" style={{ color: "#F9FAFB" }}>Affiliated Degree</p>
+              <p className="text-sm" style={{ color: "#9CA3AF" }}>Certified by Its Daddio</p>
+              <div className="mt-3 inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "#22C55E" }}>
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                COMPLETED
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── Footer ── */}
-        <div className="text-center py-8" style={{ borderTop: "1px solid rgba(212,175,55,0.08)" }}>
-          <p className="text-xs" style={{ color: "#6B7280" }}>
-            Its Dad LLC — Admin Dashboard — Locked System Config Active
-          </p>
-          <p className="text-xs mt-1" style={{ color: "#4B5563" }}>
-            Starter $7 | Builder Club $19 (Best Value) | Pro Club $49.99 | Inner Circle Club $99.99
-          </p>
+        <div className="flex items-center justify-between py-8" style={{ borderTop: "1px solid rgba(212,175,55,0.08)" }}>
+          <div>
+            <p className="text-xs" style={{ color: "#6B7280" }}>
+              Its Dad LLC — Admin Dashboard — Locked System Config Active
+            </p>
+            <p className="text-xs mt-1" style={{ color: "#4B5563" }}>
+              Starter $7 | Builder Club $19 (Best Value) | Pro Club $49.99 | Inner Circle Club $99.99
+            </p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="text-xs px-3 py-1 rounded-lg transition-all hover:opacity-80"
+            style={{ backgroundColor: "rgba(239,68,68,0.1)", color: "#EF4444", border: "1px solid rgba(239,68,68,0.2)" }}
+          >
+            Log Out
+          </button>
         </div>
       </div>
     </div>

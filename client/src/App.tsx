@@ -27,13 +27,17 @@ function Navbar() {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // First Dollar Priority: Simplified navigation — only essential links
+  // Check if admin is authenticated (PIN saved in localStorage)
+  const isAdminAuthenticated = typeof window !== "undefined" && !!localStorage.getItem("itsdad_admin_pin");
+
+  // Simplified navigation — only essential links
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/meet-dad", label: "Meet Dad" },
     { href: "/memberships", label: "Memberships" },
     { href: "/free-tools", label: "Free Tools" },
     { href: "/hubs", label: "Knowledge Hub" },
+    ...(isAdminAuthenticated ? [{ href: "/dashboard", label: "\u{1F451} Dashboard" }] : []),
   ];
 
   return (
