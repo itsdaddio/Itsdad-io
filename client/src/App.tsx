@@ -230,9 +230,11 @@ export default function App() {
         </Switch>
       </main>
       {!hideChrome && <Footer />}
-      {/* Global floating chat widgets */}
-      <DadGPTWidget />
-      <SupportWidget />
+      {/* Global floating chat widgets — minimized for conversion focus */}
+      <div className="opacity-60 hover:opacity-100 transition-opacity scale-90 origin-bottom-right">
+        <DadGPTWidget />
+        <SupportWidget />
+      </div>
       <CookieConsent />
     </div>
   );

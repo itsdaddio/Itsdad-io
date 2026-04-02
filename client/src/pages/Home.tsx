@@ -61,14 +61,14 @@ export default function Home() {
             className="text-xl md:text-2xl max-w-2xl mx-auto mb-4 leading-relaxed"
             style={{ color: "#9CA3AF" }}
           >
-            51 done-for-you products. Step-by-step system.<br className="hidden md:block" />
+            51 done-for-you products. A step-by-step system.<br className="hidden md:block" />
             You follow the plan. You keep the profit.
           </p>
           <p
-            className="text-base max-w-xl mx-auto mb-10"
-            style={{ color: "#6B7280" }}
+            className="text-lg max-w-xl mx-auto mb-10 italic"
+            style={{ color: "#D4AF37" }}
           >
-            Built for people who tried affiliate marketing and got nowhere. This time is different.
+            If you've tried before and failed… this is your reset.
           </p>
 
           {/* SECTION 3 — PRIMARY CTA ($7) */}
@@ -82,12 +82,11 @@ export default function Home() {
                 boxShadow: "0 0 40px rgba(212,175,55,0.25)",
               }}
             >
-              Start for $7/mo
-              <ArrowRight className="w-6 h-6 ml-3" />
+              Get Instant Access for $7 →
             </Button>
           </a>
           <p className="text-sm mt-4" style={{ color: "#6B7280" }}>
-            Cancel anytime. No contracts. No hidden fees.
+            Cancel anytime. No contracts.
           </p>
         </div>
       </section>
@@ -104,7 +103,7 @@ export default function Home() {
       >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4" style={{ color: "#F9FAFB" }}>
-            What You Get for <span style={{ color: "#D4AF37" }}>$7/mo</span>
+            What You Get for <span style={{ color: "#D4AF37" }}>$7</span>
           </h2>
           <p className="text-center mb-12 max-w-xl mx-auto" style={{ color: "#9CA3AF" }}>
             Everything you need to start earning. Nothing you don't.
@@ -144,8 +143,7 @@ export default function Home() {
                   boxShadow: "0 0 30px rgba(212,175,55,0.2)",
                 }}
               >
-                Activate Starter Pack — $7/mo
-                <ArrowRight className="w-5 h-5 ml-2" />
+                Get Instant Access for $7 →
               </Button>
             </a>
           </div>
@@ -357,7 +355,7 @@ export default function Home() {
             <span style={{ color: "#D4AF37" }}>Start Earning.</span>
           </h2>
           <p className="text-lg mb-10 max-w-lg mx-auto" style={{ color: "#9CA3AF" }}>
-            $7 gets you in the door. The system does the rest. You just follow it.
+            $7 gets you in. The system does the rest. You just follow it.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -371,8 +369,7 @@ export default function Home() {
                   boxShadow: "0 0 40px rgba(212,175,55,0.25)",
                 }}
               >
-                Start for $7/mo
-                <ArrowRight className="w-6 h-6 ml-3" />
+                Get Instant Access for $7 →
               </Button>
             </a>
           </div>
