@@ -3,24 +3,27 @@
  *
  * itsdad.io — Memberships page.
  *
- * ZERO FRICTION / FIRST DOLLAR PRIORITY:
- * - NO quiz at entry point — user takes action immediately
- * - Starter Pack is the ONLY highlighted tier for new users
- * - "If you're new, start here." messaging
- * - Other tiers visible but dimmed — positioned as upgrades
- * - Quiz moved to bottom as an UPGRADE tool, not entry tool
+ * LOCKED SYSTEM CONFIG:
+ *   Starter Pack — $7/mo (Entry)
+ *   Builder Club — $19/mo (BEST VALUE)
+ *   Pro Club — $49.99/mo (Scale Up)
+ *   Inner Circle Club — $99.99/mo (MOST VALUE / Full Access)
  *
- * UPDATED: No trials. Straight pricing. Action-oriented CTAs.
- * Starter Pack $7/mo, Builder Club $19/mo, Pro Club $49.99/mo,
- * Inner Circle Club $99.99/mo. Cancel anytime.
+ * DESIGN SYSTEM:
+ *   Background: #0B0B0F / #0F172A
+ *   Text: #F9FAFB / #9CA3AF
+ *   Accent: Royal Gold #D4AF37
+ *   CTA: #D4AF37 bg, #0B0B0F text
+ *   No teal/green accents. Sharp contrast. Premium feel.
+ *
+ * FUNNEL: Traffic → $7 Entry → $19 Upsell → $49/$99 Ascension
  *
  * Route: /memberships
  */
 
 import { useState } from "react";
-import { Check, Zap, Star, Shield, ArrowRight, Loader2, Handshake, Rocket, ChevronDown } from "lucide-react";
+import { Check, Zap, Star, Shield, ArrowRight, Loader2, Handshake, Rocket, ChevronDown, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { MembershipQuiz } from "@/components/MembershipQuiz";
 import { trackCTAClick, trackCheckoutInitiated } from "@/lib/analytics";
@@ -34,14 +37,15 @@ interface Tier {
   monthlyPrice: string;
   pricingCopy: string;
   badge?: string;
-  badgeColor?: string;
+  highlight?: boolean;
+  mostValue?: boolean;
   icon: React.ReactNode;
   features: string[];
   bonusFeatures?: string[];
   cta: string;
 }
 
-// ─── Tier Data ────────────────────────────────────────────────────────────────
+// ─── Tier Data (LOCKED — DO NOT CHANGE NAMES OR PRICING) ─────────────────────
 
 const STARTER: Tier = {
   id: "starter",
@@ -49,11 +53,11 @@ const STARTER: Tier = {
   price: "$7/mo",
   monthlyPrice: "$7",
   pricingCopy: "$7/month. Cancel anytime.",
-  icon: <Zap className="w-7 h-7 text-amber-400" />,
+  icon: <Zap className="w-7 h-7" style={{ color: "#D4AF37" }} />,
   features: [
-    "First Dollar System\u2122 — your step-by-step action plan",
-    "1 product to promote (single-offer focus)",
-    "1 viral script (copy-and-post ready)",
+    "Step-by-step action plan — no guesswork",
+    "Done-for-you products with resell rights",
+    "Copy-and-post viral scripts",
     "Step-by-step posting instructions",
     "Immediate action onboarding",
   ],
@@ -72,10 +76,10 @@ const UPGRADE_TIERS: Tier[] = [
     name: "Builder Club",
     price: "$19/mo",
     monthlyPrice: "$19",
-    pricingCopy: "$19/month. Cancel anytime. Best value.",
-    badge: "Best Value",
-    badgeColor: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
-    icon: <Star className="w-6 h-6 text-amber-400" />,
+    pricingCopy: "$19/month. Cancel anytime.",
+    badge: "BEST VALUE",
+    highlight: true,
+    icon: <Star className="w-6 h-6" style={{ color: "#D4AF37" }} />,
     features: [
       "Multiple products to promote (expand your catalog)",
       "Daily content prompts",
@@ -99,8 +103,7 @@ const UPGRADE_TIERS: Tier[] = [
     monthlyPrice: "$49.99",
     pricingCopy: "$49.99/month. Cancel anytime.",
     badge: "Scale Up",
-    badgeColor: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
-    icon: <Rocket className="w-6 h-6 text-emerald-400" />,
+    icon: <Rocket className="w-6 h-6" style={{ color: "#D4AF37" }} />,
     features: [
       "Full library of 51 products unlocked",
       "Automation frameworks",
@@ -123,9 +126,9 @@ const UPGRADE_TIERS: Tier[] = [
     price: "$99.99/mo",
     monthlyPrice: "$99.99",
     pricingCopy: "$99.99/month. Cancel anytime.",
-    badge: "Full Access",
-    badgeColor: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
-    icon: <Handshake className="w-6 h-6 text-purple-400" />,
+    badge: "MOST VALUE",
+    mostValue: true,
+    icon: <Crown className="w-6 h-6" style={{ color: "#D4AF37" }} />,
     features: [
       "All 51 products + highest commissions",
       "Advanced monetization systems",
@@ -154,7 +157,6 @@ function useCheckout() {
     setLoading(tierId);
     setError(null);
 
-    // GA4: Track CTA click and checkout initiation
     const tierNames: Record<string, string> = { starter: "Starter Pack", builder: "Builder Club", pro: "Pro Club", "inner-circle": "Inner Circle Club" };
     const tierPrices: Record<string, string> = { starter: "$7", builder: "$19", pro: "$49.99", "inner-circle": "$99.99" };
     trackCTAClick(tierId, tierNames[tierId] || tierId, "memberships_page");
@@ -191,8 +193,8 @@ function SuccessBanner() {
   if (!params.get("session_id")) return null;
 
   return (
-    <div className="mb-8 rounded-xl bg-green-500/10 border border-green-500/30 p-4 text-center">
-      <p className="text-green-400 font-semibold text-lg">
+    <div className="mb-8 rounded-xl p-4 text-center" style={{ backgroundColor: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.3)" }}>
+      <p className="font-semibold text-lg" style={{ color: "#D4AF37" }}>
         Welcome to Affiliation Nation. Your membership is active — check your email for next steps.
       </p>
     </div>
@@ -204,8 +206,8 @@ function CancelledBanner() {
   if (!params.get("cancelled")) return null;
 
   return (
-    <div className="mb-8 rounded-xl bg-amber-500/10 border border-amber-500/30 p-4 text-center">
-      <p className="text-amber-400 font-semibold">
+    <div className="mb-8 rounded-xl p-4 text-center" style={{ backgroundColor: "rgba(212,175,55,0.05)", border: "1px solid rgba(212,175,55,0.15)" }}>
+      <p className="font-semibold" style={{ color: "#9CA3AF" }}>
         No worries — your spot is still here whenever you're ready.
       </p>
     </div>
@@ -218,13 +220,13 @@ function InvitedBanner() {
   const ref = params.get("ref") ?? "";
 
   return (
-    <div className="mb-8 rounded-xl bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 p-5 text-center">
-      <p className="text-amber-400 font-bold text-lg mb-1">You Were Invited to Affiliation Nation</p>
-      <p className="text-slate-300 text-sm">
+    <div className="mb-8 rounded-xl p-5 text-center" style={{ backgroundColor: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}>
+      <p className="font-bold text-lg mb-1" style={{ color: "#D4AF37" }}>You Were Invited to Affiliation Nation</p>
+      <p className="text-sm" style={{ color: "#9CA3AF" }}>
         Someone in the community brought you here. Join today and your first month is on them.
       </p>
       {ref && (
-        <p className="text-slate-500 text-xs mt-2 font-mono">Invite code: {ref}</p>
+        <p className="text-xs mt-2 font-mono" style={{ color: "#6B7280" }}>Invite code: {ref}</p>
       )}
     </div>
   );
@@ -238,7 +240,7 @@ export default function Memberships() {
   const [showQuiz, setShowQuiz] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: "#0B0B0F" }}>
 
       {/* ── Banners ──────────────────────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-4 pt-8">
@@ -247,67 +249,84 @@ export default function Memberships() {
         <InvitedBanner />
       </div>
 
-      {/* ── STARTER PACK HERO — The only thing new users see ─────────── */}
+      {/* ── STARTER PACK HERO — The entry point ─────────────────────── */}
       <section className="pt-16 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center mb-10">
-          <Badge className="mb-4 bg-amber-500/20 text-amber-400 border-amber-500/30 text-sm px-3 py-1">
+          <span
+            className="inline-block mb-4 text-sm font-bold px-4 py-1.5 rounded-full"
+            style={{ backgroundColor: "rgba(212,175,55,0.12)", color: "#D4AF37", border: "1px solid rgba(212,175,55,0.25)" }}
+          >
             If you're new, start here.
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-            Your First Dollar<br />
-            <span className="text-amber-400">Starts With This.</span>
+          </span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight" style={{ color: "#F9FAFB" }}>
+            Affiliate Marketing<br />
+            <span style={{ color: "#D4AF37" }}>Without the Guesswork.</span>
           </h1>
-          <p className="text-slate-400 text-lg max-w-lg mx-auto">
-            One product to promote. One script to post. Plus the full course, 40K prompts, and swipe files to back you up. Everything you need — nothing you don't.
+          <p className="text-lg max-w-lg mx-auto" style={{ color: "#9CA3AF" }}>
+            Done-for-you products. Step-by-step system. You follow the plan. You keep the profit.
           </p>
         </div>
 
-        {/* Starter Pack Card — Large, centered, unmissable */}
+        {/* Starter Pack Card */}
         <div className="max-w-md mx-auto">
-          <Card className="relative border-2 border-amber-500/60 bg-gradient-to-b from-amber-950/40 to-slate-900 shadow-2xl shadow-amber-900/30">
+          <Card
+            className="relative shadow-2xl"
+            style={{
+              backgroundColor: "rgba(15,23,42,0.7)",
+              border: "2px solid rgba(212,175,55,0.4)",
+              boxShadow: "0 0 40px rgba(212,175,55,0.08)",
+            }}
+          >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-              <span className="text-xs font-bold px-5 py-1.5 rounded-full bg-amber-500 text-black">
+              <span
+                className="text-xs font-bold px-5 py-1.5 rounded-full"
+                style={{ backgroundColor: "#D4AF37", color: "#0B0B0F" }}
+              >
                 Start Here
               </span>
             </div>
 
             <CardHeader className="pb-4 pt-8 text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                <div
+                  className="p-3 rounded-xl"
+                  style={{ backgroundColor: "rgba(212,175,55,0.1)", border: "1px solid rgba(212,175,55,0.2)" }}
+                >
                   {STARTER.icon}
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-1">{STARTER.name}</h2>
+              <h2 className="text-2xl font-bold mb-1" style={{ color: "#F9FAFB" }}>{STARTER.name}</h2>
 
-              <div className="rounded-xl bg-slate-800/60 border border-amber-500/20 px-6 py-4 text-center mt-4">
-                <span className="text-4xl font-extrabold text-white">{STARTER.monthlyPrice}</span>
-                <span className="text-slate-400 text-lg ml-2">/month</span>
-                <p className="text-xs text-slate-500 mt-1">Cancel anytime — no contracts</p>
+              <div
+                className="rounded-xl px-6 py-4 text-center mt-4"
+                style={{ backgroundColor: "rgba(15,23,42,0.8)", border: "1px solid rgba(212,175,55,0.15)" }}
+              >
+                <span className="text-4xl font-extrabold" style={{ color: "#F9FAFB" }}>{STARTER.monthlyPrice}</span>
+                <span className="text-lg ml-2" style={{ color: "#9CA3AF" }}>/month</span>
+                <p className="text-xs mt-1" style={{ color: "#6B7280" }}>Cancel anytime — no contracts</p>
               </div>
             </CardHeader>
 
             <CardContent className="flex flex-col gap-4 pb-8">
-              {/* Core action features */}
               <div>
-                <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-wider mb-3">Your Action Plan</p>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#D4AF37" }}>Your Action Plan</p>
                 <ul className="space-y-3">
                   {STARTER.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm text-slate-200">
-                      <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                    <li key={feature} className="flex items-start gap-3 text-sm" style={{ color: "#F9FAFB" }}>
+                      <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#D4AF37" }} />
                       {feature}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Bonus/included features */}
               {STARTER.bonusFeatures && (
-                <div className="mt-2 pt-3 border-t border-white/10">
-                  <p className="text-xs font-semibold text-purple-400/70 uppercase tracking-wider mb-3">Also Included</p>
+                <div className="mt-2 pt-3" style={{ borderTop: "1px solid rgba(212,175,55,0.08)" }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#9CA3AF" }}>Also Included</p>
                   <ul className="space-y-3">
                     {STARTER.bonusFeatures.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-sm text-slate-300">
-                        <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                      <li key={feature} className="flex items-start gap-3 text-sm" style={{ color: "#9CA3AF" }}>
+                        <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "rgba(212,175,55,0.5)" }} />
                         {feature}
                       </li>
                     ))}
@@ -318,7 +337,8 @@ export default function Memberships() {
               <Button
                 onClick={() => startCheckout(STARTER.id)}
                 disabled={loading === STARTER.id}
-                className="w-full font-bold text-lg py-6 mt-3 bg-amber-500 hover:bg-amber-400 text-black rounded-xl"
+                className="w-full font-bold text-lg py-6 mt-3 rounded-xl border-0 transition-all hover:scale-[1.02]"
+                style={{ backgroundColor: "#D4AF37", color: "#0B0B0F" }}
               >
                 {loading === STARTER.id ? (
                   <Loader2 className="w-5 h-5 animate-spin mr-2" />
@@ -328,23 +348,23 @@ export default function Memberships() {
                 {loading === STARTER.id ? "Loading..." : STARTER.cta}
               </Button>
 
-              <p className="text-center text-xs text-slate-500">{STARTER.pricingCopy}</p>
+              <p className="text-center text-xs" style={{ color: "#6B7280" }}>{STARTER.pricingCopy}</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Trust signals */}
-        <div className="mt-10 flex flex-wrap justify-center gap-6 text-slate-500 text-sm">
+        <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm" style={{ color: "#6B7280" }}>
           <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-green-500" />
+            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
             <span>Secured by Stripe</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
+            <Check className="w-4 h-4" style={{ color: "#D4AF37" }} />
             <span>Cancel anytime — no questions asked</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
+            <Check className="w-4 h-4" style={{ color: "#D4AF37" }} />
             <span>Instant access after payment</span>
           </div>
         </div>
@@ -353,20 +373,21 @@ export default function Memberships() {
       {/* Error */}
       {error && (
         <div className="max-w-6xl mx-auto px-4 mb-6">
-          <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-center">
-            <p className="text-red-400 text-sm">{error}</p>
+          <div className="rounded-xl p-4 text-center" style={{ backgroundColor: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.3)" }}>
+            <p className="text-sm text-red-400">{error}</p>
           </div>
         </div>
       )}
 
-      {/* ── UPGRADE TIERS — Dimmed, expandable ──────────────────────── */}
-      <section className="py-12 px-4 border-t border-white/5">
+      {/* ── UPGRADE TIERS — Expandable ─────────────────────────────── */}
+      <section className="py-12 px-4" style={{ borderTop: "1px solid rgba(212,175,55,0.06)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <p className="text-slate-500 text-sm mb-2">Already earning? Ready for more?</p>
+            <p className="text-sm mb-2" style={{ color: "#6B7280" }}>Already earning? Ready for more?</p>
             <button
               onClick={() => setShowUpgradeTiers(!showUpgradeTiers)}
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
+              style={{ color: "#D4AF37" }}
             >
               View upgrade options
               <ChevronDown className={`w-4 h-4 transition-transform ${showUpgradeTiers ? "rotate-180" : ""}`} />
@@ -374,15 +395,31 @@ export default function Memberships() {
           </div>
 
           {showUpgradeTiers && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start animate-in fade-in slide-in-from-top-4 duration-500">
+            <div id="tier-cards" className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start animate-in fade-in slide-in-from-top-4 duration-500">
               {UPGRADE_TIERS.map((tier) => (
                 <Card
                   key={tier.id}
-                  className="relative flex flex-col h-full border-slate-700/50 bg-slate-900/60 opacity-90 hover:opacity-100 transition-opacity"
+                  className="relative flex flex-col h-full transition-all hover:scale-[1.01]"
+                  style={{
+                    backgroundColor: "rgba(15,23,42,0.6)",
+                    border: tier.highlight
+                      ? "2px solid rgba(212,175,55,0.5)"
+                      : tier.mostValue
+                        ? "2px solid rgba(212,175,55,0.3)"
+                        : "1px solid rgba(212,175,55,0.08)",
+                    boxShadow: tier.highlight ? "0 0 30px rgba(212,175,55,0.06)" : "none",
+                  }}
                 >
                   {tier.badge && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className={`text-xs font-semibold px-3 py-1 rounded-full ${tier.badgeColor}`}>
+                      <span
+                        className="text-xs font-bold px-4 py-1 rounded-full"
+                        style={{
+                          backgroundColor: tier.highlight ? "#D4AF37" : "rgba(212,175,55,0.15)",
+                          color: tier.highlight ? "#0B0B0F" : "#D4AF37",
+                          border: tier.highlight ? "none" : "1px solid rgba(212,175,55,0.25)",
+                        }}
+                      >
                         {tier.badge}
                       </span>
                     </div>
@@ -390,42 +427,48 @@ export default function Memberships() {
 
                   <CardHeader className="pb-4 pt-6">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 rounded-lg bg-slate-800">{tier.icon}</div>
+                      <div
+                        className="p-2 rounded-lg"
+                        style={{ backgroundColor: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.12)" }}
+                      >
+                        {tier.icon}
+                      </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white">{tier.name}</h3>
-                        <p className="text-slate-400 text-sm">{tier.price}</p>
+                        <h3 className="text-xl font-bold" style={{ color: "#F9FAFB" }}>{tier.name}</h3>
+                        <p className="text-sm" style={{ color: "#9CA3AF" }}>{tier.price}</p>
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-slate-800/60 border border-slate-700/40 px-4 py-3 text-center">
-                      <span className="text-2xl font-extrabold text-white">{tier.monthlyPrice}</span>
-                      <span className="text-slate-400 text-sm ml-1">/month</span>
-                      <p className="text-xs text-slate-500 mt-0.5">Cancel anytime — no contracts</p>
+                    <div
+                      className="rounded-lg px-4 py-3 text-center"
+                      style={{ backgroundColor: "rgba(15,23,42,0.8)", border: "1px solid rgba(212,175,55,0.08)" }}
+                    >
+                      <span className="text-2xl font-extrabold" style={{ color: "#F9FAFB" }}>{tier.monthlyPrice}</span>
+                      <span className="text-sm ml-1" style={{ color: "#9CA3AF" }}>/month</span>
+                      <p className="text-xs mt-0.5" style={{ color: "#6B7280" }}>Cancel anytime — no contracts</p>
                     </div>
                   </CardHeader>
 
                   <CardContent className="flex flex-col flex-1 gap-4">
-                    {/* Growth Plan features */}
                     <div>
-                      <p className="text-xs font-semibold text-amber-400/70 uppercase tracking-wider mb-2.5">Your Growth Plan</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "#D4AF37" }}>Your Growth Plan</p>
                       <ul className="space-y-2.5">
                         {tier.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-200">
-                            <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                          <li key={feature} className="flex items-start gap-2.5 text-sm" style={{ color: "#F9FAFB" }}>
+                            <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#D4AF37" }} />
                             {feature}
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    {/* Also Included */}
                     {tier.bonusFeatures && (
-                      <div className="pt-3 border-t border-white/10">
-                        <p className="text-xs font-semibold text-purple-400/70 uppercase tracking-wider mb-2.5">Also Included</p>
+                      <div className="pt-3" style={{ borderTop: "1px solid rgba(212,175,55,0.06)" }}>
+                        <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "#9CA3AF" }}>Also Included</p>
                         <ul className="space-y-2.5">
                           {tier.bonusFeatures.map((feature) => (
-                            <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-400">
-                              <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                            <li key={feature} className="flex items-start gap-2.5 text-sm" style={{ color: "#6B7280" }}>
+                              <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "rgba(212,175,55,0.4)" }} />
                               {feature}
                             </li>
                           ))}
@@ -436,7 +479,11 @@ export default function Memberships() {
                     <Button
                       onClick={() => startCheckout(tier.id)}
                       disabled={loading === tier.id}
-                      className="w-full font-semibold text-base py-5 mt-2 bg-slate-700 hover:bg-slate-600 text-white"
+                      className="w-full font-semibold text-base py-5 mt-2 rounded-xl border-0 transition-all hover:scale-[1.02]"
+                      style={{
+                        backgroundColor: tier.highlight ? "#D4AF37" : "rgba(212,175,55,0.12)",
+                        color: tier.highlight ? "#0B0B0F" : "#D4AF37",
+                      }}
                     >
                       {loading === tier.id ? (
                         <Loader2 className="w-4 h-4 animate-spin mr-2" />
@@ -446,7 +493,7 @@ export default function Memberships() {
                       {loading === tier.id ? "Loading..." : tier.cta}
                     </Button>
 
-                    <p className="text-center text-xs text-slate-500">{tier.pricingCopy}</p>
+                    <p className="text-center text-xs" style={{ color: "#6B7280" }}>{tier.pricingCopy}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -456,12 +503,13 @@ export default function Memberships() {
       </section>
 
       {/* ── QUIZ — Post-onboarding upgrade tool ────────────────────── */}
-      <section className="py-12 px-4 border-t border-white/5">
+      <section className="py-12 px-4" style={{ borderTop: "1px solid rgba(212,175,55,0.06)" }}>
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-slate-500 text-sm mb-2">Already a member?</p>
+          <p className="text-sm mb-2" style={{ color: "#6B7280" }}>Already a member?</p>
           <button
             onClick={() => setShowQuiz(!showQuiz)}
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
+            style={{ color: "#D4AF37" }}
           >
             Take the upgrade quiz to find your next tier
             <ChevronDown className={`w-4 h-4 transition-transform ${showQuiz ? "rotate-180" : ""}`} />
@@ -470,7 +518,6 @@ export default function Memberships() {
           {showQuiz && (
             <div className="mt-8 animate-in fade-in slide-in-from-top-4 duration-500">
               <MembershipQuiz onRecommend={(tierId: string) => {
-                // If quiz recommends a tier, expand the upgrade section and scroll to it
                 setShowUpgradeTiers(true);
                 setTimeout(() => {
                   document.getElementById("tier-cards")?.scrollIntoView({ behavior: "smooth" });
@@ -483,7 +530,7 @@ export default function Memberships() {
 
       {/* Fine print */}
       <div className="max-w-lg mx-auto px-4 pb-16">
-        <p className="text-center text-xs text-slate-600">
+        <p className="text-center text-xs" style={{ color: "#4B5563" }}>
           Commission rates of 30–40% apply to eligible referred sales only.
           All memberships are billed monthly. Cancel anytime from your dashboard — no questions asked.
         </p>
