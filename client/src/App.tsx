@@ -161,6 +161,8 @@ function Footer() {
             <h4 className="text-white font-semibold mb-4">Connect</h4>
             <ul className="space-y-2">
               <li><a href="https://instagram.com/itsdad.io" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white text-sm transition-colors">Instagram</a></li>
+              <li><a href="https://tiktok.com/@itsdad24" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white text-sm transition-colors">TikTok</a></li>
+              <li><a href="https://youtube.com/@itsdadio" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white text-sm transition-colors">YouTube</a></li>
               <li><a href="mailto:itsdad@itsdad.io" className="text-slate-400 hover:text-white text-sm transition-colors">itsdad@itsdad.io</a></li>
             </ul>
           </div>
@@ -216,6 +218,9 @@ export default function App() {
           <Route path="/founding500" component={Founding500} />
           <Route path="/dashboard" component={AdminDashboard} />
           <Route path="/about">{() => <Redirect to="/meet-dad" />}</Route>
+          <Route path="/blog">{() => <Redirect to="/hubs" />}</Route>
+          <Route path="/prompts">{() => <Redirect to="/hubs" />}</Route>
+          <Route path="/knowledge-hub">{() => <Redirect to="/hubs" />}</Route>
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>

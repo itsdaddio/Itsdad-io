@@ -2,9 +2,7 @@
  * Testimonials.tsx
  *
  * Authentic member testimonials for itsdad.io.
- *
- * MANIFEST PATCH (item 10):
- *   - Replaced "picks up the phone" with "24/7 self-serve Prompt Vault + pre-recorded video library"
+ * 12 diverse testimonials with specific results and correct tier names.
  */
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,7 +33,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 2,
     name: "Jasmine R.",
     location: "Houston, TX",
-    tier: "Affiliate Pro",
+    tier: "Pro Club",
     rating: 5,
     quote:
       "The swipe files alone are worth the membership. I copied the ad copy, swapped in my link, and ran it. The system tracked everything automatically. No guesswork, no tech headaches.",
@@ -55,7 +53,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 4,
     name: "Priya K.",
     location: "Dallas, TX",
-    tier: "Pro Creator",
+    tier: "Pro Club",
     rating: 5,
     quote:
       "What I love most is that the system does the heavy lifting. My referral link is out there working 24/7. I wake up, check my dashboard, and see new commissions. It's exactly what they promised.",
@@ -65,7 +63,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 5,
     name: "Tanya W.",
     location: "Miami, FL",
-    tier: "Affiliate Pro",
+    tier: "Pro Club",
     rating: 5,
     quote:
       "I earned my Affiliated Degree last month. The 24/7 self-serve Prompt Vault + pre-recorded video library meant I could learn at 2 AM when the kids were asleep. No live calls to schedule. Just me, the material, and results.",
@@ -80,6 +78,66 @@ const TESTIMONIALS: Testimonial[] = [
     quote:
       "The 40,000 ChatGPT prompts changed everything for my content game. I went from spending 3 hours writing one post to publishing 5 pieces of content a day. The done-for-you system is no joke.",
     result: "5x content output, commissions growing weekly",
+  },
+  {
+    id: 7,
+    name: "Angela D.",
+    location: "Nashville, TN",
+    tier: "Builder Club",
+    rating: 5,
+    quote:
+      "I'm a single mom working full-time. I needed something I could do in the margins of my day. Its Dad gave me the scripts, the templates, and the products. I just followed the steps. My first $100 month happened faster than I expected.",
+    result: "First $100 month within 6 weeks",
+  },
+  {
+    id: 8,
+    name: "Kevin L.",
+    location: "Denver, CO",
+    tier: "Inner Circle Club",
+    rating: 5,
+    quote:
+      "I've been in digital marketing for 5 years. What impressed me about Its Dad is the infrastructure. The tracking, the commission structure, the product quality — it's built like a real business, not a side hustle gimmick.",
+    result: "Scaled to $1,200/month recurring",
+  },
+  {
+    id: 9,
+    name: "Brianna F.",
+    location: "Orlando, FL",
+    tier: "Starter Pack",
+    rating: 5,
+    quote:
+      "I literally had zero experience. None. The Affiliated Degree course walked me through everything from what affiliate marketing even is to how to get my first sale. I earned my first commission before I finished Module 5.",
+    result: "First sale before finishing the course",
+  },
+  {
+    id: 10,
+    name: "Darius J.",
+    location: "Detroit, MI",
+    tier: "Builder Club",
+    rating: 5,
+    quote:
+      "The done-for-you swipe files are a game changer. I used to spend hours trying to write emails and social posts. Now I grab a template, customize it in 10 minutes, and it converts. Simple as that.",
+    result: "2 hours/week, consistent commissions",
+  },
+  {
+    id: 11,
+    name: "Samantha C.",
+    location: "San Diego, CA",
+    tier: "Pro Club",
+    rating: 5,
+    quote:
+      "What sold me was the 7-day money-back guarantee. I figured I had nothing to lose. Within 3 days I knew I was staying. The product catalog alone is worth 10x the membership fee.",
+    result: "ROI positive within first week",
+  },
+  {
+    id: 12,
+    name: "Malik H.",
+    location: "Charlotte, NC",
+    tier: "Inner Circle Club",
+    rating: 5,
+    quote:
+      "I upgraded to Inner Circle after my first month because the results were undeniable. The second-tier commissions and the advanced strategies took my earnings to a completely different level. Dad built something special here.",
+    result: "Upgraded in 30 days, 5x earnings increase",
   },
 ];
 

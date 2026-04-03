@@ -56,6 +56,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://itsdad.io/blog</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://itsdad.io/prompts</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://itsdad.io/knowledge-hub</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://itsdad.io/course</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

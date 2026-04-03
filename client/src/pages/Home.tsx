@@ -61,6 +61,18 @@ const FAQ_ITEMS = [
     q: "What makes Its Dad different from other affiliate programs?",
     a: "Most programs hand you a link and say 'good luck.' Its Dad gives you the entire system — done-for-you products, swipe files, posting scripts, a step-by-step course, and tracking tools. You don't figure it out alone. The system does the heavy lifting.",
   },
+  {
+    q: "What is the refund policy?",
+    a: "We offer a 7-day money-back guarantee on all membership tiers. If you join and decide it's not for you within the first 7 days, contact us and you'll receive a full refund. No questions asked, no hoops to jump through. We want you here because you want to be here.",
+  },
+  {
+    q: "Do I need a website or social media following to start?",
+    a: "No. You don't need a website, a blog, or a massive following. The system includes done-for-you content, scripts, and templates you can use on any platform — social media, email, messaging apps, even word of mouth. Start where you are with what you have.",
+  },
+  {
+    q: "How much can I realistically earn?",
+    a: "We don't make income guarantees — anyone who does is lying to you. What we can tell you is that the system is built to give you the best possible chance of earning. Members who follow the steps consistently see their first commissions within weeks. Your results depend on your effort, consistency, and how well you follow the system.",
+  },
 ];
 
 function FAQSection() {
