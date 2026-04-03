@@ -32,6 +32,89 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { LiveActivityBar } from "@/components/LiveActivityBar";
+import { Testimonials } from "@/components/Testimonials";
+import { Shield, HelpCircle, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
+const FAQ_ITEMS = [
+  {
+    q: "What exactly do I get for $7?",
+    a: "You get immediate access to done-for-you digital products with full resell rights, the complete Affiliated Degree course, 40,000+ ChatGPT prompts, swipe files, scripts, templates, and access to the Its Dad affiliate portal. Everything you need to start earning.",
+  },
+  {
+    q: "Do I need experience in affiliate marketing?",
+    a: "Not at all. Its Dad was built specifically for people who are new to affiliate marketing or who tried before and didn't succeed. The system tells you exactly what to do, step by step. You follow it.",
+  },
+  {
+    q: "What is the Affiliated Degree?",
+    a: "It's an 8-module self-paced course that teaches you the fundamentals of affiliate marketing. Once you complete it, you earn your Affiliated Degree credential. It's not just theory — every module is designed to get you closer to your first commission.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. There are no contracts, no commitments, and no cancellation fees. You can cancel your membership at any time from your dashboard. Plus, we offer a 7-day money-back guarantee — if it's not for you, you get a full refund.",
+  },
+  {
+    q: "How do commissions work?",
+    a: "When you promote products from the Its Dad portal and someone purchases through your link, you earn a commission. Rates range from 30% to 40% depending on your membership tier. Commissions are recurring — you earn every month your referral stays active.",
+  },
+  {
+    q: "What makes Its Dad different from other affiliate programs?",
+    a: "Most programs hand you a link and say 'good luck.' Its Dad gives you the entire system — done-for-you products, swipe files, posting scripts, a step-by-step course, and tracking tools. You don't figure it out alone. The system does the heavy lifting.",
+  },
+];
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <section
+      className="py-20 px-4"
+      style={{ backgroundColor: "#0F172A", borderTop: "1px solid rgba(212,175,55,0.1)" }}
+    >
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4" style={{ color: "#F9FAFB" }}>
+          Frequently Asked <span style={{ color: "#D4AF37" }}>Questions</span>
+        </h2>
+        <p className="text-center mb-12 max-w-xl mx-auto" style={{ color: "#9CA3AF" }}>
+          Got questions? We've got answers.
+        </p>
+        <div className="space-y-3">
+          {FAQ_ITEMS.map((faq, i) => (
+            <div
+              key={i}
+              className="rounded-xl overflow-hidden"
+              style={{
+                backgroundColor: "rgba(11,11,15,0.6)",
+                border: "1px solid rgba(212,175,55,0.08)",
+              }}
+            >
+              <button
+                className="w-full flex items-center justify-between p-5 text-left"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              >
+                <span className="text-base font-semibold pr-4" style={{ color: "#F9FAFB" }}>
+                  {faq.q}
+                </span>
+                <ChevronDown
+                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${
+                    openIndex === i ? "rotate-180" : ""
+                  }`}
+                  style={{ color: "#D4AF37" }}
+                />
+              </button>
+              {openIndex === i && (
+                <div className="px-5 pb-5">
+                  <p className="leading-relaxed" style={{ color: "#9CA3AF" }}>
+                    {faq.a}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -91,8 +174,14 @@ export default function Home() {
               Get Instant Access for $7 →
             </Button>
           </a>
-          <p className="text-sm mt-4" style={{ color: "#6B7280" }}>
-            Cancel anytime. No contracts.
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+            <p className="text-sm font-semibold" style={{ color: "#D4AF37" }}>
+              7-Day Money-Back Guarantee
+            </p>
+          </div>
+          <p className="text-xs mt-2" style={{ color: "#6B7280" }}>
+            Cancel anytime. No contracts. Not for you? Full refund within 7 days.
           </p>
         </div>
       </section>
@@ -198,9 +287,12 @@ export default function Home() {
                   boxShadow: "0 0 30px rgba(212,175,55,0.2)",
                 }}
               >
-                Get Instant Access for $7 →
-              </Button>
-            </a>
+                          Get Instant Access for $7 →
+            </Button>
+          </a>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+            <span className="text-sm font-semibold" style={{ color: "#D4AF37" }}>7-Day Money-Back Guarantee</span>
           </div>
         </div>
       </section>
@@ -398,6 +490,18 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
+          TESTIMONIALS
+          ═══════════════════════════════════════════════════════════════════ */}
+      <div style={{ backgroundColor: "#0B0B0F", borderTop: "1px solid rgba(212,175,55,0.1)" }}>
+        <Testimonials />
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FAQ SECTION
+          ═══════════════════════════════════════════════════════════════════ */}
+      <FAQSection />
+
+      {/* ═══════════════════════════════════════════════════════════════════
           SECTION 8 — FINAL CTA
           ═══════════════════════════════════════════════════════════════════ */}
       <section
@@ -429,7 +533,11 @@ export default function Home() {
             </a>
           </div>
 
-          <p className="text-sm mt-6" style={{ color: "#6B7280" }}>
+          <div className="flex items-center justify-center gap-2 mt-6">
+            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+            <span className="text-sm font-semibold" style={{ color: "#D4AF37" }}>7-Day Money-Back Guarantee</span>
+          </div>
+          <p className="text-xs mt-2" style={{ color: "#6B7280" }}>
             No contracts. No hidden fees. Cancel anytime.
           </p>
         </div>

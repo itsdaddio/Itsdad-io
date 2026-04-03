@@ -26,7 +26,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://itsdad.io/knowledge-hub</loc>
+    <loc>https://itsdad.io/hubs</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -46,9 +46,19 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://itsdad.io/earnings-disclaimer</loc>
+    <loc>https://itsdad.io/disclaimer</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://itsdad.io/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://itsdad.io/course</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://itsdad.io/product/1</loc>

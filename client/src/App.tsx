@@ -1,4 +1,4 @@
-import { Route, Switch, Link, useLocation } from "wouter";
+import { Route, Switch, Link, useLocation, Redirect } from "wouter";
 import Home from "./pages/Home";
 import Memberships from "./pages/Memberships";
 import Hubs from "./pages/Hubs";
@@ -215,6 +215,7 @@ export default function App() {
           <Route path="/course" component={CoursePage} />
           <Route path="/founding500" component={Founding500} />
           <Route path="/dashboard" component={AdminDashboard} />
+          <Route path="/about">{() => <Redirect to="/meet-dad" />}</Route>
           <Route>
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
               <h1 className="text-4xl font-bold mb-4">404 — Page Not Found</h1>

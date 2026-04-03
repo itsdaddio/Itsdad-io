@@ -349,6 +349,10 @@ export default function Memberships() {
               </Button>
 
               <p className="text-center text-xs" style={{ color: "#6B7280" }}>{STARTER.pricingCopy}</p>
+              <div className="flex items-center justify-center gap-2 mt-3">
+                <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+                <span className="text-xs font-semibold" style={{ color: "#D4AF37" }}>7-Day Money-Back Guarantee</span>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -362,6 +366,10 @@ export default function Memberships() {
           <div className="flex items-center gap-2">
             <Check className="w-4 h-4" style={{ color: "#D4AF37" }} />
             <span>Cancel anytime — no questions asked</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+            <span style={{ color: "#D4AF37", fontWeight: 600 }}>7-Day Money-Back Guarantee</span>
           </div>
           <div className="flex items-center gap-2">
             <Check className="w-4 h-4" style={{ color: "#D4AF37" }} />
