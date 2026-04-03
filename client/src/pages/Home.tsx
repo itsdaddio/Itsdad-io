@@ -287,12 +287,13 @@ export default function Home() {
                   boxShadow: "0 0 30px rgba(212,175,55,0.2)",
                 }}
               >
-                          Get Instant Access for $7 →
-            </Button>
-          </a>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
-            <span className="text-sm font-semibold" style={{ color: "#D4AF37" }}>7-Day Money-Back Guarantee</span>
+                Get Instant Access for $7 →
+              </Button>
+            </a>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <Shield className="w-4 h-4" style={{ color: "#D4AF37" }} />
+              <span className="text-sm font-semibold" style={{ color: "#D4AF37" }}>7-Day Money-Back Guarantee</span>
+            </div>
           </div>
         </div>
       </section>
