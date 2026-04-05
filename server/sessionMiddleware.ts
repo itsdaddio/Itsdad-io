@@ -18,7 +18,7 @@ import { Request, Response, NextFunction } from "express";
 import { getDb } from "./db";
 import { sessions } from "../drizzle/schema";
 import { eq, and, gt } from "drizzle-orm";
-import { v4 as uuidv4 } from "uuid";
+import crypto from "crypto";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -48,7 +48,7 @@ export async function createSession(userId: number): Promise<string | null> {
   const db = (await getDb()) as any;
   if (!db) return null;
 
-  const sessionId = uuidv4();
+  const sessionId = crypto.randomUUID();
   const expiresAt = new Date(Date.now() + SESSION_MAX_AGE_MS);
 
   await db.insert(sessions).values({
