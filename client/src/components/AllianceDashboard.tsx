@@ -233,16 +233,22 @@ export default function AllianceDashboard() {
 
   useEffect(() => {
     Promise.all([
-      fetch("/api/referral/stats").then((r) => r.json()),
-      fetch("/api/referral/challenge-text").then((r) => r.json()),
-      fetch("/api/products/stats").then((r) => r.json()).catch(() => null),
+      fetch("/api/referral/stats", { credentials: "include" }).then((r) => {
+        if (!r.ok) throw new Error(`Stats: ${r.status}`);
+        return r.json();
+      }),
+      fetch("/api/referral/challenge-text", { credentials: "include" }).then((r) => {
+        if (!r.ok) throw new Error(`Challenge: ${r.status}`);
+        return r.json();
+      }),
+      fetch("/api/products/stats", { credentials: "include" }).then((r) => r.json()).catch(() => null),
     ])
       .then(([s, c, ps]) => {
-        setStats(s);
-        setChallenge(c);
+        if (s && !s.error) setStats(s);
+        if (c && !c.error) setChallenge(c);
         if (ps && !ps.error) setProductStats(ps);
       })
-      .catch(console.error)
+      .catch((err) => console.error("[AllianceDashboard] Fetch error:", err))
       .finally(() => setLoading(false));
   }, []);
 

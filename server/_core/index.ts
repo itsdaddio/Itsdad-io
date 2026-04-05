@@ -11,6 +11,7 @@
 
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { json } from "body-parser";
 import { handleStripeWebhook } from "../webhook-stripe";
 import { processInstantOnboardingEmails } from "../instantOnboardingService";
@@ -20,6 +21,8 @@ import { dadGptChat, supportChat } from "../chat";
 import { claudeChat, getCodeStatus, requestFoundingCode } from "../chatClaude";
 import { trackProductClick, createProductCheckout, recordProductPurchase, getProductStats } from "../products";
 import { handleBlueprintCapture } from "../blueprintCapture";
+import { sessionMiddleware } from "../sessionMiddleware";
+import { loginWithEmail, logout, getCurrentUser, sessionLoginFromStripe } from "../auth";
 
 // ─── App Setup ────────────────────────────────────────────────────────────────
 
@@ -37,6 +40,22 @@ app.use("/api/webhooks/stripe", express.raw({ type: "application/json" }));
 
 // JSON body for all other routes
 app.use(json({ limit: "2mb" }));
+
+// Cookie parser — must come before session middleware
+app.use(cookieParser());
+
+// Session middleware — reads session cookie and populates req.session
+app.use(sessionMiddleware);
+
+// ─── Auth Routes ─────────────────────────────────────────────────────────────
+// POST /api/auth/login          — email-based login for existing members
+// POST /api/auth/logout         — destroy session and clear cookie
+// GET  /api/auth/me             — get current authenticated user info
+// POST /api/auth/session-login  — auto-login after Stripe checkout
+app.post("/api/auth/login", loginWithEmail);
+app.post("/api/auth/logout", logout);
+app.get("/api/auth/me", getCurrentUser);
+app.post("/api/auth/session-login", sessionLoginFromStripe);
 
 // ─── Alliance Referral Routes ────────────────────────────────────────────────
 // GET  /api/referral/code            — get or create referral code for logged-in user
