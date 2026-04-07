@@ -70,12 +70,12 @@ if (IS_PROD) {
     "/": {
       title: "itsdad.io — Learn Affiliate Marketing & Earn Your First Dollar",
       description: "The affiliate marketing platform built for people who've tried and haven't won yet. Earn your Affiliated Degree, access 51 curated products, and build real recurring income — starting at $7.",
-      noscript: "<h1>itsdad.io — Affiliate Marketing for Everyone</h1><p>51 curated digital products with full resell rights. 4 membership tiers starting at $7. Earn your Affiliated Degree through our 8-module course. No guesswork, no tech headaches — just follow the system.</p><p>Starter Pack $7 | Builder Club $19/mo | Pro Club $49.99/mo | Inner Circle Club $99.99/mo</p>",
+      noscript: "<h1>itsdad.io — Affiliate Marketing for Everyone</h1><p>51 curated digital products with full resell rights. 4 membership tiers starting at $7. Earn your Affiliated Degree through our 8-module course. No guesswork, no tech headaches — just follow the system.</p><p>Starter Pack $7 | Builder Club $19/mo | Pro Creator Club $49.99/mo | Inner Circle Club $99.99/mo</p>",
     },
     "/memberships": {
       title: "Membership Tiers — itsdad.io",
-      description: "Compare all 4 membership tiers: Starter Pack ($7), Builder Club ($19/mo), Pro Club ($49.99/mo), and Inner Circle Club ($99.99/mo). Find the right plan for your affiliate marketing journey.",
-      noscript: "<h1>itsdad.io Membership Tiers</h1><p>Starter Pack — $7 one-time. Builder Club — $19/mo. Pro Club — $49.99/mo. Inner Circle Club — $99.99/mo. All tiers include done-for-you products, the Affiliated Degree course, and affiliate tools.</p>",
+      description: "Compare all 4 membership tiers: Starter Pack ($7), Builder Club ($19/mo), Pro Creator Club ($49.99/mo), and Inner Circle Club ($99.99/mo). Find the right plan for your affiliate marketing journey.",
+      noscript: "<h1>itsdad.io Membership Tiers</h1><p>Starter Pack — $7 one-time. Builder Club — $19/mo. Pro Creator Club — $49.99/mo. Inner Circle Club — $99.99/mo. All tiers include done-for-you products, the Affiliated Degree course, and affiliate tools.</p>",
     },
     "/meet-dad": {
       title: "Meet Dad — The Story Behind itsdad.io",

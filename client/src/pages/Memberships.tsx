@@ -6,7 +6,7 @@
  * LOCKED SYSTEM CONFIG:
  *   Starter Pack — $7/mo (Entry)
  *   Builder Club — $19/mo (BEST VALUE)
- *   Pro Club — $49.99/mo (Scale Up)
+ *   Pro Creator Club — $49.99/mo (Scale Up)
  *   Inner Circle Club — $99.99/mo (MOST VALUE / Full Access)
  *
  * DESIGN SYSTEM:
@@ -98,7 +98,7 @@ const UPGRADE_TIERS: Tier[] = [
   },
   {
     id: "pro",
-    name: "Pro Club",
+    name: "Pro Creator Club",
     price: "$49.99/mo",
     monthlyPrice: "$49.99",
     pricingCopy: "$49.99/month. Cancel anytime.",
@@ -118,7 +118,7 @@ const UPGRADE_TIERS: Tier[] = [
       "Done-for-you swipe files & templates",
       "35% recurring commissions",
     ],
-    cta: "Unlock Pro Club",
+    cta: "Unlock Pro Creator Club",
   },
   {
     id: "inner-circle",
@@ -137,7 +137,7 @@ const UPGRADE_TIERS: Tier[] = [
       "High-level income expansion methods",
     ],
     bonusFeatures: [
-      "Everything in Pro Club included",
+      "Everything in Pro Creator Club included",
       "Affiliated Degree course (8 modules)",
       "40,000 ChatGPT Prompt Vault",
       "Done-for-you swipe files & templates",
@@ -157,7 +157,7 @@ function useCheckout() {
     setLoading(tierId);
     setError(null);
 
-    const tierNames: Record<string, string> = { starter: "Starter Pack", builder: "Builder Club", pro: "Pro Club", "inner-circle": "Inner Circle Club" };
+    const tierNames: Record<string, string> = { starter: "Starter Pack", builder: "Builder Club", pro: "Pro Creator Club", "inner-circle": "Inner Circle Club" };
     const tierPrices: Record<string, string> = { starter: "$7", builder: "$19", pro: "$49.99", "inner-circle": "$99.99" };
     trackCTAClick(tierId, tierNames[tierId] || tierId, "memberships_page");
     trackCheckoutInitiated(tierId, tierNames[tierId] || tierId, tierPrices[tierId] || "$0");

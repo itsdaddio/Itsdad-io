@@ -9,7 +9,7 @@
  * Tier IDs (matching Memberships.tsx and checkout.ts):
  *   starter      — Starter Pack       $7/mo
  *   builder      — Builder Club       $19/mo
- *   pro          — Pro Club           $49.99/mo
+ *   pro          — Pro Creator Club           $49.99/mo
  *   inner-circle — Inner Circle Club  $99.99/mo
  *
  * Route: /checkout/success
@@ -24,7 +24,7 @@ import { trackPurchaseComplete, trackUpsellClick, trackUpsellDeclined } from "@/
 const TIER_NAMES: Record<string, string> = {
   "starter":      "Starter Pack",
   "builder":      "Builder Club",
-  "pro":          "Pro Club",
+  "pro":          "Pro Creator Club",
   "inner-circle": "Inner Circle Club",
 };
 
@@ -61,11 +61,11 @@ const UPSELL_MAP: Record<string, UpsellOffer[]> = {
       highlight: true,
     },
   ],
-  // Builder buyer → show Pro Club
+  // Builder buyer → show Pro Creator Club
   builder: [
     {
       tierId: "pro",
-      name: "Pro Club",
+      name: "Pro Creator Club",
       price: "$49.99/mo",
       headline: "Automate your income with funnels and scaling systems.",
       features: [
@@ -75,7 +75,7 @@ const UPSELL_MAP: Record<string, UpsellOffer[]> = {
         "Content scaling systems",
         "Performance optimization tools",
       ],
-      cta: "Upgrade to Pro Club — $49.99/mo",
+      cta: "Upgrade to Pro Creator Club — $49.99/mo",
       highlight: true,
     },
   ],
@@ -87,7 +87,7 @@ const UPSELL_MAP: Record<string, UpsellOffer[]> = {
       price: "$99.99/mo",
       headline: "Advanced monetization, early access tools, and strategy drops.",
       features: [
-        "Everything in Pro Club",
+        "Everything in Pro Creator Club",
         "Advanced monetization systems",
         "Early access tools and features",
         "Strategy drops and system updates",

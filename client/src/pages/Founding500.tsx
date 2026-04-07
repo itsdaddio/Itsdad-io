@@ -329,7 +329,7 @@ export default function Founding500() {
               <p className="text-amber-400 font-bold text-2xl">$9.50/mo</p>
             </div>
             <div>
-              <p className="text-slate-400 text-sm">Pro Club</p>
+              <p className="text-slate-400 text-sm">Pro Creator Club</p>
               <p className="text-slate-500 line-through text-lg">$49.99/mo</p>
               <p className="text-amber-400 font-bold text-2xl">$25/mo</p>
             </div>

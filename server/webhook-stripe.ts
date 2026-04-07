@@ -43,7 +43,7 @@ function getMembershipTierFromPriceId(priceId: string): {
     },
     [process.env.STRIPE_PRICE_PRO_CLUB || "price_pro_club"]: {
       tier: "pro",
-      tierName: "Pro Club",
+      tierName: "Pro Creator Club",
     },
     [process.env.STRIPE_PRICE_INNER_CIRCLE_CLUB || "price_inner_circle_club"]: {
       tier: "inner-circle",

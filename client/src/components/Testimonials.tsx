@@ -33,7 +33,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 2,
     name: "Jasmine R.",
     location: "Houston, TX",
-    tier: "Pro Club",
+    tier: "Pro Creator Club",
     rating: 5,
     quote:
       "The swipe files alone are worth the membership. I copied the ad copy, swapped in my link, and ran it. The system tracked everything automatically. No guesswork, no tech headaches.",
@@ -53,7 +53,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 4,
     name: "Priya K.",
     location: "Dallas, TX",
-    tier: "Pro Club",
+    tier: "Pro Creator Club",
     rating: 5,
     quote:
       "What I love most is that the system does the heavy lifting. My referral link is out there working 24/7. I wake up, check my dashboard, and see new commissions. It's exactly what they promised.",
@@ -63,7 +63,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 5,
     name: "Tanya W.",
     location: "Miami, FL",
-    tier: "Pro Club",
+    tier: "Pro Creator Club",
     rating: 5,
     quote:
       "I earned my Affiliated Degree last month. The 24/7 self-serve Prompt Vault + pre-recorded video library meant I could learn at 2 AM when the kids were asleep. No live calls to schedule. Just me, the material, and results.",
@@ -123,7 +123,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: 11,
     name: "Samantha C.",
     location: "San Diego, CA",
-    tier: "Pro Club",
+    tier: "Pro Creator Club",
     rating: 5,
     quote:
       "What sold me was the 7-day money-back guarantee. I figured I had nothing to lose. Within 3 days I knew I was staying. The product catalog alone is worth 10x the membership fee.",

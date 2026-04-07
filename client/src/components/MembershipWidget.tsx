@@ -70,7 +70,7 @@ const TIERS: MembershipTier[] = [
   },
   {
     id: "pro",
-    name: "Pro Club",
+    name: "Pro Creator Club",
     price: "$49.99",
     period: "/mo",
     badge: "Automation",
@@ -84,7 +84,7 @@ const TIERS: MembershipTier[] = [
       "Content scaling systems",
       "Performance optimization tools",
     ],
-    cta: "Join Pro Club",
+    cta: "Join Pro Creator Club",
     ctaHref: "/memberships?tier=pro",
   },
   {
@@ -96,7 +96,7 @@ const TIERS: MembershipTier[] = [
     badgeColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
     icon: <Handshake className="w-5 h-5 text-purple-400" />,
     features: [
-      "Everything in Pro Club",
+      "Everything in Pro Creator Club",
       "All 51 products + 40% commissions",
       "Advanced monetization systems",
       "Early access tools and features",

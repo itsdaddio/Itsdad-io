@@ -78,7 +78,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
     url: `${BASE_URL}/memberships`,
     // MANIFEST PATCH: Updated description
     description:
-      "Choose your Its Dad membership plan. Starter Pack ($7/mo), Builder Club ($19/mo), Pro Club ($49.99/mo), and Inner Circle Club ($99.99/mo). All plans include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
+      "Choose your Its Dad membership plan. Starter Pack ($7/mo), Builder Club ($19/mo), Pro Creator Club ($49.99/mo), and Inner Circle Club ($99.99/mo). All plans include automated commission tracking, done-for-you swipe files, and the Affiliated Degree course.",
     offers: [
       {
         "@type": "Offer",
@@ -98,7 +98,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
       },
       {
         "@type": "Offer",
-        name: "Pro Club",
+        name: "Pro Creator Club",
         price: "49.99",
         priceCurrency: "USD",
         description: "Everything in Builder Club, full library of 51 products unlocked, automation frameworks, funnel strategies, content scaling systems, performance optimization tools.",
@@ -108,7 +108,7 @@ const PAGE_SCHEMAS: Record<string, object> = {
         name: "Inner Circle Club",
         price: "99.99",
         priceCurrency: "USD",
-        description: "Everything in Pro Club, all 51 products at 40% commissions, advanced monetization systems, early access tools and features, strategy drops and system updates, high-level income expansion methods.",
+        description: "Everything in Pro Creator Club, all 51 products at 40% commissions, advanced monetization systems, early access tools and features, strategy drops and system updates, high-level income expansion methods.",
       },
     ],
   },

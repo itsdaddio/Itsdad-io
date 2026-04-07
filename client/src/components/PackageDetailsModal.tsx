@@ -73,12 +73,12 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
   },
   pro: {
     id: "pro",
-    name: "Pro Club",
+    name: "Pro Creator Club",
     price: "$49.99",
     period: "/month",
     tagline: "Automate and expand your income",
     description:
-      "Pro Club gives you the automation and funnel systems to scale without burning out. Pre-built frameworks, content scaling systems, and performance optimization tools.",
+      "Pro Creator Club gives you the automation and funnel systems to scale without burning out. Pre-built frameworks, content scaling systems, and performance optimization tools.",
     features: [
       "Everything in Builder Club",
       "Full library of 51 products unlocked",
@@ -98,7 +98,7 @@ const PACKAGE_DETAILS: Record<string, PackageDetail> = {
     description:
       "Inner Circle Club is the complete Its Dad experience. Advanced monetization systems, early access tools, strategy drops, and high-level income expansion methods.",
     features: [
-      "Everything in Pro Club",
+      "Everything in Pro Creator Club",
       "All 51 products + 40% commissions",
       "Advanced monetization systems",
       "Early access tools and features",

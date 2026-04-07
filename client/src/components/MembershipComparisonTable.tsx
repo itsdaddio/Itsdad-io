@@ -67,7 +67,7 @@ export function MembershipComparisonTable() {
             <th className="text-left py-4 px-4 text-muted-foreground font-medium w-1/3">Feature</th>
             <th className="text-center py-4 px-3 text-foreground font-bold">Starter Pack<br /><span className="text-amber-400 font-normal text-xs">$7/mo</span></th>
             <th className="text-center py-4 px-3 text-foreground font-bold bg-amber-500/5 border-x border-amber-500/20">Builder Club<br /><span className="text-amber-400 font-normal text-xs">$19/mo</span></th>
-            <th className="text-center py-4 px-3 text-foreground font-bold">Pro Club<br /><span className="text-amber-400 font-normal text-xs">$49.99/mo</span></th>
+            <th className="text-center py-4 px-3 text-foreground font-bold">Pro Creator Club<br /><span className="text-amber-400 font-normal text-xs">$49.99/mo</span></th>
             <th className="text-center py-4 px-3 text-foreground font-bold">Inner Circle Club<br /><span className="text-amber-400 font-normal text-xs">$99.99/mo</span></th>
           </tr>
         </thead>

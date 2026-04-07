@@ -94,7 +94,7 @@ const TIER_DETAILS: Record<string, { name: string; price: string; icon: React.Re
     description: "You're ready to build consistency. Daily prompts, multiple products, and a scaling method to grow your income month over month.",
   },
   pro: {
-    name: "Pro Club",
+    name: "Pro Creator Club",
     price: "$49.99/mo",
     icon: <Crown className="w-6 h-6 text-emerald-400" />,
     color: "border-emerald-500/30 bg-emerald-500/5",

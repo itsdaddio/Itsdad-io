@@ -10,7 +10,7 @@
  * Membership tiers (aligned with frontend Memberships.tsx):
  *   starter      — Starter Pack         $7/mo
  *   builder      — Builder Club         $19/mo
- *   pro          — Pro Club             $49.99/mo
+ *   pro          — Pro Creator Club             $49.99/mo
  *   inner-circle — Inner Circle Club    $99.99/mo
  *
  * No trials. No free periods. Full price charged immediately.
@@ -49,7 +49,7 @@ const TIER_CONFIG: Record<string, TierConfig> = {
     fullPrice: "$19/mo",
   },
   "pro": {
-    name: "Pro Club",
+    name: "Pro Creator Club",
     priceId: process.env.STRIPE_PRICE_PRO_CLUB || "",
     fullPrice: "$49.99/mo",
   },

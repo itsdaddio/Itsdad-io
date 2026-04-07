@@ -2,7 +2,7 @@
  * AdminDashboard.tsx — Daddio's Personal Admin Dashboard
  *
  * DESIGN SYSTEM: Royal Gold #D4AF37 on #0B0B0F
- * LOCKED CONFIG: Starter $7 | Builder Club $19 (BEST VALUE) | Pro Club $49.99 | Inner Circle $99.99
+ * LOCKED CONFIG: Starter $7 | Builder Club $19 (BEST VALUE) | Pro Creator Club $49.99 | Inner Circle $99.99
  *
  * PIN-protected. Shows: Money, People, Content.
  */
@@ -45,7 +45,7 @@ interface DashboardData {
 const TIER_LABELS: Record<string, string> = {
   starter: "Starter Pack",
   builder: "Builder Club",
-  pro: "Pro Club",
+  pro: "Pro Creator Club",
   "inner-circle": "Inner Circle Club",
   member: "Member",
 };
@@ -502,7 +502,7 @@ export default function AdminDashboard() {
               Its Dad LLC — Admin Dashboard — Locked System Config Active
             </p>
             <p className="text-xs mt-1" style={{ color: "#4B5563" }}>
-              Starter $7 | Builder Club $19 (Best Value) | Pro Club $49.99 | Inner Circle Club $99.99
+              Starter $7 | Builder Club $19 (Best Value) | Pro Creator Club $49.99 | Inner Circle Club $99.99
             </p>
           </div>
           <button

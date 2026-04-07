@@ -199,7 +199,7 @@ function CommissionCalculator() {
   const presets = [
     { label: "Starter Pack", price: "7", rate: "30" },
     { label: "Builder Club", price: "19", rate: "35" },
-    { label: "Pro Club", price: "49.99", rate: "35" },
+    { label: "Pro Creator Club", price: "49.99", rate: "35" },
     { label: "Inner Circle Club", price: "99.99", rate: "40" },
   ];
 

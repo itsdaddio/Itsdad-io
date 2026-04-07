@@ -80,7 +80,7 @@ PLATFORM KNOWLEDGE:
 MEMBERSHIP TIERS:
 - Starter Pack: $7/month — 1 hand-picked product, viral script, 30% commissions, Affiliated Degree course, ChatGPT Prompt Vault
 - Builder Club: $19/month — Multiple products, content rotation engine, advanced training, 30% commissions
-- Pro Club: $49.99/month — Full 51-product catalog, 35% commissions, advanced creator tools, priority support
+- Pro Creator Club: $49.99/month — Full 51-product catalog, 35% commissions, advanced creator tools, priority support
 - Inner Circle Club: $99.99/month — 40% commissions, 1-on-1 strategy calls, white-glove onboarding, early access
 
 FOUNDING 500 PROMOTION (ACTIVE NOW):

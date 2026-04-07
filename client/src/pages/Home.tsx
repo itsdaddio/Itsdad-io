@@ -1,7 +1,7 @@
 /**
  * Home.tsx — itsdad.io Homepage
  * LOCKED SYSTEM CONFIG:
- *   Starter: $7 | Builder Club: $19 (BEST VALUE) | Pro Club: $49.99 | Inner Circle: $99.99
+ *   Starter: $7 | Builder Club: $19 (BEST VALUE) | Pro Creator Club: $49.99 | Inner Circle: $99.99
  *   Funnel: Traffic → $7 Entry → $19 Upsell → $49/$99 Ascension
  *   Core Promise: "Affiliate marketing without guesswork."
  *
@@ -496,7 +496,7 @@ export default function Home() {
               <Link href="/memberships" className="underline underline-offset-2" style={{ color: "#D4AF37" }}>
                 See all membership tiers
               </Link>
-              {" "}— Pro Club ($49.99) and Inner Circle Club ($99.99) unlock the full 51-product library.
+              {" "}— Pro Creator Club ($49.99) and Inner Circle Club ($99.99) unlock the full 51-product library.
             </p>
           </div>
         </div>
