@@ -33,6 +33,7 @@ import {
 import { JsonLd } from "@/components/JsonLd";
 import { LiveActivityBar } from "@/components/LiveActivityBar";
 import { Testimonials } from "@/components/Testimonials";
+import { BlueprintEmailCapture } from "@/components/BlueprintEmailCapture";
 import { Shield, HelpCircle, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -508,6 +509,26 @@ export default function Home() {
       <div style={{ backgroundColor: "#0B0B0F", borderTop: "1px solid rgba(212,175,55,0.1)" }}>
         <Testimonials />
       </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          FREE ROADMAP EMAIL CAPTURE
+          ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        id="start-here"
+        className="py-20 px-4"
+        style={{ backgroundColor: "#0B0B0F", borderTop: "1px solid rgba(212,175,55,0.1)" }}
+      >
+        <div className="max-w-2xl mx-auto text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "#F9FAFB" }}>
+            Not Ready to Commit?<br />
+            <span style={{ color: "#D4AF37" }}>Start With the Free Roadmap.</span>
+          </h2>
+          <p className="text-lg max-w-lg mx-auto" style={{ color: "#9CA3AF" }}>
+            Get the exact steps Dad used to earn his first affiliate dollar — delivered straight to your inbox.
+          </p>
+        </div>
+        <BlueprintEmailCapture />
+      </section>
 
       {/* ═══════════════════════════════════════════════════════════════════
           FAQ SECTION
