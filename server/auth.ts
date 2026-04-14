@@ -33,9 +33,16 @@ import {
   clearSessionCookie,
 } from "./sessionMiddleware";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-02-24.acacia",
-});
+// Lazy-init Stripe to prevent server crash when STRIPE_SECRET_KEY is not set
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
+    _stripe = new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+  }
+  return _stripe;
+}
 
 // ─── POST /api/auth/login ────────────────────────────────────────────────────
 // Email-based login for existing members
@@ -187,7 +194,7 @@ export async function sessionLoginFromStripe(req: Request, res: Response): Promi
 
   try {
     // Look up the Stripe session to get customer email
-    const stripeSession = await stripe.checkout.sessions.retrieve(stripeSessionId);
+    const stripeSession = await getStripe().checkout.sessions.retrieve(stripeSessionId);
     const customerEmail =
       stripeSession.customer_email || stripeSession.customer_details?.email;
 

@@ -23,10 +23,16 @@ import * as schema from "../drizzle/schema";
 import * as referralSchema from "../drizzle/schema-referral";
 import { eq, desc, sql, and } from "drizzle-orm";
 
-// ─── Stripe ───────────────────────────────────────────────────────────────────
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-02-24.acacia",
-});
+// ─── Stripe (lazy-init to prevent server crash when key is not set) ──────────
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
+    _stripe = new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+  }
+  return _stripe;
+}
 
 const APP_URL = process.env.VITE_APP_URL || "https://itsdad.io";
 
@@ -257,7 +263,7 @@ export async function createProductCheckout(req: Request, res: Response): Promis
     // Apply promo code if provided (admin-issued codes)
     if (promoCode) {
       try {
-        const promotionCodes = await stripe.promotionCodes.list({
+        const promotionCodes = await getStripe().promotionCodes.list({
           code: promoCode,
           active: true,
           limit: 1,
@@ -275,7 +281,7 @@ export async function createProductCheckout(req: Request, res: Response): Promis
       }
     }
 
-    const session = await stripe.checkout.sessions.create(sessionParams);
+    const session = await getStripe().checkout.sessions.create(sessionParams);
 
     console.log(
       `[Products] Checkout created: product=${productId} funnel=${type} bump=${includeOrderBump || false} ref=${referralCode || "none"} session=${session.id}`
@@ -309,7 +315,7 @@ export async function recordProductPurchase(req: Request, res: Response): Promis
 
   try {
     // Verify the Stripe session is paid
-    const stripeSession = await stripe.checkout.sessions.retrieve(sessionId);
+    const stripeSession = await getStripe().checkout.sessions.retrieve(sessionId);
     if (stripeSession.payment_status !== "paid") {
       res.status(400).json({ error: "Payment not completed" });
       return;

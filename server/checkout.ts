@@ -23,9 +23,16 @@
 import { Request, Response } from "express";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-02-24.acacia",
-});
+// Lazy-init Stripe to prevent server crash when STRIPE_SECRET_KEY is not set
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
+    _stripe = new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+  }
+  return _stripe;
+}
 
 const APP_URL = process.env.VITE_APP_URL || "https://www.itsdad.io";
 
@@ -120,7 +127,7 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
     // Apply promo code if provided (admin-issued codes only)
     if (promoCode) {
       try {
-        const promotionCodes = await stripe.promotionCodes.list({
+        const promotionCodes = await getStripe().promotionCodes.list({
           code: promoCode,
           active: true,
           limit: 1,
@@ -138,7 +145,7 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
       }
     }
 
-    const session = await stripe.checkout.sessions.create(sessionParams);
+    const session = await getStripe().checkout.sessions.create(sessionParams);
 
     console.log(
       `[Checkout] Session created for tier=${tier} email=${email || "unknown"} session=${session.id}`
@@ -163,7 +170,7 @@ export async function getSessionStatus(req: Request, res: Response): Promise<voi
   }
 
   try {
-    const session = await stripe.checkout.sessions.retrieve(session_id, {
+    const session = await getStripe().checkout.sessions.retrieve(session_id, {
       expand: ["subscription", "customer"],
     });
 

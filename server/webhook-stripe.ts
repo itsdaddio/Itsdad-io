@@ -18,9 +18,16 @@ import { users, memberships } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 import { triggerInstantOnboarding } from "./instantOnboardingService";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-02-24.acacia",
-});
+// Lazy-init Stripe to prevent server crash when STRIPE_SECRET_KEY is not set
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
+    _stripe = new Stripe(key, { apiVersion: "2025-02-24.acacia" });
+  }
+  return _stripe;
+}
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET || "";
 
@@ -262,7 +269,7 @@ export async function handleStripeWebhook(req: Request, res: Response): Promise<
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, WEBHOOK_SECRET);
+    event = getStripe().webhooks.constructEvent(req.body, sig, WEBHOOK_SECRET);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error(`[Stripe Webhook] Signature verification failed: ${message}`);
